@@ -1,3 +1,16 @@
+# OAuth 2.0 Token Exchange
+
+This is the working area for the expected IETF OAUTH WG's draft of Token Exchange
+
+Be aware that all contributions to the specification fall under the "NOTE WELL"
+terms outlined below.
+
+* [Working Group Draft] (https://tools.ietf.org/html/draft-ietf-oauth-token-exchange)
+* [Working Group] (https://datatracker.ietf.org/wg/oauth)
+* [Working Group Mailing List] (https://www.ietf.org/mailman/listinfo/OAUTH)
+
+
+
 ## NOTE WELL
 
 Any submission to the [IETF](https://www.ietf.org/) intended by the Contributor
