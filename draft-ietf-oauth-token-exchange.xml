@@ -33,6 +33,23 @@
       </address>
     </author>
 
+    <author fullname="Brian Campbell" initials="B." surname="Campbell">
+      <organization>Ping Identity</organization>
+      <address><email>brian.d.campbell@gmail.com</email></address>
+    </author>
+
+    <author fullname="John Bradley" initials="J." surname="Bradley">
+      <organization>Ping Identity</organization>
+      <address><email>ve7jtb@ve7jtb.com</email></address>
+    </author>
+
+    <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
+      <organization abbrev="Salesforce">Salesforce</organization>
+      <address>
+        <email>cmortimore@salesforce.com</email>
+      </address>
+    </author>
+
     <date day="6" month="July" year="2015" />
 
     <area>Security</area>
@@ -578,8 +595,7 @@
 
     <section title='Acknowledgements' anchor='Acknowledgements'>
       <t>
-	The authors wish to thank Brian Campbell and John Bradley
-	for their reviews of the specification.
+ [[TODO]]
       </t>
     </section>
 
@@ -587,7 +603,14 @@
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
-
+      <t>
+        -03
+        <list style='symbols'>
+          <t>
+            Update document editors.
+          </t>
+        </list>
+      </t>
       <t>
         -02
         <list style='symbols'>
