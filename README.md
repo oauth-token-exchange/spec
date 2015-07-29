@@ -10,6 +10,7 @@ terms outlined below.
 * [Working Group Mailing List] (https://www.ietf.org/mailman/listinfo/OAUTH)
 
 Use [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally to "build" the document from the xml file.  
+Or [this should render HTML from the latest xml](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=html%2Fascii&type=ascii&Submit=Submit).
 
 ## NOTE WELL
 
