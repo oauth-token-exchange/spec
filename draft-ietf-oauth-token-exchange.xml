@@ -92,7 +92,7 @@
 	A Security Token is a set of information that facilitates
 	the sharing of identity and security information across security domains.
 	Examples of Security Tokens include
-	JSON Web Tokens (JWTs) <xref target="JWT"/> and
+	JSON Web Tokens (JWTs) <xref target="RFC7519"/> and
 	SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
 	Security Tokens are typically signed to achieve integrity
 	and sometimes also encrypted to achieve confidentiality.
@@ -105,7 +105,7 @@
 	a Security Token request and Security Token response parameter
 	used in responses to these requests.
 	The Security Token Request is a
-	<xref target="JWT">JSON Web Token (JWT)</xref>
+	<xref target="RFC7519">JSON Web Token (JWT)</xref>
 	that is issued by the requesting party
 	that contains parameters of the request as Claims.
       </t>
@@ -130,7 +130,7 @@
 	  "Token Endpoint", "Token Request", and "Token Response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
 	  and the terms "Claim" and "JWT Claims Set" defined by
-	  <xref target="JWT">JSON Web Token (JWT)</xref>.
+	  <xref target="RFC7519">JSON Web Token (JWT)</xref>.
         </t>
       </section>
 
@@ -459,7 +459,7 @@
 	and <spanx style="verb">on_behalf_of_type</spanx>
 	Claims are to be registered in the
 	IANA "JSON Web Token Claims" registry
-	established by <xref target="JWT"/>.
+	established by <xref target="RFC7519">JWT</xref>.
       </t>
 
     </section>
@@ -468,7 +468,7 @@
       <t>
         All of the normal security issues, especially in relationship
         to comparing URIs and dealing with unrecognized values, that
-        are discussed in <xref target="JWT">JWT</xref> also apply
+        are discussed in <xref target="RFC7519">JWT</xref> also apply
         here.
       </t>
       <t>
@@ -487,34 +487,7 @@
     <references title="Normative References">
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml' ?>
-
-      <reference anchor="JWT" target='http://www.rfc-editor.org/info/rfc7519'>
-        <front>
-          <title>JSON Web Token (JWT)</title>
-	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization>Microsoft</organization>
-	    <address>
-	      <email>mbj@microsoft.com</email>
-	      <uri>http://self-issued.info/</uri>
-	    </address>
-	  </author>
-	  <author fullname="John Bradley" initials="J." surname="Bradley">
-	    <organization abbrev="Ping Identity">Ping Identity</organization>
-	    <address>
-	      <email>ve7jtb@ve7jtb.com</email>
-	    </address>
-	  </author>
-	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-	    <organization abbrev="NRI">Nomura Research Institute</organization>
-	    <address>
-	      <email>n-sakimura@nri.co.jp</email>
-	    </address>
-	  </author>
-	  <date month="May" year="2015"/>
-        </front>
-        <seriesInfo name="RFC" value="7519"/>
-      </reference>
-
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml' ?>
     </references>
 
     <references title="Informative References">
@@ -547,26 +520,8 @@
 	</front>
       </reference>
 
-      <reference anchor="RFC7521" target='http://www.rfc-editor.org/info/rfc7521'>
-	<front>
-	  <title abbrev="OAuth Assertion Framework">Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants</title>
-	  <author fullname="Brian Campbell" initials="B." surname="Campbell">
-	    <organization abbrev="Ping Identity">Ping Identity</organization>
-	  </author>
-	  <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
-	    <organization abbrev="Salesforce">Salesforce.com</organization>
-	  </author>
-	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization abbrev="Microsoft">Microsoft</organization>
-	  </author>
-	  <author fullname="Yaron Y. Goland" initials="Y.Y." surname="Goland">
-	    <organization abbrev="Microsoft">Microsoft</organization>
-	  </author>
-	  <date month="May" year="2015" />
-	</front>
-	<seriesInfo name="RFC" value="7521"/>
-      </reference>
-      
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml' ?>
+
     </references>
 
    <section title="Open Issues" anchor="TBD">
