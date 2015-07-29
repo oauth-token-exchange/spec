@@ -9,7 +9,7 @@ terms outlined below.
 * [Working Group] (https://datatracker.ietf.org/wg/oauth)
 * [Working Group Mailing List] (https://www.ietf.org/mailman/listinfo/OAUTH)
 
-
+Use [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally to "build" the document from the xml file.  
 
 ## NOTE WELL
 
