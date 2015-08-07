@@ -25,24 +25,20 @@
         <uri>http://self-issued.info/</uri>
       </address>
     </author>
-
     <author fullname="Anthony Nadalin" initials="A." surname="Nadalin">
       <organization>Microsoft</organization>
       <address>
         <email>tonynad@microsoft.com</email>
       </address>
     </author>
-
     <author fullname="Brian Campbell" initials="B." surname="Campbell">
       <organization>Ping Identity</organization>
       <address><email>brian.d.campbell@gmail.com</email></address>
     </author>
-
     <author fullname="John Bradley" initials="J." surname="Bradley">
       <organization>Ping Identity</organization>
       <address><email>ve7jtb@ve7jtb.com</email></address>
     </author>
-
     <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
       <organization abbrev="Salesforce">Salesforce</organization>
       <address>
@@ -67,10 +63,11 @@
     
     <abstract>
       <t>
-	This specification defines how to request and obtain
-	Security Tokens from OAuth Authorization Servers,
-	including enabling one party to act on behalf of another or
-	enabling one party to delegate authority to another.
+  This specification facilitates a lightweight HTTP and JSON based
+  security token service by defining how to request and obtain
+  security tokens from OAuth authorization servers,
+  including enabling one party to act on behalf of another or
+  enabling one party to delegate authority to another.
       </t>
     </abstract>
 
@@ -78,42 +75,69 @@
 
   <middle>
     <section anchor="Introduction" title="Introduction">
-      <t>
-	This specification defines how to request and obtain
-	Security Tokens from OAuth Authorization Servers <xref target="RFC6749"/>,
-	including enabling one party to act on behalf of another or
-	enabling one party to delegate authority to another.
-	The functionality defined and the terminology used in this specification
-	are intentionally parallel to the functionality and terminology
-	defined by <xref target="WS-Trust"/>,
-	including On-Behalf-Of and Act-As.
-      </t>
-      <t>
-	A Security Token is a set of information that facilitates
-	the sharing of identity and security information across security domains.
-	Examples of Security Tokens include
-	JSON Web Tokens (JWTs) <xref target="RFC7519"/> and
-	SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
-	Security Tokens are typically signed to achieve integrity
-	and sometimes also encrypted to achieve confidentiality.
-	Security Tokens are also described as Assertions in
-	<xref target="RFC7521"/>.
-      </t>
-      <t>
-        This specification defines a new Security Token Request
-	Grant Type used at the Token Endpoint to convey the parameters for
-	a Security Token request and Security Token response parameter
-	used in responses to these requests.
-	The Security Token Request is a
-	<xref target="RFC7519">JSON Web Token (JWT)</xref>
-	that is issued by the requesting party
-	that contains parameters of the request as Claims.
-      </t>
-      <t>
-	The Security Tokens obtained could be used in a number of contexts,
-	the specifics of which are beyond the scope of this specification.
-	Examples include using them with the 
-      </t>
+<t>
+  A security token is a set of information that facilitates
+  the sharing of identity and security information across security domains.
+  Examples of security tokens include
+  JSON Web Tokens (JWTs) <xref target="RFC7519"/> and
+  SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
+  Security tokens are typically signed to achieve integrity
+  and sometimes also encrypted to achieve confidentiality.
+  Security tokens are also described as Assertions in
+  <xref target="RFC7521"/>.
+</t>
+
+<t>
+  A security token service (STS) is a service capable of validating and issuing
+  security tokens, which enables web service clients to obtain appropriate temporary
+  access credentials for resources in heterogeneous environments or across security
+  domains. Clients have historically used <xref target="WS-Trust">WS-Trust</xref>
+  as the protocol to interact with an STS for token exchange.
+  However WS-Trust is a fairly heavyweight framework which uses XML, SOAP,
+  WS-Security, XML-Signatures, etc. while the trend in more modern web development
+  has been towards more lightweight services utilizing RESTful patterns and JSON.
+  <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
+  and <xref target="RFC6750">OAuth 2.0 Bearer Tokens</xref>
+  have emerged as popular standards for authorizing and securing access to HTTP and
+  RESTful resources but do not provide everything necessary to support generic
+  STS interactions.
+</t>
+<t>
+  This specification defines a lightweight protocol extending OAuth 2.0 that enables
+  clients to request and obtain security tokens from authorization servers acting in
+  the role of an STS. There is support for enabling one party to act on behalf of
+  another as well as enabling one party to delegate constrained authority to another.
+  Similar to OAuth 2.0, this specification focuses on client developer simplicity and
+  requires only an HTTP client and JSON parser, which are nearly universally available
+  in modern development environments. The STS protocol defined in this specification
+  is not itself RESTful (an STS doesn't lend itself particularly well to a REST
+  approach) but does utilize communication patterns and data formats that should be
+  more palatable to developers accustom to working with RESTful systems.
+</t>
+<t>
+  A new security token request grant type and the associated specific parameters for
+  a security token request to the token endpoint are defined by this specification.
+  A security token response is a normal OAuth 2.0 response from the token endpoint
+  with a few additional parameters defined herein to provide information to the client.
+</t>
+<t>
+	The security tokens obtained could be used in a number of contexts,
+	the specifics of which are beyond the scope of this document.
+  <!-- TODO some examples? -->
+</t>
+<t>
+  The scope of this specification is limited to the definition of a framework and
+  basic request and response protocol for an STS style token exchange utilizing OAuth 2.0.
+  The syntax, semantics and security characteristics of the tokens themselves
+  (both those presented to the AS and those obtained by the client)
+  are explicitly out of scope and no requirements are placed on the trust model in
+  which an implementation might be deployed. Additional profiles may provide
+  more detailed requirements around the specific nature of the parties and trust involved,
+  whether signatures and/or encryption of tokens is required, etc., however, such details
+  will often be policy decisions made with respect to the specific needs of individual
+  deployments and will be configured or implemented accordingly.
+</t>
+
 
       <section anchor="rnc" title="Requirements Notation and Conventions">
 	<t>
@@ -491,36 +515,21 @@
     </references>
 
     <references title="Informative References">
-
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml' ?>
-
-      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
-
-      <reference anchor="WS-Trust"
-		 target="http://docs.oasis-open.org/ws-sx/ws-trust/v1.4/ws-trust.html">
-	<front>
-	  <title>WS-Trust 1.4</title>
-
-	  <author fullname="Anthony Nadalin" initials="A." surname="Nadalin">
-	  </author>
-
-	  <author fullname="Marc Goodner" initials="M." surname="Goodner">
-	  </author>
-
-	  <author fullname="Martin Gudgin" initials="M." surname="Gudgin">
-	  </author>
-
-	  <author fullname="Abbie Barbir" initials="A." surname="Barbir">
-	  </author>
-
-	  <author fullname="Hans Granqvist" initials="H." surname="Granqvist">
-	  </author>
-
-	  <date day="2" month="February" year="2012"/>
-	</front>
-      </reference>
-
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6750.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
+      <reference anchor="WS-Trust" target="http://docs.oasis-open.org/ws-sx/ws-trust/v1.4/ws-trust.html">
+        <front>
+          <title>WS-Trust 1.4</title>
+          <author fullname="Anthony Nadalin" initials="A." surname="Nadalin"/>
+          <author fullname="Marc Goodner" initials="M." surname="Goodner"/>
+          <author fullname="Martin Gudgin" initials="M." surname="Gudgin"/>
+          <author fullname="Abbie Barbir" initials="A." surname="Barbir"/>
+          <author fullname="Hans Granqvist" initials="H." surname="Granqvist"/>
+          <date day="2" month="February" year="2012"/>
+        </front>
+      </reference>
 
     </references>
 
@@ -561,8 +570,9 @@
       <t>
         -03
         <list style='symbols'>
-<t>Update document editors.</t>
-<t>update title per slide 7 of https://www.ietf.org/proceedings/93/slides/slides-93-oauth-0.pdf</t>
+          <t>Update document editors.</t>
+          <t>update title per slide 7 of https://www.ietf.org/proceedings/93/slides/slides-93-oauth-0.pdf</t>
+          <t>Elaborate some more in the abstract and introduction.</t>
         </list>
       </t>
       <t>
