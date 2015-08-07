@@ -198,7 +198,7 @@
 
     </section>
 
-    <section anchor="SecurityTokenRequest" title="Security Token Request">
+    <section title="Security Token Request">
       <t>
 	A Security Token Request is sent to the token endpoint as a
 	Token Request message using this Grant Type value:
@@ -300,7 +300,7 @@
 ]]></artwork>
       </figure>
 
-      <section anchor="ActAs" title="Act-As Security Token Requests">
+      <section title="Act-As Security Token Requests">
 	<t>
 	  This specification defines the ability to request a Security Token
 	  for the requesting party to use to act as the specified party.
@@ -347,7 +347,7 @@
 
       </section>
 
-      <section anchor="OnBehalfOf" title="On-Behalf-Of Security Token Requests">
+      <section title="On-Behalf-Of Security Token Requests">
 	<t>
 	  This specification defines the ability to request a Security Token
 	  on behalf of another party.
@@ -400,7 +400,7 @@
 
     </section>
 
-    <section anchor="SecurityTokenResponse" title="Security Token Response">
+    <section title="Security Token Response">
       <t>
 	A Security Token Response is returned from the token endpoint as a
 	Token Response message containing these members:
@@ -439,7 +439,7 @@
       </figure>
     </section>
 
-    <section anchor="Actor" title="Conveying Eligibility to Act As Another Party">
+    <section title="Conveying Eligibility to Act As Another Party">
       <t>
 	It is useful to be able to make a statement that one party is authorized
 	to act on behalf of another party.
@@ -478,14 +478,14 @@
       </t>
     </section>
 
-    <section anchor="ImplementationConsiderations" title="Implementation Considerations">
+    <section title="Implementation Considerations">
       <t>
 	Implementations of the specification MUST implement support for using JWTs
 	as the Security Tokens.  Other Security Token types MAY be supported.
       </t>
     </section>
 
-    <section anchor="IANA" title="IANA Considerations">
+    <section title="IANA Considerations">
       <t>
         The <spanx style="verb">urn:ietf:params:oauth:grant-type:security-token-request</spanx>
 	Grant Type is to be registered in the
@@ -505,7 +505,7 @@
 
     </section>
 
-    <section anchor="Security" title="Security Considerations">
+    <section title="Security Considerations">
       <t>
         All of the normal security issues, especially in relationship
         to comparing URIs and dealing with unrecognized values, that
@@ -550,7 +550,7 @@
 
     </references>
 
-   <section title="Open Issues" anchor="TBD">
+   <section title="Open Issues">
       <t>
 	The following decisions need to be made and updates on this spec performed:
 	<list style="symbols">
@@ -574,13 +574,13 @@
       </t>
     </section>
 
-    <section title='Acknowledgements' anchor='Acknowledgements'>
+    <section title='Acknowledgements'>
       <t>
  [[TODO]]
       </t>
     </section>
 
-    <section title="Document History" anchor="History">
+    <section title="Document History">
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
