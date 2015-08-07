@@ -439,7 +439,7 @@
       </figure>
     </section>
 
-    <section title="Conveying Eligibility to Act As Another Party">
+    <section anchor="Actor" title="Conveying Eligibility to Act As Another Party">
       <t>
 	It is useful to be able to make a statement that one party is authorized
 	to act on behalf of another party.
