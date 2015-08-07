@@ -151,7 +151,7 @@
       <section anchor="Terminology" title="Terminology">
         <t>
 	  This specification uses the terms "authorization server"
-	  "Token Endpoint", "Token Request", and "Token Response"
+	  "token endpoint", "Token Request", and "Token Response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
 	  and the terms "Claim" and "JWT Claims Set" defined by
 	  <xref target="RFC7519">JSON Web Token (JWT)</xref>.
@@ -183,7 +183,7 @@
 
     <section anchor="SecurityTokenRequest" title="Security Token Request">
       <t>
-	A Security Token Request is sent to the Token Endpoint as a
+	A Security Token Request is sent to the token endpoint as a
 	Token Request message using this Grant Type value:
 	<list style="hanging">
 
@@ -385,7 +385,7 @@
 
     <section anchor="SecurityTokenResponse" title="Security Token Response">
       <t>
-	A Security Token Response is returned from the Token Endpoint as a
+	A Security Token Response is returned from the token endpoint as a
 	Token Response message containing these members:
 	<list style="hanging">
 
