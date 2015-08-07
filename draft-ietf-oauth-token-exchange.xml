@@ -150,7 +150,7 @@
 
       <section anchor="Terminology" title="Terminology">
         <t>
-	  This specification uses the terms "Authorization Server"
+	  This specification uses the terms "authorization server"
 	  "Token Endpoint", "Token Request", and "Token Response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
 	  and the terms "Claim" and "JWT Claims Set" defined by
@@ -264,7 +264,7 @@
 	The request JWT MUST be signed by the issuer so the identity of
 	the requesting party can be validated
 	unless the identity of the requesting party is known to
-	the Authorization Server by other means;
+	the authorization server by other means;
 	in that case, the JWT can use the <spanx style="verb">alg</spanx>
 	value <spanx style="verb">none</spanx>.
       </t>
@@ -455,7 +455,7 @@
 	The JWT issued by the party being acted for MUST be signed so the identity of
 	the party being acted for can be validated
 	unless the identity of the party being acted for is known to
-	the Authorization Server by other means;
+	the authorization server by other means;
 	in that case, the JWT can use the <spanx style="verb">alg</spanx>
 	value <spanx style="verb">none</spanx>.
       </t>
