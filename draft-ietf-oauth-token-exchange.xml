@@ -151,7 +151,7 @@
       <section title="Terminology">
         <t>
 	  This specification uses the terms "authorization server"
-	  "token endpoint", "Token Request", and "Token Response"
+	  "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
 	  and the terms "Claim" and "JWT Claims Set" defined by
 	  <xref target="RFC7519">JSON Web Token (JWT)</xref>.
