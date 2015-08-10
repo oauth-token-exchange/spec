@@ -472,13 +472,6 @@
       </t>
     </section>
 
-    <section title="Implementation Considerations">
-      <t>
-	Implementations of the specification MUST implement support for using JWTs
-	as the Security Tokens.  Other Security Token types MAY be supported.
-      </t>
-    </section>
-
     <section title="IANA Considerations">
       <t>
         The
@@ -623,6 +616,7 @@
             Token type values can now have shorthand value of something like just jwt with
             urn:ietf:params:oauth:token-type: as implied prefix.
           </t>
+          <t>Remove Implementation Considerations and requirement to support JWTs.</t>
         </list>
       </t>
       <t>
