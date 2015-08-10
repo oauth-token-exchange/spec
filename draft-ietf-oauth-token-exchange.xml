@@ -451,7 +451,6 @@
 	    Security Token that identifies a party that is asserted as being eligible
 	    to act for the party identified by the JWT containing this Claim.
 	  </t>
-
 	  <t hangText="scopes">
 	    <vspace/>
 	    OPTIONAL.
@@ -482,57 +481,44 @@
 
     <section title="IANA Considerations">
       <t>
-        The <spanx style="verb">scopes</spanx> and
+        The
+        <spanx style="verb">scopes</spanx>
+        and
         <spanx style="verb">actor</spanx>
         Claims are to be registered in the
         IANA "JSON Web Token Claims" registry
-        established by <xref target="RFC7519">JWT</xref>.
+        established by<xref target="RFC7519">JWT</xref>.
       </t>
-      <section title="Sub-Namespace Registration of grant-type:security-token-request">
-        <t>
-          This specification request that IANA register the value
-          <spanx style='verb'>grant-type:jwt-bearer</spanx> in the
-          IANA urn:ietf:params:oauth registry established in
-          An IETF URN Sub-Namespace for OAuth <xref target="RFC6755"/>.
+      <t>
+        <?rfc subcompact="yes"?>
+        This specification requests that IANA register the following
+        values in the IANA urn:ietf:params:oauth registry established in
+        <xref target="RFC6755">An IETF URN Sub-Namespace for OAuth</xref>.
 
-          <list style='symbols'>
-            <t>URN: urn:ietf:params:oauth:grant-type:security-token-request</t>
-            <t>Common Name: Security token request grant type for OAuth 2.0</t>
-            <t>Change controller: IESG</t>
-            <t>Specification Document: [[this document]]</t>
-          </list>
-        </t>
-      </section>
-      <section title="Sub-Namespace Registration of token-type:access_token">
-        <t>
-          This specification request that IANA register the value
-          <spanx style='verb'>token-type:access_token</spanx> in the
-          IANA urn:ietf:params:oauth registry established in
-          An IETF URN Sub-Namespace for OAuth <xref target="RFC6755"/>.
-
-          <list style='symbols'>
-            <t>URN: urn:ietf:params:oauth:token-type:access_token</t>
-            <t>Common Name: Token type URI for an OAuth 2.0 access token</t>
-            <t>Change controller: IESG</t>
-            <t>Specification Document: [[this document]]</t>
-          </list>
-        </t>
-      </section>
-      <section title="Sub-Namespace Registration of token-type:refresh_token">
-        <t>
-          This specification request that IANA register the value
-          <spanx style='verb'>token-type:refresh_token</spanx> in the
-          IANA urn:ietf:params:oauth registry established in
-          An IETF URN Sub-Namespace for OAuth <xref target="RFC6755"/>.
-
-          <list style='symbols'>
-            <t>URN: urn:ietf:params:oauth:token-type:refresh_token</t>
-            <t>Common Name:Token Type URI for an OAuth 2.0 refresh token</t>
-            <t>Change controller: IESG</t>
-            <t>Specification Document: [[this document]]</t>
-          </list>
-        </t>
-      </section>
+        <list style="symbols">
+          <t>URN: urn:ietf:params:oauth:grant-type:security-token-request</t>
+          <t>Common Name: Security token request grant type for OAuth 2.0</t>
+          <t>Change controller: IESG</t>
+          <t>Specification Document: [[this document]]</t>
+        </list>
+      </t>
+      <t>
+        <list style="symbols">
+          <t>URN: urn:ietf:params:oauth:token-type:access_token</t>
+          <t>Common Name: Token type URI for an OAuth 2.0 access token</t>
+          <t>Change controller: IESG</t>
+          <t>Specification Document: [[this document]]</t>
+        </list>
+      </t>
+      <t>
+        <list style="symbols">
+          <t>URN: urn:ietf:params:oauth:token-type:refresh_token</t>
+          <t>Common Name:Token Type URI for an OAuth 2.0 refresh token</t>
+          <t>Change controller: IESG</t>
+          <t>Specification Document: [[this document]]</t>
+        </list>
+        <?rfc subcompact="no"?>
+      </t>
     </section>
 
     <section title="Security Considerations">
