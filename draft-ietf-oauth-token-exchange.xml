@@ -405,7 +405,8 @@
 
 
     </section>
-      <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
+    </section>
+    <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
 <t>
   Several parameters in this specification utilize an identifier as the value to
   describe the type of token in question. Specifically they are the
@@ -432,8 +433,8 @@
   <xref target="RFC7519">Section 9 of RFC 7519</xref> and is used to indicate that a
   token is a JWT.
 </t>
-      </section>
-    </section>
+   </section>
+
     <section anchor="Actor" title="Conveying Eligibility to Act As Another Party">
       <t>
 	It is useful to be able to make a statement that one party is authorized
