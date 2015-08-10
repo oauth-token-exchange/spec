@@ -197,248 +197,216 @@
       </section>
 
     </section>
+    <section title="Security Token Request and Response">
+    <section title="Request">
+<t>
+  A client requests a security token by making a token request to the authorization
+  server's token endpoint using the extension grant type mechanism defined
+  in <xref target="RFC6749">OAuth 2.0, Section 4.5</xref>.
+</t>
+<t>
+  Client authentication to the authorization server is done using the normal
+  mechanisms provided by OAuth 2.0.
+  <xref target="RFC6749">The OAuth 2.0 Authorization Framework, Section 2.3.1</xref>
+  defines password-based authentication of the client,
+  however, client authentication is extensible and other mechanisms are allowed.
+  For example, <xref target="RFC7523"/> defines client authentication using
+  JSON Web Tokens (JWTs) <xref target="RFC7519"/>.
+  Other mechanisms, such as TLS client authentication, are also possible.
+  The supported methods of client authentication and whether or not to allow
+  unauthenticated or unidentified clients are deployment decisions that are
+  at the discretion of the authorization server.
+</t>
+<t>
+  The client makes a general security token request to the token endpoint with an extension
+  grant type by including the
+  following parameters using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
+  format with a character encoding of UTF-8 in the HTTP request entity-body:
+</t>
+<t>
+<list style="hanging">
 
-    <section title="Security Token Request">
-      <t>
-	A Security Token Request is sent to the token endpoint as a
-	Token Request message using this Grant Type value:
-	<list style="hanging">
+  <t hangText="grant_type">
+    <vspace/>
+    REQUIRED. The value
+    <spanx style='verb'>urn:ietf:params:oauth:grant-type:security-token-request</spanx>
+    indicates that it is a security token request.
+  </t>
 
-          <t hangText="urn:ietf:params:oauth:grant-type:security-token-request">
-	    <vspace/>
-	    Grant Type value indicating that this Token Request is
-	    a Security Token Request.
-	  </t>
-	</list>
-      </t>
-      <t>
-	A Token Request parameter with a related name is used to convey
-	the information contained in Security Token Request as a JWT:
-	<list style="hanging">
+  <t hangText="resource">
+    <vspace/>
+    OPTIONAL.
+    Indicates the location of the service or resource where the client intends to use
+    the requested security token. The value MUST be an absolute URI as defined by
+    Section 4.3 of <xref target="RFC3986"/>. The URI MAY include a
+    query component but MUST NOT include a fragment component.
+    When applicable, the value of this parameter also typically informs the
+    audience restrictions on the returned security token.
+  </t>
 
-          <t hangText="security_token_request">
-	    <vspace/>
-	    Token Request parameter whose value is a JWT containing
-	    the Security Token Request information.
-	  </t>
-	</list>
-      </t>
-      <figure>
-	<preamble>
-	  An example Security Token Request
-	  (with extra line breaks for display purposes only) follows:
-	</preamble>
-	<artwork><![CDATA[
-  POST /token HTTP/1.1
-  Host: server.example.com
-  Content-Type: application/x-www-form-urlencoded
+  <t hangText="scope">
+    <vspace/>
+    OPTIONAL.
+    A list of space-delimited, case-sensitive strings that allow the client to
+    specify the desired scope of requested security token in the context of the
+    service or resource where the token will be used
+    (possibly indicated by the <spanx style='verb'>resource</spanx> parameter).</t>
 
-  grant_type=urn:ietf:params:oauth:grant-type:security-token-request
-  &security_token_request=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ ...
-  [omitted for brevity]
-]]></artwork>
-      </figure>
+  <t hangText="requested_security_token_type">
+    <vspace/>
+    OPTIONAL.
+    Identifier for the type of the requested security token. For example,
+    a JWT can be requested with the identifier
+    <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>,
+    which is defined in <xref target="RFC7519">JSON Web Token</xref>.
+    If the requested type is unspecified, the returned token type is at
+    the discretion of the authorization server and may be dictated by
+    knowledge of the requirements of the service or resource whose location is
+    indicated by the <spanx style='verb'>resource</spanx> parameter.
+  </t>
 
-      <t>
-	The <spanx style="verb">security_token_request</spanx> parameter value
-	is a JWT with the following members:
+  <t hangText="on_behalf_of">
+    <vspace/>
+    REQUIRED.
+    The value of this request parameter is a security token which represents the
+    identity of the party on behalf of whom the request is being made.
+    Typically the subject of this token will be the primary subject of
+    the security token returned in response to this request.
+  </t>
 
-	<list style="hanging">
-	  <t hangText="iss">
-	    <vspace/>
-	    REQUIRED.
-	     Issuer of the principal requesting the Security Token.
-	  </t>
+  <t hangText="on_behalf_of_token_type">
+    <vspace/>
+    REQUIRED.
+    An identifier that indicates the type of the security token sent with
+    the <spanx style="verb">on_behalf_of</spanx> parameter. For example,
+    a value of <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>,
+    would indicate that the token is a JWT and a value of
+    <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
+    would indicate that the token is an OAuth access token.
+  </t>
 
-	  <t hangText="sub">
-	    <vspace/>
-	    REQUIRED.
-	    Identifier of the principal requesting the Security Token at the issuer.
-	  </t>
+  <t hangText="act_as">
+    <vspace/>
+    OPTIONAL.
+    The value of this request parameter is a security token which represents
+    the identity of the party that is authorized to use the requested security token.
+    When this parameter is present, it indicates that the client wants a token
+    that contains claims about two distinct entities:
+    1) the entity represented by the token in the <spanx style="verb">on_behalf_of</spanx>
+    parameter as the primary subject and 2) the entity represented by this token as a
+    party who is authorized to act on behalf of that subject.
+  </t>
 
-          <t hangText="security_token_type">
-	    <vspace/>
-	    OPTIONAL.
-	    Identifier for the type of the requested Security Token.
-	    If not present, the default is that a JWT is being requested.
-	    A JWT can also be requested with the identifier
-	    <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
-	  </t>
-
-	  <t hangText="scopes">
-	    <vspace/>
-	    OPTIONAL.
-	    Array of strings, each of which represents a service context
-	    that the requested Security Token is being requested to be used for.
-	    The array MUST contain at least one scope value.
-	    The definition of these contexts is outside the scope of this specification.
-	    (Note:  This request element serves the same purpose as the WS-Trust
-	    AppliesTo RST element.)
-	  </t>
-	</list>
-      </t>
-      <t>
-	The request JWT MUST be signed by the issuer so the identity of
-	the requesting party can be validated
-	unless the identity of the requesting party is known to
-	the authorization server by other means;
-	in that case, the JWT can use the <spanx style="verb">alg</spanx>
-	value <spanx style="verb">none</spanx>.
-      </t>
-
-      <figure>
-	<preamble>
-	  The following is an example of a JWT Claims Set for
-	  a Security Token Request:
-	</preamble>
-	<artwork><![CDATA[
-  {
-   "iss": "https://server.example.com",
-   "sub": "24400320",
-   "scopes": ["example"]
-  }
-]]></artwork>
-      </figure>
-
-      <section title="Act-As Security Token Requests">
-	<t>
-	  This specification defines the ability to request a Security Token
-	  for the requesting party to use to act as the specified party.
-	  This is accomplished using this Token Request parameter:
-	  <list style="hanging">
-
-	    <t hangText="act_as">
-	      <vspace/>
-	      This OPTIONAL request parameter indicates that the requested Security Token
-	      is expected to contain information about the identity represented by
-	      the Security Token that is the value of this parameter,
-	      enabling the requesting party to use the returned Security Token to
-	      act as this identity.
-	      Unless the <spanx style="verb">act_as_type</spanx> parameter is also included
-	      and specifies a different token type, the <spanx style="verb">act_as</spanx>
-	      parameter MUST contain a Security Token that is a JWT.
-	    </t>
-
-	    <t hangText="act_as_type">
-	      <vspace/>
-	      This OPTIONAL request parameter declares the type of the Security Token
-	      in the <spanx style="verb">act_as</spanx> parameter.
-	      If the Security Token is a JWT, this identifier is
-	      <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
-	    </t>
-
-	  </list>
-	</t>
-
-	<figure>
-	  <preamble>
-	    The following is an example of a JWT Claims Set for
-	    a Security Token Request using an <spanx style="verb">act_as</spanx> Claim:
-	  </preamble>
-	  <artwork><![CDATA[
-  {
-   "iss": "https://server.example.com",
-   "sub": "24400320",
-   "scopes": ["example"],
-   "act_as": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ ..."
-  }
-]]></artwork>
-	</figure>
-
-      </section>
-
-      <section title="On-Behalf-Of Security Token Requests">
-	<t>
-	  This specification defines the ability to request a Security Token
-	  on behalf of another party.
-	  This is accomplished using this Token Request parameter:
-	  <list style="hanging">
-
-	    <t hangText="on_behalf_of">
-	      <vspace/>
-	      This OPTIONAL request parameter indicates that the Security Token
-	      is being requested on behalf of another party.
-	      The identity of the party upon whose behalf the request is being made
-	      is represented by
-	      the Security Token that is the value of this parameter.
-	      Proof of eligibility to act on behalf of that identity
-	      MAY be conveyed by including
-	      an <spanx style="verb">actor</spanx> Claim
-	      identifying the requesting party in the Security Token,
-	      per <xref target="Actor"/>,
-	      provided the Security Token is a JWT.
-	      Unless the <spanx style="verb">on_behalf_of_type</spanx> parameter is also included
-	      and specifies a different token type, the <spanx style="verb">on_behalf_of</spanx>
-	      parameter MUST contain a Security Token that is a JWT.
-	    </t>
-
-	    <t hangText="on_behalf_of_type">
-	      <vspace/>
-	      This OPTIONAL request parameter declares the type of the Security Token
-	      in the <spanx style="verb">on_behalf_of</spanx> parameter.
-	      If the Security Token is a JWT, this identifier is
-	      <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
-	    </t>
-	  </list>
-	</t>
-
-	<figure>
-	  <preamble>
-	    The following is an example of a JWT Claims Set for
-	    a Security Token Request using an <spanx style="verb">on_behalf_of</spanx> Claim:
-	  </preamble>
-	  <artwork><![CDATA[
-  {
-   "iss": "https://server.example.com",
-   "sub": "24400320",
-   "scopes": ["example"],
-   "on_behalf_of": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ ..."
-  }
-]]></artwork>
-	</figure>
-      </section>
+  <t hangText="act_as_token_type">
+    <vspace/>
+    REQUIRED when the <spanx style="verb">act_as</spanx> parameter is present in the
+    request but MUST NOT be included otherwise. The value of this parameter is
+    an identifier that indicates the type of the security token sent with the
+    <spanx style="verb">act_as</spanx> parameter.
+  </t>
+</list>
+</t>
 
     </section>
 
-    <section title="Security Token Response">
-      <t>
-	A Security Token Response is returned from the token endpoint as a
-	Token Response message containing these members:
-	<list style="hanging">
+    <section title="Response">
+<t>
+  The authorization server responds to a security token request with a normal
+  OAuth 2.0 response from the token endpoint as defined in
+  <xref target="RFC6749">Section 5 of RFC 6749</xref>. Additional details and
+  explanation are provided in the following subsections.
+</t>
+      <section title="Successful Response">
+<t>
+  If the request is valid and meets all policy and other criteria of the authorization server,
+  a successful token response is constructed by adding the following parameters
+  to the entity-body of the HTTP response using the "application/json"
+  media type as defined by <xref target="RFC7159"/> and an HTTP 200 status code.  The
+  parameters are serialized into a JavaScript Object Notation (JSON)
+  structure by adding each parameter at the top level.
+  Parameter names and string values are included as JSON strings.
+  Numerical values are included as JSON numbers.  The order of
+  parameters does not matter and can vary.
+</t>
+        <t>
+          <list style="hanging">
 
-          <t hangText="security_token">
-	    <vspace/>
-	    Returned Security Token.
-	  </t>
+<t hangText="access_token">
+  <vspace/>
+  REQUIRED. The security token issued by the authorization server in response
+  to the security token request.
+  The <spanx style="verb">access_token</spanx> parameter from
+  <xref target="RFC6749">Section 5.1 of RFC 6749</xref> is used here to carry the requested
+  security token, which allows this token exchange framework to use the existing OAuth 2.0 request
+  and response constructs defined for the token endpoint.
+</t>
 
-          <t hangText="security_token_type">
-	    <vspace/>
-	    Identifier for the type of the returned Security Token.
-	    If the Security Token is a JWT, this identifier is
-	    <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
-	  </t>
-	</list>
-      </t>
-      <t>
-      </t>
-      <figure>
-	<preamble>
-	  An example successful response is as follows:
-	</preamble>
-	<artwork><![CDATA[
-  HTTP/1.1 200 OK
-  Content-Type: application/json;charset=UTF-8
-  Cache-Control: no-store
-  Pragma: no-cache
+<t hangText="security_token_type">
+  <vspace/>
+  REQUIRED.  An identifier for the general type of the returned security token.
+  For example, if the security token is a JWT, this value of the
+  <spanx style="verb">security_token_type</spanx> is
+  <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
+</t>
 
-  {
-   "security_token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ ...",
-   "security_token_type": "urn:ietf:params:oauth:token-type:jwt"
-  }
-]]></artwork>
-      </figure>
+<t hangText="token_type">
+  <vspace/>
+  REQUIRED.  A case insensitive value describing the type of the token issued as discussed in
+  <xref target="RFC6749">Section 7.1 of RFC 6749</xref>. Note that this value is different from
+  the value of the <spanx style="verb">security_token_type</spanx> and provides the client
+  with information about how to utilize the token to access protected resources. For example,
+  a value of <spanx style="verb">Bearer</spanx> as defined in <xref target="RFC6750"/> indicates that
+  the security token is a bearer token and the client can simply present it as is without any
+  additional proof of eligibility beyond the contents of the token itself.
+  A value of <spanx style="verb">PoP</spanx>, on the other hand, indicates that use of
+  the token will require demonstrating possession of a cryptographic key associated with the
+  security token (<xref target="I-D.ietf-oauth-pop-key-distribution"/> describes the
+  <spanx style="verb">PoP</spanx> token type).
+</t>
+
+<t hangText="expires_in">
+  <vspace/>
+  RECOMMENDED.  The validity lifetime, in seconds, of the security token issued by the
+  authorization server. Oftentimes the client will not have the inclination or capability
+  to inspect the content of the token and this parameter provides a consistent and token type
+  agnostic indication of long the token can be expected to be valid.
+  For example, the value 1800 denotes that the token will
+  expire in thirty minutes from the time the response was generated.
+</t>
+
+<t hangText="scope">
+  <vspace/>
+  OPTIONAL, if the scope of the security token is identical to the scope requested by the client;
+  otherwise, REQUIRED.
+</t>
+
+<t hangText="refresh_token">
+  <vspace/>
+  NOT RECOMMENDED.
+  Refresh tokens will typically not be issued in response to a
+  <spanx style="verb">urn:ietf:params:oauth:grant-type:security-token-request</spanx>
+  grant type requests.
+</t>
+
+        </list>
+        </t>
+      </section>
+      <section title="Error Response">
+  <t>
+    If either the <spanx style="verb">on_behalf_of</spanx> or <spanx style="verb">act_as</spanx>
+    tokens are invalid for any reason, or are unacceptable based on policy, the authorization server
+    MUST construct an error response as defined in <xref target="RFC6749">Section 5.2 of OAuth 2.0</xref>
+    The value of the <spanx style='verb'>error</spanx>
+    parameter MUST be the <spanx style='verb'>invalid_grant</spanx> error code. The authorization
+    server MAY include additional information regarding the reasons for the error
+    using the <spanx style='verb'>error_description</spanx> or <spanx style='verb'>error_uri</spanx> parameters.
+  </t>
+      </section>
+
+
     </section>
 
+    </section>
     <section anchor="Actor" title="Conveying Eligibility to Act As Another Party">
       <t>
 	It is useful to be able to make a statement that one party is authorized
@@ -491,6 +459,8 @@
 	Grant Type is to be registered in the
 	"OAuth URI" registry established by
 	<xref target="RFC6755">"An IETF URN Sub-Namespace for OAuth"</xref>.
+
+        <!-- TODO urn:ietf:params:oauth:token-type:access_token and urn:ietf:params:oauth:token-type:refresh_token -->
       </t>
       <t>
         The <spanx style="verb">scopes</spanx>,
@@ -529,12 +499,16 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml' ?>
     </references>
 
     <references title="Informative References">
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6755.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6750.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml' ?>
+      <?rfc include="reference.I-D.ietf-oauth-pop-key-distribution"?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
       <reference anchor="WS-Trust" target="http://docs.oasis-open.org/ws-sx/ws-trust/v1.4/ws-trust.html">
         <front>
@@ -590,6 +564,11 @@
           <t>Update document editors.</t>
           <t>update title per slide 7 of https://www.ietf.org/proceedings/93/slides/slides-93-oauth-0.pdf</t>
           <t>Elaborate some more in the abstract and introduction.</t>
+          <t>
+            Update the format of the request to use application/x-www-form-urlencoded request parameters and
+            the response to use the existing JSON params defined in OAuth per consensus out of the meeting in
+            Prague https://www.ietf.org/proceedings/93/minutes/minutes-93-oauth
+          </t>
         </list>
       </t>
       <t>
