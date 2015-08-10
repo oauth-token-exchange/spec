@@ -198,7 +198,7 @@
 
     </section>
     <section title="Security Token Request and Response">
-    <section title="Request">
+    <section title="Request" anchor="Request">
 <t>
   A client requests a security token by making a token request to the authorization
   server's token endpoint using the extension grant type mechanism defined
@@ -499,7 +499,7 @@
           <t>URN: urn:ietf:params:oauth:grant-type:security-token-request</t>
           <t>Common Name: Security token request grant type for OAuth 2.0</t>
           <t>Change controller: IESG</t>
-          <t>Specification Document: [[this document]]</t>
+          <t>Specification Document: <xref target="Request"/> of [[ this document ]]</t>
         </list>
       </t>
       <t>
@@ -507,7 +507,7 @@
           <t>URN: urn:ietf:params:oauth:token-type:access_token</t>
           <t>Common Name: Token type URI for an OAuth 2.0 access token</t>
           <t>Change controller: IESG</t>
-          <t>Specification Document: [[this document]]</t>
+          <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this document]]</t>
         </list>
       </t>
       <t>
@@ -515,7 +515,7 @@
           <t>URN: urn:ietf:params:oauth:token-type:refresh_token</t>
           <t>Common Name:Token Type URI for an OAuth 2.0 refresh token</t>
           <t>Change controller: IESG</t>
-          <t>Specification Document: [[this document]]</t>
+          <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this document]]</t>
         </list>
         <?rfc subcompact="no"?>
       </t>
