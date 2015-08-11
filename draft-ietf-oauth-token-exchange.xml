@@ -58,9 +58,15 @@
     <keyword>JSON Web Token</keyword>
     <keyword>JWT</keyword>
     <keyword>Delegation</keyword>
+    <keyword>Impersonation</keyword>
     <keyword>on-behalf-of</keyword>
     <keyword>act-as</keyword>
-    
+    <keyword>STS</keyword>
+    <keyword>Exchange</keyword>
+    <keyword>Token</keyword>
+    <keyword>OAuth</keyword>
+
+
     <abstract>
       <t>
   This specification facilitates a lightweight HTTP and JSON based
