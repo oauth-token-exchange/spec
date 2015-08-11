@@ -574,14 +574,6 @@
 	    beyond specifying the use of the <spanx style="verb">actor</spanx> Claim?
 	  </t>
 	  <t>
-	    Revise the text in the On-Behalf-Of vs. Impersonation Semantics section
-	    to better align the terminology used with the semantics specified.
-	  </t>
-	  <t>
-	    Address the sources of potential terminological confusion discussed
-	    in John Bradley's review comments.
-	  </t>
-	  <t>
 	    Add examples illustrating concrete uses of act-as and on-behalf-of.
 	  </t>
 	</list>
