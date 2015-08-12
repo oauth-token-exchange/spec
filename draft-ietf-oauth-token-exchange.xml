@@ -215,7 +215,7 @@
   mechanisms provided by OAuth 2.0.
   <xref target="RFC6749">The OAuth 2.0 Authorization Framework, Section 2.3.1</xref>
   defines password-based authentication of the client,
-  however, client authentication is extensible and other mechanisms are allowed.
+  however, client authentication is extensible and other mechanisms are possible.
   For example, <xref target="RFC7523"/> defines client authentication using
   JSON Web Tokens (JWTs) <xref target="RFC7519"/>.
   Other mechanisms, such as TLS client authentication, are also possible.
