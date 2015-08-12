@@ -343,7 +343,7 @@
   The <spanx style="verb">access_token</spanx> parameter from
   <xref target="RFC6749">Section 5.1 of RFC 6749</xref> is used here to carry the requested
   security token, which allows this token exchange framework to use the existing OAuth 2.0 request
-  and response constructs defined for the token endpoint.
+  and response constructs defined for the token endpoint. <!-- TODO -->
 </t>
 
 <t hangText="security_token_type">
