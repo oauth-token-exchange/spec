@@ -314,14 +314,14 @@
 
     </section>
 
-    <section title="Response">
+    <section title="Response" anchor="Response">
 <t>
   The authorization server responds to a security token request with a normal
   OAuth 2.0 response from the token endpoint as defined in
   <xref target="RFC6749">Section 5 of RFC 6749</xref>. Additional details and
   explanation are provided in the following subsections.
 </t>
-      <section title="Successful Response">
+      <section title="Successful Response" anchor="SuccessfulResponse">
 <t>
   If the request is valid and meets all policy and other criteria of the authorization server,
   a successful token response is constructed by adding the following parameters
@@ -487,8 +487,9 @@
         <spanx style="verb">actor</spanx>
         Claims are to be registered in the
         IANA "JSON Web Token Claims" registry
-        established by<xref target="RFC7519">JWT</xref>.
+        established by <xref target="RFC7519">JWT</xref>.
       </t>
+
       <t>
         <?rfc subcompact="yes"?>
         This specification requests that IANA register the following
@@ -517,8 +518,72 @@
           <t>Change controller: IESG</t>
           <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this document]]</t>
         </list>
-        <?rfc subcompact="no"?>
+
       </t>
+      <?rfc subcompact="no"?>
+
+      <t>
+
+
+        Additionally, this specification requests that IANA register the following
+        values in the "OAuth Parameters" registry established by RFC 6749 <xref target="RFC6749"/>.
+        <?rfc subcompact="yes"?>
+        <list style='symbols'>
+          <t>Parameter name: resource</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: requested_security_token_type</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: on_behalf_of</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: on_behalf_of_token_type</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: act_as</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: act_as_token_type</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Parameter name: security_token_type</t>
+          <t>Parameter usage location: token response</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="SuccessfulResponse"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <?rfc subcompact="no"?>
     </section>
 
     <section title="Security Considerations">
