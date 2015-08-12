@@ -5,12 +5,15 @@ This is the working area for the expected IETF OAUTH WG's draft of Token Exchang
 Be aware that all contributions to the specification fall under the "NOTE WELL"
 terms outlined below.
 
+
+Use [this link to xml2rfc](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=html%2Fascii&type=ascii&Submit=Submit) to render HTML from the latest xml. Or [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally can be used to "build" the document from the xml file.  
+
+
 * [Working Group Draft] (https://tools.ietf.org/html/draft-ietf-oauth-token-exchange)
 * [Working Group] (https://datatracker.ietf.org/wg/oauth)
 * [Working Group Mailing List] (https://www.ietf.org/mailman/listinfo/OAUTH)
 
-Use [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally to "build" the document from the xml file.  
-Or [this link to xml2rfc](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=html%2Fascii&type=ascii&Submit=Submit) should render HTML from the latest xml.
+
 
 ## NOTE WELL
 
