@@ -491,11 +491,11 @@
       </t>
 
       <t>
-        <?rfc subcompact="yes"?>
         This specification requests that IANA register the following
         values in the IANA urn:ietf:params:oauth registry established in
         <xref target="RFC6755">An IETF URN Sub-Namespace for OAuth</xref>.
 
+        <?rfc subcompact="yes"?>
         <list style="symbols">
           <t>URN: urn:ietf:params:oauth:grant-type:security-token-request</t>
           <t>Common Name: Security token request grant type for OAuth 2.0</t>
@@ -523,8 +523,6 @@
       <?rfc subcompact="no"?>
 
       <t>
-
-
         Additionally, this specification requests that IANA register the following
         values in the "OAuth Parameters" registry established by RFC 6749 <xref target="RFC6749"/>.
         <?rfc subcompact="yes"?>
