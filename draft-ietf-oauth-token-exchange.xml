@@ -69,7 +69,7 @@
 
     <abstract>
       <t>
-  This specification facilitates a lightweight HTTP and JSON based
+  This specification provides the framework for a lightweight HTTP and JSON based
   security token service by defining how to request and obtain
   security tokens from OAuth authorization servers,
   including enabling one party to act on behalf of another or
