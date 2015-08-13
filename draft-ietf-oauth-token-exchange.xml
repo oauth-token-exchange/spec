@@ -111,8 +111,7 @@
 <t>
   This specification defines a lightweight protocol extending OAuth 2.0 that enables
   clients to request and obtain security tokens from authorization servers acting in
-  the role of an STS. There is support for enabling one party to act on behalf of
-  another as well as enabling one party to delegate constrained authority to another.
+  the role of an STS.
   Similar to OAuth 2.0, this specification focuses on client developer simplicity and
   requires only an HTTP client and JSON parser, which are nearly universally available
   in modern development environments. The STS protocol defined in this specification
