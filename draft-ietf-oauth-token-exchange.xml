@@ -348,8 +348,9 @@
   to the security token request.
   The <spanx style="verb">access_token</spanx> parameter from
   <xref target="RFC6749">Section 5.1 of RFC 6749</xref> is used here to carry the requested
-  security token, which allows this token exchange framework to use the existing OAuth 2.0 request
-  and response constructs defined for the token endpoint. <!-- TODO -->
+  token, which allows this token exchange framework to use the existing OAuth 2.0 request
+  and response constructs defined for the token endpoint. The name is used for historical
+  reasons and the returned token need not necessarily be an OAuth access token.
 </t>
 
 <t hangText="security_token_type">
@@ -672,7 +673,7 @@
         -03
         <list style='symbols'>
           <t>Update document editors (add Campbell, Bradley and Mortimore).</t>
-          <t>update title per slide 7 of https://www.ietf.org/proceedings/93/slides/slides-93-oauth-0.pdf</t>
+          <t>Update title per slide 7 of https://www.ietf.org/proceedings/93/slides/slides-93-oauth-0.pdf</t>
           <t>Elaborate some more in the abstract and introduction.</t>
           <t>
             Update the format of the request to use application/x-www-form-urlencoded request parameters and
@@ -688,6 +689,7 @@
             urn:ietf:params:oauth:token-type: as implied prefix.
           </t>
           <t>Remove Implementation Considerations and requirement to support JWTs.</t>
+          <t>Attempt to clarify various bits of text throughout.</t>
         </list>
       </t>
       <t>
