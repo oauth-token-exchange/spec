@@ -125,9 +125,14 @@
   with a few additional parameters defined herein to provide information to the client.
 </t>
 <t>
-	The security tokens obtained could be used in a number of contexts,
-	the specifics of which are beyond the scope of this document.
-  <!-- TODO some examples? -->
+  The entity that makes the request to exchange tokens is considered the client in the
+  context of the token exchange transaction. However, that does not necessarily restrict
+  usage of this profile to traditional OAuth clients. An OAuth resource server, for example,
+  might assume the role of the client during token exchange in order to exchange an access token
+  that it received on an inbound request for a token that is appropriate to include in a
+  to call to a backend service. The new token might be a access token that is more
+  narrowly scoped for the downstream service or it could be an entirely different type
+  of token.
 </t>
 <t>
   The scope of this specification is limited to the definition of a framework and
@@ -141,7 +146,10 @@
   will often be policy decisions made with respect to the specific needs of individual
   deployments and will be configured or implemented accordingly.
 </t>
-
+<t>
+  The security tokens obtained could be used in a number of contexts,
+  the specifics of which are also beyond the scope of this document.
+</t>
 
       <section title="Requirements Notation and Conventions">
 	<t>
