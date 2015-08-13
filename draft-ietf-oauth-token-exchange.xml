@@ -72,8 +72,7 @@
   This specification provides the framework for a lightweight HTTP and JSON based
   security token service by defining how to request and obtain
   security tokens from OAuth authorization servers,
-  including enabling one party to act on behalf of another or
-  enabling one party to delegate authority to another.
+  including support for impersonation and delegation in the requested token.
       </t>
     </abstract>
 
