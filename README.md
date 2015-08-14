@@ -6,7 +6,7 @@ Be aware that all contributions to the specification fall under the "NOTE WELL"
 terms outlined below.
 
 
-You can use xml2rfc to to render the latest xml souurce as [HTML](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=html%2Fascii&type=ascii&Submit=Submit) or [Text](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=txt%2Fascii&type=ascii&Submit=Submit). Also, [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally can be used to "build" the document from the xml file.  
+Render the latest xml source as [HTML](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=html%2Fascii&type=ascii&Submit=Submit) or [Text](http://xml2rfc.ietf.org/cgi-bin/xml2rfc.cgi?url=https%3A%2F%2Fraw.githubusercontent.com%2Foauth-token-exchange%2Fspec%2Fmaster%2Fdraft-ietf-oauth-token-exchange.xml&modeAsFormat=txt%2Fascii&type=ascii&Submit=Submit) with xml2rfc. Also, [xml2rfc online](http://xml2rfc.ietf.org/) or installed locally can be used to "build" the document from the xml file.  
 
 
 * [Working Group Draft] (https://tools.ietf.org/html/draft-ietf-oauth-token-exchange)
