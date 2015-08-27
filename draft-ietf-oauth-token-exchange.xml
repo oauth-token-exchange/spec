@@ -193,16 +193,16 @@
   </t>
   <t>
     A security token with impersonation semantics is requested using this framework
-    by including an on_behalf_of token in the request and omitting the act_as token.
-    The on_behalf_of token represents the identity of the party on behalf of whom
+    by including a subject_token token in the request and omitting the delegate_token.
+    The subject_token represents the identity of the party on behalf of whom
     the token is being requested and the token returned to the client will contain
     information about that party.
   </t>
   <t>
     A security token with delegation semantics is requested using this
-    framework by including both an on_behalf_of token and an act_as token in
-    the request. The on_behalf_of token represents the identity of the party on
-    behalf of whom the token is being requested while the act_as token represents
+    framework by including both a subject_token and a delegate_token in
+    the request. The subject_token represents the identity of the party on
+    behalf of whom the token is being requested while the delegate_token represents
     the identity of the party to whom the access rights of the returned token are
     being delegated. In this case, the token returned to the client will contain
     information about both parties.
@@ -278,7 +278,7 @@
     indicated by the <spanx style='verb'>resource</spanx> parameter.
   </t>
 
-  <t hangText="on_behalf_of">
+  <t hangText="subject_token">
     <vspace/>
     REQUIRED.
     The value of this request parameter is a security token which represents the
@@ -287,35 +287,35 @@
     the security token returned in response to this request.
   </t>
 
-  <t hangText="on_behalf_of_token_type">
+  <t hangText="subject_token_type">
     <vspace/>
     REQUIRED.
     An identifier, as described in <xref target="TokenTypeIdentifiers"/>, that indicates the type of the security token sent with
-    the <spanx style="verb">on_behalf_of</spanx> parameter. For example,
+    the <spanx style="verb">subject_token</spanx> parameter. For example,
     a value of <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>,
     would indicate that the token is a JWT and a value of
     <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
     would indicate that the token is an OAuth access token.
   </t>
 
-  <t hangText="act_as">
+  <t hangText="delegate_token">
     <vspace/>
     OPTIONAL.
     The value of this request parameter is a security token which represents
     the identity of the party that is authorized to use the requested security token.
     When this parameter is present, it indicates that the client wants a token
     that contains claims about two distinct entities:
-    1) the entity represented by the token in the <spanx style="verb">on_behalf_of</spanx>
+    1) the entity represented by the token in the <spanx style="verb">subject_token</spanx>
     parameter as the primary subject and 2) the entity represented by this token as a
     party who is authorized to act on behalf of that subject.
   </t>
 
-  <t hangText="act_as_token_type">
+  <t hangText="delegate_token_type">
     <vspace/>
-    REQUIRED when the <spanx style="verb">act_as</spanx> parameter is present in the
+    REQUIRED when the <spanx style="verb">delegate_token</spanx> parameter is present in the
     request but MUST NOT be included otherwise. The value of this parameter is
     an identifier, as described in <xref target="TokenTypeIdentifiers"/>, that indicates the type of the security token sent with the
-    <spanx style="verb">act_as</spanx> parameter.
+    <spanx style="verb">delegate_token</spanx> parameter.
   </t>
 </list>
 </t>
@@ -408,8 +408,8 @@
       </section>
       <section title="Error Response">
   <t>
-    If either the <spanx style="verb">on_behalf_of</spanx> or <spanx style="verb">act_as</spanx>
-    tokens are invalid for any reason, or are unacceptable based on policy, the authorization server
+    If either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">delegate_token</spanx>
+    are invalid for any reason, or are unacceptable based on policy, the authorization server
     MUST construct an error response as defined in <xref target="RFC6749">Section 5.2 of OAuth 2.0</xref>
     The value of the <spanx style='verb'>error</spanx>
     parameter MUST be the <spanx style='verb'>invalid_grant</spanx> error code. The authorization
@@ -426,7 +426,7 @@
   Several parameters in this specification utilize an identifier as the value to
   describe the type of token in question. Specifically they are the
   <spanx style="verb">requested_security_token_type</spanx>,
-  <spanx style="verb">on_behalf_of_token_type</spanx>, <spanx style="verb">act_as_token_type</spanx>
+  <spanx style="verb">subject_token_type</spanx>, <spanx style="verb">delegate_token_type</spanx>
   parameters of the request and the <spanx style="verb">security_token_type</spanx> member of the response.
 </t>
 <t>
@@ -552,7 +552,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: on_behalf_of</t>
+          <t>Parameter name: subject_token</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
@@ -560,7 +560,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: on_behalf_of_token_type</t>
+          <t>Parameter name: subject_token_type</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
@@ -568,7 +568,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: act_as</t>
+          <t>Parameter name: delegate_token</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
@@ -576,7 +576,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: act_as_token_type</t>
+          <t>Parameter name: delegate_token_type</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
@@ -692,6 +692,12 @@
           </t>
           <t>Remove Implementation Considerations and requirement to support JWTs.</t>
           <t>Attempt to clarify various bits of text throughout.</t>
+          <t>
+            Change on_behalf_of to subject_token, on_behalf_of_token_type to subject_token_type,
+            act_as to delegate_token, and act_as_token_type to delegate_token_type per consensus to
+            'pick new terms and descriptions' from the meeting in Prague
+            Prague https://www.ietf.org/proceedings/93/minutes/minutes-93-oauth
+          </t>
         </list>
       </t>
       <t>
