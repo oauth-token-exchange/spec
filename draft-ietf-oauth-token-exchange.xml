@@ -647,12 +647,10 @@
 	The following decisions need to be made and updates on this spec performed:
 	<list style="symbols">
 	  <t>
-	    Should we say anything about proof of possession of
-	    the target party's key in the On-Behalf-Of case
-	    beyond specifying the use of the <spanx style="verb">actor</spanx> Claim?
+      Understand and define exactly how the presentation of PoP/non-bearer tokens works.
 	  </t>
 	  <t>
-	    Add examples illustrating concrete uses of act-as and on-behalf-of.
+      Add examples illustrating concrete uses of delegation and impersonation.
 	  </t>
 	</list>
       </t>
