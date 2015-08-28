@@ -59,8 +59,6 @@
     <keyword>JWT</keyword>
     <keyword>Delegation</keyword>
     <keyword>Impersonation</keyword>
-    <keyword>on-behalf-of</keyword>
-    <keyword>act-as</keyword>
     <keyword>STS</keyword>
     <keyword>Exchange</keyword>
     <keyword>Token</keyword>
@@ -601,7 +599,7 @@
         here.
       </t>
       <t>
-        In addition, on-behalf-of introduces its own unique security
+        In addition, both delegation and impersonation introduce unique security
         issues.  Any time one principal is delegated the rights of
         another principal, the potential for abuse is always a concern.
 	That is why use of the <spanx style="verb">scopes</spanx>
