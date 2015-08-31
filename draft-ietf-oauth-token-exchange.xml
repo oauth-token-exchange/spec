@@ -248,12 +248,30 @@
   <t hangText="resource">
     <vspace/>
     OPTIONAL.
-    Indicates the location of the service or resource where the client intends to use
-    the requested security token. The value MUST be an absolute URI as defined by
-    Section 4.3 of <xref target="RFC3986"/>. The URI MAY include a
-    query component but MUST NOT include a fragment component.
-    When applicable, the value of this parameter also typically informs the
-    audience restrictions on the returned security token.
+    Indicates the physical location of the target service or resource where the client intends to use
+    the requested security token. This enables the authorization server to apply policy as appropriate
+    for the target, such as determining the type and content of the token to be returned or if and how
+    the token is to be encrypted.
+    In many cases a client will not have knowledge of the logical organization of the systems with
+    which it interacts and will only know the location of the service where it intends to use the token.
+    The <spanx style="verb">resource</spanx> parameter allows the client to indicate to the authorization server
+    where it intends to use the requested token by providing the location, typically as an https URL, in the
+    security token request in the same form that will be used to access that resource.
+    The authorization server will typically have the capability to map from a resource URI value to
+    a an appropriate policy. The value of the <spanx style="verb">resource</spanx> parameter MUST be an
+    absolute URI as defined by Section 4.3 of <xref target="RFC3986"/>, which MAY include a query component.
+  </t>
+
+  <t hangText="audience">
+    <vspace/>
+    OPTIONAL.
+    The logical name of the target service where the client intends to use
+    the requested security token. This serves a purpose similar to the
+    <spanx style="verb">resource</spanx> parameter but with the client providing a logical name
+    rather than a physical location. Interpretation of the name requires that the value be something
+    that both the client and the authorization server understand. An OAuth client identifier,
+    a SAML entity identifier, or an OpenID Connect Issuer Identifier are examples of things that
+    might be used as <spanx style="verb">audience</spanx> parameter values.
   </t>
 
   <t hangText="scope">
@@ -261,8 +279,7 @@
     OPTIONAL.
     A list of space-delimited, case-sensitive strings that allow the client to
     specify the desired scope of requested security token in the context of the
-    service or resource where the token will be used
-    (possibly indicated by the <spanx style='verb'>resource</spanx> parameter).</t>
+    service or resource where the token will be used.</t>
 
   <t hangText="requested_security_token_type">
     <vspace/>
@@ -542,6 +559,14 @@
       </t>
       <t>
         <list style='symbols'>
+          <t>Parameter name: audience</t>
+          <t>Parameter usage location: token request</t>
+          <t>Change controller: IESG</t>
+          <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
           <t>Parameter name: requested_security_token_type</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
@@ -693,6 +718,10 @@
             act_as to delegate_token, and act_as_token_type to delegate_token_type per consensus to
             'pick new terms and descriptions' from the meeting in Prague
             Prague https://www.ietf.org/proceedings/93/minutes/minutes-93-oauth
+          </t>
+          <t>
+            Add an audience request parameter used to indicate the logical name of the target service
+            where the client intends to use the requested security token.
           </t>
         </list>
       </t>
