@@ -191,16 +191,16 @@
   </t>
   <t>
     A security token with impersonation semantics is requested using this framework
-    by including a subject_token token in the request and omitting the delegate_token.
-    The subject_token represents the identity of the party on behalf of whom
+    by including a <spanx style="verb">subject_token</spanx> token in the request and omitting the <spanx style="verb">delegate_token</spanx>.
+    The <spanx style="verb">subject_token</spanx> represents the identity of the party on behalf of whom
     the token is being requested and the token returned to the client will contain
     information about that party.
   </t>
   <t>
     A security token with delegation semantics is requested using this
-    framework by including both a subject_token and a delegate_token in
-    the request. The subject_token represents the identity of the party on
-    behalf of whom the token is being requested while the delegate_token represents
+    framework by including both a <spanx style="verb">subject_token</spanx> and a <spanx style="verb">delegate_token</spanx> in
+    the request. The <spanx style="verb">subject_token</spanx> represents the identity of the party on
+    behalf of whom the token is being requested while the <spanx style="verb">delegate_token</spanx> represents
     the identity of the party to whom the access rights of the returned token are
     being delegated. In this case, the token returned to the client will contain
     information about both parties.
