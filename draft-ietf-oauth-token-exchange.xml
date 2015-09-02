@@ -476,7 +476,7 @@
   <section title="Delegate 'del' Claim" anchor="delegate">
     <t>
       The <spanx style="verb">del</spanx> (delegate) claim provides a way to
-      express delegation semantics in a JWT. The claim identifies value of the principal that
+      express delegation semantics in a JWT. The claim value identifies the principal that
       is the authorized actor to whom authority has been delegated.
       The <spanx style="verb">del</spanx> value is a case-sensitive string
       containing a StringOrURI value.
