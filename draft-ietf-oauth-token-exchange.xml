@@ -163,7 +163,7 @@
 	  This specification uses the terms "authorization server"
 	  "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
-	  and the term "Claim" is defined by
+	  and the terms "Claim" and "StringOrURI" defined by
 	  <xref target="RFC7519">JSON Web Token (JWT)</xref>.
         </t>
       </section>
@@ -465,55 +465,48 @@
 </t>
    </section>
 
-    <section anchor="Actor" title="Conveying Eligibility to Act As Another Party">
-      <t>
-	It is useful to be able to make a statement that one party is authorized
-	to act on behalf of another party.
-	This can be done by having the party being acted for issue
-	a Security Token containing a Claim identifying the party that will
-	act for it as an authorized actor.
-	This statement can also optionally identify scopes in which
-	the actor is eligible to act through another Claim.
-	The following Claims are defined for use in JWTs for these purposes:
+    <section title="JSON Web Token Claims" anchor="jwtclaims">
+ <t>
+   It is useful to have defined mechanisms to express delegation within a token as well as to express
+   authorization to delegate or impersonate. Although the token exchange protocol described
+   herein can be used with any type of token, this section defines claims to express such
+   semantics specifically for JWT. Similar definitions for other types of tokens are possible but
+   beyond the scope of this document.
+ </t>
+  <section title="Delegate 'del' Claim" anchor="delegate">
+    <t>
+      The <spanx style="verb">del</spanx> (delegate) claim provides a way to
+      express delegation semantics in a JWT. The claim identifies value of the principal that
+      is the authorized actor to whom authority has been delegated.
+      The <spanx style="verb">del</spanx> value is a case-sensitive string
+      containing a StringOrURI value.
+    </t>
+  </section>
+  <section title="Context 'ctx' Claim" anchor="ctx">
+    <t>
+      The <spanx style="verb">ctx</spanx> (context) claim is an array of strings,
+      each of which represents a service context
+      that the presenter of the token is eligible to execute.
+      The array MUST contain at least one context value.
+      The definition of these contexts is outside the scope of this specification.
+      However, as one example, the <spanx style="verb">ctx</spanx> claim might be used to carry
+      an OAuth scope value where each array entry of the
+      claim value is a scope-token (scope and scope-token are defined in
+      <xref target="RFC6749">OAuth 2.0, Section 3.3</xref>).
+    </t>
+  </section>
+  <section title="Authorized Actor 'aa' Claim" anchor="aa">
+    <t>
+      This claim makes a statement that one party is authorized to act on behalf of another party.
+      The value of the claim is a case-sensitive string containing a StringOrURI value, which
+      identifies a party that is asserted as being eligible to act for the party identified by
+      the JWT containing this Claim.
+    </t>
+  </section>
 
-	<list style="hanging">
-	  <t hangText="actor">
-	    <vspace/>
-	    Security Token that identifies a party that is asserted as being eligible
-	    to act for the party identified by the JWT containing this Claim.
-	  </t>
-	  <t hangText="scopes">
-	    <vspace/>
-	    OPTIONAL.
-	    Array of strings, each of which represents a service context
-	    for which the actor is asserted as being eligible
-	    to act for the party identified by the JWT containing this Claim.
-	    The array MUST contain at least one scope value.
-	    The definition of these contexts is outside the scope of this specification.
-	  </t>
-	</list>
-      </t>
-      <t>
-	The JWT issued by the party being acted for MUST be signed so the identity of
-	the party being acted for can be validated
-	unless the identity of the party being acted for is known to
-	the authorization server by other means;
-	in that case, the JWT can use the <spanx style="verb">alg</spanx>
-	value <spanx style="verb">none</spanx>.
-      </t>
     </section>
 
     <section title="IANA Considerations">
-      <t>
-        The
-        <spanx style="verb">scopes</spanx>
-        and
-        <spanx style="verb">actor</spanx>
-        Claims are to be registered in the
-        IANA "JSON Web Token Claims" registry
-        established by <xref target="RFC7519">JWT</xref>.
-      </t>
-
       <t>
         This specification requests that IANA register the following
         values in the IANA urn:ietf:params:oauth registry established in
@@ -614,6 +607,34 @@
         </list>
       </t>
       <?rfc subcompact="no"?>
+      <t>
+        Lastly, this specification requests that IANA register the following Claims
+        in the IANA JSON Web Token Claims registry established by <xref target="RFC7519">JWT</xref>.
+        <?rfc subcompact="yes"?>
+        <list style='symbols'>
+          <t>Claim Name: <spanx style="verb">del</spanx></t>
+          <t>Claim Description: Delegate</t>
+          <t>Change Controller: IESG</t>
+          <t>Specification Document(s): <xref target="delegate"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Claim Name: <spanx style="verb">ctx</spanx></t>
+          <t>Claim Description: Context</t>
+          <t>Change Controller: IESG</t>
+          <t>Specification Document(s): <xref target="ctx"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <t>
+        <list style='symbols'>
+          <t>Claim Name: <spanx style="verb">aa</spanx></t>
+          <t>Claim Description: Authorized Actor</t>
+          <t>Change Controller: IESG</t>
+          <t>Specification Document(s): <xref target="aa"/> of [[ this document ]]</t>
+        </list>
+      </t>
+      <?rfc subcompact="no"?>
     </section>
 
     <section title="Security Considerations">
@@ -627,9 +648,8 @@
         In addition, both delegation and impersonation introduce unique security
         issues.  Any time one principal is delegated the rights of
         another principal, the potential for abuse is always a concern.
-	That is why use of the <spanx style="verb">scopes</spanx>
-	member is suggested.
-	The scope values restrict the contexts in which
+	The use of the <spanx style="verb">ctx</spanx>
+	claim is suggested to mitigate potential for such abuse as it restricts the contexts in which
 	the delegated rights can be exercised.
       </t>
     </section>
@@ -708,6 +728,9 @@
             urn:ietf:params:oauth:token-type:access_token and urn:ietf:params:oauth:grant-type:security-token-request
           </t>
           <t>
+            RFC 6749 registration requests for request/response parameters.
+          </t>
+          <t>
             Token type values can now have shorthand value of something like just jwt with
             urn:ietf:params:oauth:token-type: as implied prefix.
           </t>
@@ -722,6 +745,10 @@
           <t>
             Add an audience request parameter used to indicate the logical name of the target service
             where the client intends to use the requested security token.
+          </t>
+          <t>
+            Added JWT claims to express delegation (del), context/scope (ctx), as well as an
+            authorization to delegate or impersonate (aa) (+ RFC 7519 registration requests for them).
           </t>
         </list>
       </t>
