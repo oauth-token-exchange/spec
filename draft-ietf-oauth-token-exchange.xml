@@ -80,7 +80,7 @@
     <section title="Introduction">
 <t>
   A security token is a set of information that facilitates
-  the sharing of identity and security information across security domains.
+  the sharing of identity and security information in heterogeneous environments or across security domains.
   Examples of security tokens include
   JSON Web Tokens (JWTs) <xref target="RFC7519"/> and
   SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
