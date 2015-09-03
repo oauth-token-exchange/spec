@@ -117,8 +117,8 @@
   more palatable to developers accustom to working with RESTful systems.
 </t>
 <t>
-  A new security token request grant type and the associated specific parameters for
-  a security token request to the token endpoint are defined by this specification.
+  A new grant type for a security token request and the associated specific parameters for
+  such a request to the token endpoint are defined by this specification.
   A security token response is a normal OAuth 2.0 response from the token endpoint
   with a few additional parameters defined herein to provide information to the client.
 </t>
@@ -126,7 +126,7 @@
   The entity that makes the request to exchange tokens is considered the client in the
   context of the token exchange transaction. However, that does not necessarily restrict
   usage of this profile to traditional OAuth clients. An OAuth resource server, for example,
-  might assume the role of the client during token exchange in order to exchange an access token
+  might assume the role of the client during token exchange in order to trade an access token
   that it received on an inbound request for a token that is appropriate to include in a
   to call to a backend service. The new token might be a access token that is more
   narrowly scoped for the downstream service or it could be an entirely different type
