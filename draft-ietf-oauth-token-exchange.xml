@@ -481,7 +481,7 @@
       to express that delegation has occurred.
       The <spanx style="verb">act</spanx> claim value is a case-sensitive string
       containing a StringOrURI value, which identifies the principal that
-      is the actor to whom authority has been delegated.
+      is the current actor to whom authority has been delegated.
     </t>
   </section>
   <section title="Context 'ctx' Claim" anchor="ctx">
