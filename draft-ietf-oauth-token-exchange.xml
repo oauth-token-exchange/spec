@@ -290,8 +290,9 @@
     <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
     If the requested type is unspecified, the returned token type is at
     the discretion of the authorization server and may be dictated by
-    knowledge of the requirements of the service or resource whose location is
-    indicated by the <spanx style='verb'>resource</spanx> parameter.
+    knowledge of the requirements of the service or resource
+    indicated by the <spanx style='verb'>resource</spanx> or
+    <spanx style="verb">audience</spanx> parameter.
   </t>
 
   <t hangText="subject_token">
