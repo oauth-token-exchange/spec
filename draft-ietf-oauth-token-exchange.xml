@@ -473,13 +473,13 @@
    semantics specifically for JWT. Similar definitions for other types of tokens are possible but
    beyond the scope of this document.
  </t>
-  <section title="Delegate 'del' Claim" anchor="delegate">
+  <section title="Actor 'act' Claim" anchor="actor">
     <t>
-      The <spanx style="verb">del</spanx> (delegate) claim provides a way to
-      express delegation semantics in a JWT. The claim value identifies the principal that
-      is the authorized actor to whom authority has been delegated.
-      The <spanx style="verb">del</spanx> value is a case-sensitive string
-      containing a StringOrURI value.
+      The <spanx style="verb">act</spanx> (actor) claim provides a means within a JWT
+      to express that delegation has occurred.
+      The <spanx style="verb">act</spanx> claim value is a case-sensitive string
+      containing a StringOrURI value, which identifies the principal that
+      is the actor to whom authority has been delegated.
     </t>
   </section>
   <section title="Context 'ctx' Claim" anchor="ctx">
@@ -612,10 +612,10 @@
         in the IANA JSON Web Token Claims registry established by <xref target="RFC7519">JWT</xref>.
         <?rfc subcompact="yes"?>
         <list style='symbols'>
-          <t>Claim Name: <spanx style="verb">del</spanx></t>
-          <t>Claim Description: Delegate</t>
+          <t>Claim Name: <spanx style="verb">act</spanx></t>
+          <t>Claim Description: Actor</t>
           <t>Change Controller: IESG</t>
-          <t>Specification Document(s): <xref target="delegate"/> of [[ this document ]]</t>
+          <t>Specification Document(s): <xref target="actor"/> of [[ this document ]]</t>
         </list>
       </t>
       <t>
@@ -747,8 +747,8 @@
             where the client intends to use the requested security token.
           </t>
           <t>
-            Added JWT claims to express delegation (del), context/scope (ctx), as well as an
-            authorization to delegate or impersonate (aa) (+ RFC 7519 registration requests for them).
+            Added JWT claims to express delegation (act/actor), context/scope (ctx/context), as well as an
+            authorization to delegate or impersonate (aa/authorized actor) (+ RFC 7519 registration requests for them).
           </t>
         </list>
       </t>
