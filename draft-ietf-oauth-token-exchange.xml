@@ -135,7 +135,8 @@
 <t>
   The scope of this specification is limited to the definition of a framework and
   basic request and response protocol for an STS style token exchange utilizing OAuth 2.0.
-  The syntax, semantics and security characteristics of the tokens themselves
+  Although a few new claims are defined for JWT, which enable delegation semantics to be expressed,
+  the specific syntax, semantics and security characteristics of the tokens themselves
   (both those presented to the AS and those obtained by the client)
   are explicitly out of scope and no requirements are placed on the trust model in
   which an implementation might be deployed. Additional profiles may provide
