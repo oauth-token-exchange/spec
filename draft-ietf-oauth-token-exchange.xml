@@ -242,7 +242,7 @@
   <t hangText="grant_type">
     <vspace/>
     REQUIRED. The value
-    <spanx style='verb'>urn:ietf:params:oauth:grant-type:security-token-request</spanx>
+    <spanx style='verb'>urn:ietf:params:oauth:grant-type:token-exchange</spanx>
     indicates that it is a security token request.
   </t>
 
@@ -416,7 +416,7 @@
   <vspace/>
   NOT RECOMMENDED.
   Refresh tokens will typically not be issued in response to a
-  <spanx style="verb">urn:ietf:params:oauth:grant-type:security-token-request</spanx>
+  <spanx style="verb">urn:ietf:params:oauth:grant-type:token-exchange</spanx>
   grant type requests.
 </t>
 
@@ -516,8 +516,8 @@
 
         <?rfc subcompact="yes"?>
         <list style="symbols">
-          <t>URN: urn:ietf:params:oauth:grant-type:security-token-request</t>
-          <t>Common Name: Security token request grant type for OAuth 2.0</t>
+          <t>URN: urn:ietf:params:oauth:grant-type:token-exchange</t>
+          <t>Common Name: Token exchange grant type for OAuth 2.0</t>
           <t>Change controller: IESG</t>
           <t>Specification Document: <xref target="Request"/> of [[ this document ]]</t>
         </list>
@@ -725,9 +725,10 @@
             the response to use the existing JSON params defined in OAuth per consensus out of the meeting in
             Prague https://www.ietf.org/proceedings/93/minutes/minutes-93-oauth
           </t>
+          <t>Change grant type to urn:ietf:params:oauth:grant-type:token-exchange</t>
           <t>
             RFC 6755 registration requests to IANA for urn:ietf:params:oauth:token-type:refresh_token,
-            urn:ietf:params:oauth:token-type:access_token and urn:ietf:params:oauth:grant-type:security-token-request
+            urn:ietf:params:oauth:token-type:access_token and urn:ietf:params:oauth:grant-type:token-exchange
           </t>
           <t>
             RFC 6749 registration requests for request/response parameters.
