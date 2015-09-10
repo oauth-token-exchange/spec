@@ -863,6 +863,7 @@
             Added JWT claims to express delegation (act/actor), context/scope (ctx/context), as well as an
             authorization to delegate or impersonate (aa/authorized actor) (+ RFC 7519 registration requests for them).
           </t>
+          <t>Added examples.</t>
         </list>
       </t>
       <t>
