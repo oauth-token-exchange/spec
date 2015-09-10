@@ -161,7 +161,7 @@
 
       <section title="Terminology">
         <t>
-	  This specification uses the terms "authorization server"
+	  This specification uses the terms "authorization server", "client", "resource server"
 	  "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
 	  and the terms "Claim" and "StringOrURI" defined by
@@ -437,6 +437,116 @@
 
 
     </section>
+
+<section title="Example Token Exchange" anchor="main-example">
+<t>
+  The following example demonstrates a hypothetical token exchange where an
+  OAuth resource server
+  assumes the role of the client during token exchange in order to
+  trade an access token that it received on an inbound request for a
+  token that it will use to call to a backend service
+  (extra line breaks in the examples are for display purposes only).
+</t>
+
+
+<t>
+  The resource server receives the following inbound request containing a
+  OAuth access token in the Authorization request header (per
+  <xref target="RFC6750">Section 2.1 of RFC 6750</xref>).
+</t>
+
+<figure>
+  <artwork><![CDATA[
+ GET /resource HTTP/1.1
+ Host: frontend.example.com
+ Authorization: Bearer accVkjcJyb4LBxGsndESCJQbdFMogUC5PbRDqceLTC
+]]></artwork>
+</figure>
+
+<t>
+  The resource server assumes the role of the client for the token exchange
+  and the access token from the inbound request above is sent
+  to the authorization
+  server using a request as defined in <xref target="Request"/>.
+  The value of the <spanx style="verb">subject_token</spanx> parameter carries the
+  access token and,
+  using the shorthand described in <xref target="TokenTypeIdentifiers"/>, the value of
+  the <spanx style="verb">subject_token_type</spanx> parameter indicates that it is a
+  OAuth 2.0 access token.
+  The client uses its identifier and secret to authenticate to
+  the authorization server using the HTTP Basic authentication scheme.
+  The <spanx style="verb">resource</spanx> parameter indicates the location
+  of the backend service, https://backend.example.com/api,
+  where the requested token will be used.
+</t>
+
+      <figure>
+  <artwork><![CDATA[
+ POST /as/token.oauth2 HTTP/1.1
+ Host: as.example.com
+ Authorization: Basic cnMwODpsb25nLXNlY3VyZS1yYW5kb20tc2VjcmV0
+ Content-Type: application/x-www-form-urlencoded
+
+ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
+ &resource=https%3A%2F%2Fbackend.example.com%2Fapi%20
+ &subject_token=accVkjcJyb4LBxGsndESCJQbdFMogUC5PbRDqceLTC
+ &subject_token_type=access_token
+]]></artwork>
+</figure>
+
+<t>
+  The authorization server validates the client credentials and the
+  <spanx style="verb">subject_token</spanx> presented in the token
+  exchange request. From the <spanx style="verb">resource</spanx>
+  parameter, the authorization server is able to determine the
+  appropriate policy to apply to the request and issue a token
+  suitable for https://backend.example.com.
+  The <spanx style="verb">access_token</spanx> parameter of the
+  response contains the new token, which is itself a bearer OAuth
+  access token that is valid for one minute. The token happens to be
+  a JWT, however, its structure and format are opaque to
+  the client so the <spanx style="verb">security_token_type</spanx>
+  indicates only that it is an access token.
+</t>
+
+  <figure>
+    <artwork><![CDATA[
+ HTTP/1.1 200 OK
+ Content-Type: application/json
+ Cache-Control: no-cache, no-store
+
+ {
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJiYW
+      NrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJleHAiO
+      jE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsInN1YiI6
+      ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.qEJkzIpHRNi
+      MMerk-vcZiFc2KwBnTOTvkXS2MOuymWIufXZMaoOY9gPmnu012POhV9Vn5RByJU
+      xVU7I3MNNWJw",
+  "token_type":"Bearer",
+  "security_token_type":"access_token"
+  "expires_in":60,
+ }
+]]></artwork>
+  </figure>
+
+<t>
+  The resource server can then use the newly acquired access token in making
+  a request to the backend server.
+</t>
+
+      <figure>
+        <artwork><![CDATA[
+ GET /api HTTP/1.1
+ Host: backend.example.com
+ Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiO
+     iJiYWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJle
+     HAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsInN1Y
+     iI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.qEJkzIpHR
+     NiMMerk-vcZiFc2KwBnTOTvkXS2MOuymWIufXZMaoOY9gPmnu012POhV9Vn5RByJ
+     UxVU7I3MNNWJw
+]]></artwork>
+      </figure>
+</section>
     </section>
     <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
 <t>
