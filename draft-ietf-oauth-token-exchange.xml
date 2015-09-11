@@ -1093,7 +1093,15 @@
 
     <section title='Acknowledgements'>
       <t>
-        The following individuals contributed ideas, feedback, and wording that shaped and formed the final specification:
+        This specification was developed within the OAuth Working Group, which
+        includes dozens of active and dedicated participants.
+        It was produced under the chairmanship of
+        Hannes Tschofenig and Derek Atkins while
+        Kathleen Moriarty and Stephen Farrell served as
+        Security Area Directors.
+        In particular,
+        the following individuals contributed ideas, feedback, and wording
+        that shaped and formed the final specification:
       </t>
       <t>
         Hannes Tschofenig, Jason Keglovitz, Justin Richter, Matt Miller, Matthew Perry, Phil Hunt, Scott Tomilson and William Denniss.
