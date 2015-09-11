@@ -615,12 +615,11 @@
       <xref target="RFC6749">OAuth 2.0, Section 3.3</xref>).
     </t>
   </section>
-  <section title="Authorized Actor 'aa' Claim" anchor="aa">
+  <section title="On-Behalf-Of 'obo' Claim" anchor="obo">
     <t>
       This claim makes a statement that one party is authorized to act on behalf of another party.
       The value of the claim is a case-sensitive string containing a StringOrURI value, which
-      identifies a party that is asserted as being eligible to act for the party identified by
-      the JWT containing this Claim.
+      identifies the party whom the presenter of the token is authorized to act for.
     </t>
   </section>
 
@@ -748,10 +747,10 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Claim Name: <spanx style="verb">aa</spanx></t>
-          <t>Claim Description: Authorized Actor</t>
+          <t>Claim Name: <spanx style="verb">obo</spanx></t>
+          <t>Claim Description: On-Behalf-Of</t>
           <t>Change Controller: IESG</t>
-          <t>Specification Document(s): <xref target="aa"/> of [[ this document ]]</t>
+          <t>Specification Document(s): <xref target="obo"/> of [[ this document ]]</t>
         </list>
       </t>
       <?rfc subcompact="no"?>
@@ -997,8 +996,8 @@
             where the client intends to use the requested security token.
           </t>
           <t>
-            Added JWT claims to express delegation (act/actor), context/scope (ctx/context), as well as an
-            authorization to delegate or impersonate (aa/authorized actor) (+ RFC 7519 registration requests for them).
+            Added JWT claims to express delegation (act/actor), context or scope (ctx/context), as well as an
+            authorization to act for or on behalf of (obo/on-behalf-of) (+ RFC 7519 registration requests for them).
           </t>
           <t>Added examples.</t>
         </list>
