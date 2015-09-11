@@ -1181,3 +1181,170 @@
 
   </back>
 </rfc>
+  <!--   code used to create the JWTs in examples
+
+
+import org.jose4j.jwk.JsonWebKey;
+import org.jose4j.jwk.PublicJsonWebKey;
+
+import org.jose4j.jws.AlgorithmIdentifiers;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.NumericDate;
+
+public class TokenExExamples
+{
+    public static void main(String[] args) throws Exception
+    {
+        System.out.println("main-example");
+        System.out.println(" main :::::");
+
+        PublicJsonWebKey mainExKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"9er\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"5yoR9FjZHn7kJDALhDzhZ8i8F06mc12YswUMTBv4BoA\",\"y\":\"4uxuIItWj5Duzspth5mUbpLXWrPFzFPQkOCeAGGI6KM\",\"crv\":\"P-256\",\"d\":\"LncS7zrx6c8X5qZRxoSN18ZEYDeI2wfKfUvX_DgwRH8\"}");
+        System.out.println(mainExKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
+
+        NumericDate iat = NumericDate.fromSeconds(1441917533);
+        System.out.println(iat);
+        NumericDate exp = NumericDate.fromSeconds(iat.getValue());
+        exp.addSeconds(60);
+
+        JwtClaims claims = new JwtClaims();
+        claims.setAudience("backend.example.com");
+        claims.setIssuer("as.example.com");
+        claims.setExpirationTime(exp);
+        claims.setIssuedAt(iat);
+        claims.setStringClaim("azp", "rs08");
+        claims.setSubject("bcampbell@example.com");
+        claims.setStringListClaim("ctx", "api");
+
+        JsonWebSignature jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(mainExKey.getKeyId());
+        jws.setKey(mainExKey.getPrivateKey());
+        jws.setPayload(claims.toJson());
+        System.out.println(jws.getCompactSerialization());
+
+
+        System.out.println("impersonation-example");
+        System.out.println("\n dot net:::::");
+        PublicJsonWebKey dotNetKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"16\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"N_MqlYd_Iq0rfzTqXAX7TUC0r7fQSp3YQKh42tn7uSc\",\"y\":\"9tGuwMFkHYWPqkLa51f8GazZNQqdgMOVvJEd6fJ18PI\",\"crv\":\"P-256\",\"d\":\"cZ_4DqRSAWMMErQbKv6dCYqI9G1pi6lxvlvHU152Uts\"}");
+        System.out.println(dotNetKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
+
+        iat = NumericDate.fromSeconds(1441910000);
+        System.out.println(iat);
+        exp = NumericDate.fromSeconds(iat.getValue());
+        exp.addSeconds(600);
+        NumericDate nbf = NumericDate.fromSeconds(iat.getValue());
+        nbf.addSeconds(-1000);
+
+        claims = new JwtClaims();
+        claims.setAudience("example.com");
+        claims.setIssuer("example.net");
+        claims.setExpirationTime(exp);
+        claims.setNotBefore(nbf);
+        claims.setSubject("bc@example.net");
+        claims.setStringListClaim("ctx", "orders", "profile", "history");
+
+        jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(dotNetKey.getKeyId());
+        jws.setKey(dotNetKey.getPrivateKey());
+        String payload = claims.toJson();
+        jws.setPayload(payload);
+        System.out.println(payload);
+        System.out.println("sub token: " + jws.getCompactSerialization());
+
+        System.out.println("\n dot com:::::");
+        PublicJsonWebKey dotComKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"72\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"472aI8TvDdm2qfBRpXYw0uZ7feumuQOM-RPRkkTukSo\",\"y\":\"VNNStdPhuxY6q7XfVIeYSW7xh_a4z5W2MCtNmQDcILc\",\"crv\":\"P-256\",\"d\":\"dtJiut8QBJxACG6fcX8NYnzIsAN1muCJvaMiLSrOjIc\"}");
+        System.out.println(dotComKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
+
+        iat = NumericDate.fromSeconds(1441910010);
+        System.out.println(iat);
+        exp = NumericDate.fromSeconds(iat.getValue());
+        exp.addSeconds(3600);
+
+        claims = new JwtClaims();
+        claims.setAudience("example.org");
+        claims.setIssuer("example.com");
+        claims.setExpirationTime(exp);
+        claims.setSubject("bc@example.net");
+        claims.setStringListClaim("ctx", "orders", "history", "profile");
+
+        jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(dotComKey.getKeyId());
+        jws.setKey(dotComKey.getPrivateKey());
+        payload = claims.toJson();
+        jws.setPayload(payload);
+        System.out.println(payload);
+        System.out.println("requested token: " + jws.getCompactSerialization());
+
+
+        System.out.println("\n\n\ndelegation-example");
+        System.out.println("\n dot net:::::");
+
+
+        iat = NumericDate.fromSeconds(1441910000);
+        System.out.println(iat);
+        exp = NumericDate.fromSeconds(iat.getValue());
+        exp.addSeconds(60);
+
+        claims = new JwtClaims();
+        claims.setAudience("example.com");
+        claims.setIssuer("example.net");
+        claims.setExpirationTime(exp);
+        String acc = "acc@example.net";
+        claims.setSubject(acc);
+
+        jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(dotNetKey.getKeyId());
+        jws.setKey(dotNetKey.getPrivateKey());
+        payload = claims.toJson();
+        jws.setPayload(payload);
+        System.out.println(payload);
+        System.out.println("sub token: " + jws.getCompactSerialization());
+
+        String ltc = "ltc@example.net";
+
+        claims = new JwtClaims();
+        claims.setAudience("example.com");
+        claims.setIssuer("example.net");
+        claims.setExpirationTime(exp);
+        claims.setStringListClaim("ctx", "status", "feed");
+        claims.setStringClaim("obo", acc);
+        claims.setSubject(ltc);
+
+        jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(dotNetKey.getKeyId());
+        jws.setKey(dotNetKey.getPrivateKey());
+        payload = claims.toJson();
+        jws.setPayload(payload);
+        System.out.println(payload);
+        System.out.println("del token: " + jws.getCompactSerialization());
+
+        iat = NumericDate.fromSeconds(1441910010);
+        System.out.println(iat);
+        exp = NumericDate.fromSeconds(iat.getValue());
+        exp.addSeconds(3600);
+
+        claims = new JwtClaims();
+        claims.setAudience("example.org");
+        claims.setIssuer("example.com");
+        claims.setExpirationTime(exp);
+        claims.setStringListClaim("ctx", "status", "feed");
+        claims.setStringClaim("act", ltc);
+        claims.setSubject(acc);
+
+        jws = new JsonWebSignature();
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
+        jws.setKeyIdHeaderValue(dotComKey.getKeyId());
+        jws.setKey(dotComKey.getPrivateKey());
+        payload = claims.toJson();
+        jws.setPayload(payload);
+        System.out.println(payload);
+        System.out.println("requested token: " + jws.getCompactSerialization());
+    }
+}
+
+-->
