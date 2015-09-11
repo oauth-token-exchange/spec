@@ -282,7 +282,7 @@
     specify the desired scope of requested security token in the context of the
     service or resource where the token will be used.</t>
 
-  <t hangText="requested_security_token_type">
+  <t hangText="requested_token_type">
     <vspace/>
     OPTIONAL.
     An identifier, as described in <xref target="TokenTypeIdentifiers"/>, for the type of the requested security token.
@@ -372,12 +372,12 @@
   reasons and the returned token need not necessarily be an OAuth access token.
 </t>
 
-<t hangText="security_token_type">
+<t hangText="requested_token_type">
   <vspace/>
   REQUIRED.  An identifier, as described in <xref target="TokenTypeIdentifiers"/>,
   for the general type of the returned security token.
   For example, if the security token is a JWT, this value of the
-  <spanx style="verb">security_token_type</spanx> is
+  <spanx style="verb">requested_token_type</spanx> is
   <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
 </t>
 
@@ -385,7 +385,7 @@
   <vspace/>
   REQUIRED.  A case insensitive value describing the type of the token issued as discussed in
   <xref target="RFC6749">Section 7.1 of RFC 6749</xref>. Note that this value is different from
-  the value of the <spanx style="verb">security_token_type</spanx> and provides the client
+  the value of the <spanx style="verb">requested_token_type</spanx> and provides the client
   with information about how to utilize the token to access protected resources. For example,
   a value of <spanx style="verb">Bearer</spanx> as defined in <xref target="RFC6750"/> indicates that
   the security token is a bearer token and the client can simply present it as is without any
@@ -505,7 +505,7 @@
   response contains the new token, which is itself a bearer OAuth
   access token that is valid for one minute. The token happens to be
   a JWT, however, its structure and format are opaque to
-  the client so the <spanx style="verb">security_token_type</spanx>
+  the client so the <spanx style="verb">requested_token_type</spanx>
   indicates only that it is an access token.
 </t>
 
@@ -523,7 +523,7 @@
       7nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe66
       cplnQQ_FRxP7i2tnK0Hlug",
   "token_type":"Bearer",
-  "security_token_type":"access_token"
+  "requested_token_type":"access_token"
   "expires_in":60,
  }
 ]]></artwork>
@@ -560,16 +560,16 @@
 <t>
   Several parameters in this specification utilize an identifier as the value to
   describe the type of token in question. Specifically they are the
-  <spanx style="verb">requested_security_token_type</spanx>,
+  <spanx style="verb">requested_token_type</spanx>,
   <spanx style="verb">subject_token_type</spanx>, <spanx style="verb">delegate_token_type</spanx>
-  parameters of the request and the <spanx style="verb">security_token_type</spanx> member of the response.
+  parameters of the request and the <spanx style="verb">requested_token_type</spanx> member of the response.
 </t>
 <t>
   The values of token type identifiers are expressed as URIs with a shorthand allowed for
   commonly used types. When the value does not contain a ":" character, the value MUST
   be evaluated as though <spanx style="verb">urn:ietf:params:oauth:token-type:</spanx>
   were prepended to it. For example, the value <spanx style="verb">jwt</spanx>
-  for <spanx style="verb">requested_security_token_type</spanx> is semantically equivalent
+  for <spanx style="verb">requested_token_type</spanx> is semantically equivalent
   to <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> and the value
   <spanx style="verb">access_token</spanx> is equivalent to
   <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>.
@@ -679,7 +679,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: requested_security_token_type</t>
+          <t>Parameter name: requested_token_type</t>
           <t>Parameter usage location: token request</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="Request"/> of [[ this document ]]</t>
@@ -719,7 +719,7 @@
       </t>
       <t>
         <list style='symbols'>
-          <t>Parameter name: security_token_type</t>
+          <t>Parameter name: requested_token_type</t>
           <t>Parameter usage location: token response</t>
           <t>Change controller: IESG</t>
           <t>Specification document(s): <xref target="SuccessfulResponse"/> of [[ this document ]]</t>
@@ -902,7 +902,7 @@
       0b3J5IiwicHJvZmlsZSJdfQ.A_EiUwvzIh-SGgzrl5dqX26QXNMi94ZEzP-dw
       -ZqRk3LriPdNqcMpqhopM5oKkDQRZexQaYZBdDZLvgrnP6piA",
   "token_type":"Bearer",
-  "security_token_type":"jwt"
+  "requested_token_type":"jwt"
   "expires_in":3600,
  }
 ]]></artwork>
@@ -1046,7 +1046,7 @@
     iLCJzdWIiOiJhY2NAZXhhbXBsZS5uZXQifQ.Oq_CJ6Fdf5R8-mLfkZfVfoVKIrW
     oHoh_V4NSKZQVnezSLMahkipL6dj-KKwp8JCdiEiXzHW2lRta-gfl9pGCyQ",
   "token_type":"Bearer",
-  "security_token_type":"jwt"
+  "requested_token_type":"jwt"
   "expires_in":3600,
  }
 ]]></artwork>
