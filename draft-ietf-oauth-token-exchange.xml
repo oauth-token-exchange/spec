@@ -943,6 +943,150 @@
 
   <section title="Delegation Token Exchange Example" anchor="delegation-example">
 
+
+    <section title="Token Exchange Request">
+      <t>
+        In the following token exchange request, an anonymous client is requesting a token with
+        with delegation semantics, which is indicated by the inclusion of both the
+        <spanx style="verb">subject_token</spanx> parameter and
+        the <spanx style="verb">delegate_token</spanx> parameter.
+        The client tells the authorization server that it needs a token for use at
+        the target service with the logical name "example.org".
+      </t>
+      <figure>
+        <artwork><![CDATA[
+ POST /as/token.oauth2 HTTP/1.1
+ Host: as.example.com
+ Content-Type: application/x-www-form-urlencoded
+
+ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
+ &audience=example.org
+ &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFtc
+   GxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwMDYwLCJzdWI
+   iOiJhY2NAZXhhbXBsZS5uZXQifQ.LWlZ2dc96bLt5LZ9xgkxyjUaiC-akdL_wFgwRQ
+   JblY7FrYA2pmZj3oViNyyWVBcA9yd_vP5se1PtBJtrrYOP1w
+ &subject_token_type=jwt
+ &delegate_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFt
+   cGxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwMDYwLCJjdH
+   giOlsic3RhdHVzIiwiZmVlZCJdLCJvYm8iOiJhY2NAZXhhbXBsZS5uZXQiLCJzdWIi
+   OiJsdGNAZXhhbXBsZS5uZXQifQ.4TimxtHq8xEXXWssUPe-UB8ONTmdyZ8bNQiT8H7
+   Fmmtvk7nD3JGNAkjEuV7rMFrrz6HOOhbryr5WoIdAExYG4A
+ &delegate_token_type=jwt
+]]></artwork>
+      </figure>
+      <!-- JWT signing key for example.net
+       {"kty":"EC","kid":"16","use":"sig","alg":"ES256",
+       "x":"N_MqlYd_Iq0rfzTqXAX7TUC0r7fQSp3YQKh42tn7uSc",
+       "y":"9tGuwMFkHYWPqkLa51f8GazZNQqdgMOVvJEd6fJ18PI",
+       "crv":"P-256",
+       "d":"cZ_4DqRSAWMMErQbKv6dCYqI9G1pi6lxvlvHU152Uts"}
+      -->
+    </section>
+
+    <section title="Subject Token Claims">
+      <t>
+        The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
+        the decoded claim set is shown here. The JWT is
+        intended for consumption by the authorization server
+        before a specific expiration time. The subject (<spanx style="verb">sub</spanx>) of
+        the JWT ("acc@example.net") is the party on behalf of whom the new token is being requested.
+      </t>
+      <figure>
+        <artwork><![CDATA[
+ {
+  "aud":"example.com",
+  "iss":"example.net",
+  "exp":1441910060,
+  "sub":"acc@example.net"
+ }
+]]></artwork>
+      </figure>
+    </section>
+
+    <section title="Delegate Token Claims">
+      <t>
+        The <spanx style="verb">delegate_token</spanx> in the prior request is a JWT and
+        the decoded claim set is shown here. This JWT is also
+        intended for consumption by the authorization server
+        before a specific expiration time. The subject (<spanx style="verb">sub</spanx>) of
+        this JWT identifies the party ("ltc@example.net") that is the actor that will use the requested security token.
+        The on-behalf-of (<spanx style="verb">obo</spanx>) claim asserts that the presenter is allowed to act for "acc@example.net".
+      </t>
+      <figure>
+        <artwork><![CDATA[
+ {
+  "aud":"example.com",
+  "iss":"example.net",
+  "exp":1441910060,
+  "ctx":["status","feed"],
+  "obo":"acc@example.net",
+  "sub":"ltc@example.net"
+ }
+]]></artwork>
+      </figure>
+    </section>
+
+    <section title="Token Exchange Response">
+      <t>
+        The <spanx style="verb">access_token</spanx> parameter of the token exchange
+        response shown below contains the new token that the client requested.
+        The other parameters of the response
+        indicates that the token is a JWT that expires in an hour.
+      </t>
+      <figure>
+        <artwork><![CDATA[
+ HTTP/1.1 200 OK
+ Content-Type: application/json
+ Cache-Control: no-cache, no-store
+
+ {
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJle
+    GFtcGxlLm9yZyIsImlzcyI6ImV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTEzNjEw
+    LCJjdHgiOlsic3RhdHVzIiwiZmVlZCJdLCJhY3QiOiJsdGNAZXhhbXBsZS5uZXQ
+    iLCJzdWIiOiJhY2NAZXhhbXBsZS5uZXQifQ.Oq_CJ6Fdf5R8-mLfkZfVfoVKIrW
+    oHoh_V4NSKZQVnezSLMahkipL6dj-KKwp8JCdiEiXzHW2lRta-gfl9pGCyQ",
+  "token_type":"Bearer",
+  "security_token_type":"jwt"
+  "expires_in":3600,
+ }
+]]></artwork>
+      </figure>
+      <!-- JWT signing key for example.com
+       {"kty":"EC","kid":"72","use":"sig","alg":"ES256",
+       "x":"472aI8TvDdm2qfBRpXYw0uZ7feumuQOM-RPRkkTukSo",
+       "y":"VNNStdPhuxY6q7XfVIeYSW7xh_a4z5W2MCtNmQDcILc",
+       "crv":"P-256",
+       "d":"dtJiut8QBJxACG6fcX8NYnzIsAN1muCJvaMiLSrOjIc"}
+
+      -->
+    </section>
+
+    <section title="Requested Token Claims">
+      <t>
+        The decoded claim set of the requested token is shown below. The new JWT is
+        issued by the authorization server and intended for consumption by a system entity
+        known by the logical name "example.org" anytime before the its expiration.
+        The subject (<spanx style="verb">sub</spanx>) of
+        the JWT is the same as the subject of the <spanx style="verb">subject_token</spanx> used to make the request.
+        The actor (<spanx style="verb">act</spanx>) of the JWT is the same as the subject of
+        the <spanx style="verb">delegate_token</spanx> used to make the request.
+
+        This indicates delegation and identifies "ltc@example.net" as the current actor to whom authority
+        has been delegated to act on behalf of "acc@example.net".
+      </t>
+      <figure>
+        <artwork><![CDATA[
+ {
+  "aud":"example.org",
+  "iss":"example.com",
+  "exp":1441913610,
+  "ctx":["status","feed"],
+  "act":"ltc@example.net",
+  "sub":"acc@example.net"
+ }
+]]></artwork>
+      </figure>
+    </section>
   </section>
 
   </section>
@@ -997,7 +1141,7 @@
           </t>
           <t>
             Added JWT claims to express delegation (act/actor), context or scope (ctx/context), as well as an
-            authorization to act for or on behalf of (obo/on-behalf-of) (+ RFC 7519 registration requests for them).
+            authorization to act for or on behalf of (obo/on-behalf-of conceptually borrowed from http://self-issued.info/docs/on-behalf-of.html) (+ RFC 7519 registration requests for them).
           </t>
           <t>Added examples.</t>
         </list>
