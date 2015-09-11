@@ -18,11 +18,21 @@
   <front>
     <title abbrev="Token Exchange">OAuth 2.0 Token Exchange: an STS for the REST of us</title>
 
+    <author fullname="Brian Campbell" initials="B." surname="Campbell">
+      <organization>Ping Identity</organization>
+      <address><email>brian.d.campbell@gmail.com</email></address>
+    </author>
     <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
       <organization>Microsoft</organization>
       <address>
         <email>mbj@microsoft.com</email>
         <uri>http://self-issued.info/</uri>
+      </address>
+    </author>
+    <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
+      <organization abbrev="Salesforce">Salesforce</organization>
+      <address>
+        <email>cmortimore@salesforce.com</email>
       </address>
     </author>
     <author fullname="Anthony Nadalin" initials="A." surname="Nadalin">
@@ -31,20 +41,11 @@
         <email>tonynad@microsoft.com</email>
       </address>
     </author>
-    <author fullname="Brian Campbell" initials="B." surname="Campbell">
-      <organization>Ping Identity</organization>
-      <address><email>brian.d.campbell@gmail.com</email></address>
-    </author>
     <author fullname="John Bradley" initials="J." surname="Bradley">
       <organization>Ping Identity</organization>
       <address><email>ve7jtb@ve7jtb.com</email></address>
     </author>
-    <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
-      <organization abbrev="Salesforce">Salesforce</organization>
-      <address>
-        <email>cmortimore@salesforce.com</email>
-      </address>
-    </author>
+
 
     <date />
 
