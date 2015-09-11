@@ -117,9 +117,9 @@
   more palatable to developers accustom to working with RESTful systems.
 </t>
 <t>
-  A new grant type for a security token request and the associated specific parameters for
+  A new grant type for a token exchange request and the associated specific parameters for
   such a request to the token endpoint are defined by this specification.
-  A security token response is a normal OAuth 2.0 response from the token endpoint
+  A token exchange response is a normal OAuth 2.0 response from the token endpoint
   with a few additional parameters defined herein to provide information to the client.
 </t>
 <t>
@@ -210,7 +210,7 @@
       </section>
 
     </section>
-    <section title="Security Token Request and Response">
+    <section title="Token Exchange Request and Response">
     <section title="Request" anchor="Request">
 <t>
   A client requests a security token by making a token request to the authorization
@@ -231,7 +231,7 @@
   at the discretion of the authorization server.
 </t>
 <t>
-  The client makes a general security token request to the token endpoint with an extension
+  The client makes a general token exchange request to the token endpoint with an extension
   grant type by including the
   following parameters using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
   format with a character encoding of UTF-8 in the HTTP request entity-body:
@@ -243,7 +243,7 @@
     <vspace/>
     REQUIRED. The value
     <spanx style='verb'>urn:ietf:params:oauth:grant-type:token-exchange</spanx>
-    indicates that it is a security token request.
+    indicates that it is a token exchange request.
   </t>
 
   <t hangText="resource">
@@ -257,7 +257,7 @@
     which it interacts and will only know the location of the service where it intends to use the token.
     The <spanx style="verb">resource</spanx> parameter allows the client to indicate to the authorization server
     where it intends to use the requested token by providing the location, typically as an https URL, in the
-    security token request in the same form that will be used to access that resource.
+    token exchange request in the same form that will be used to access that resource.
     The authorization server will typically have the capability to map from a resource URI value to
     a an appropriate policy. The value of the <spanx style="verb">resource</spanx> parameter MUST be an
     absolute URI as defined by Section 4.3 of <xref target="RFC3986"/>, which MAY include a query component.
@@ -341,7 +341,7 @@
 
     <section title="Response" anchor="Response">
 <t>
-  The authorization server responds to a security token request with a normal
+  The authorization server responds to a token exchange request with a normal
   OAuth 2.0 response from the token endpoint as defined in
   <xref target="RFC6749">Section 5 of RFC 6749</xref>. Additional details and
   explanation are provided in the following subsections.
@@ -364,7 +364,7 @@
 <t hangText="access_token">
   <vspace/>
   REQUIRED. The security token issued by the authorization server in response
-  to the security token request.
+  to the token exchange request.
   The <spanx style="verb">access_token</spanx> parameter from
   <xref target="RFC6749">Section 5.1 of RFC 6749</xref> is used here to carry the requested
   token, which allows this token exchange framework to use the existing OAuth 2.0 request
@@ -445,7 +445,7 @@
   assumes the role of the client during token exchange in order to
   trade an access token that it received on an inbound request for a
   token that it will use to call to a backend service
-  (extra line breaks in the examples are for display purposes only).
+  (extra line breaks and indentation in the examples are for display purposes only).
 </t>
 
 
@@ -480,7 +480,7 @@
   where the requested token will be used.
 </t>
 
-      <figure>
+<figure>
   <artwork><![CDATA[
  POST /as/token.oauth2 HTTP/1.1
  Host: as.example.com
@@ -516,12 +516,12 @@
  Cache-Control: no-cache, no-store
 
  {
-  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJiYW
-      NrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJleHAiO
-      jE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsInN1YiI6
-      ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.qEJkzIpHRNi
-      MMerk-vcZiFc2KwBnTOTvkXS2MOuymWIufXZMaoOY9gPmnu012POhV9Vn5RByJU
-      xVU7I3MNNWJw",
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJi
+      YWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJle
+      HAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsIn
+      N1YiI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.YQ9
+      7nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe66
+      cplnQQ_FRxP7i2tnK0Hlug",
   "token_type":"Bearer",
   "security_token_type":"access_token"
   "expires_in":60,
@@ -538,14 +538,22 @@
         <artwork><![CDATA[
  GET /api HTTP/1.1
  Host: backend.example.com
- Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiO
-     iJiYWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJle
-     HAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsInN1Y
-     iI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.qEJkzIpHR
-     NiMMerk-vcZiFc2KwBnTOTvkXS2MOuymWIufXZMaoOY9gPmnu012POhV9Vn5RByJ
-     UxVU7I3MNNWJw
+ Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQ
+     iOiJiYWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iL
+     CJleHAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCI
+     sInN1YiI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.Y
+     Q97nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe6
+     6cplnQQ_FRxP7i2tnK0Hlug
 ]]></artwork>
       </figure>
+
+  <!--    JWT signing key
+  {"kty":"EC","kid":"9er","use":"sig","alg":"ES256",
+  "x":"5yoR9FjZHn7kJDALhDzhZ8i8F06mc12YswUMTBv4BoA",
+  "y":"4uxuIItWj5Duzspth5mUbpLXWrPFzFPQkOCeAGGI6KM",
+  "crv":"P-256",
+  "d":"LncS7zrx6c8X5qZRxoSN18ZEYDeI2wfKfUvX_DgwRH8"}
+  -->
 </section>
     </section>
     <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
@@ -810,6 +818,135 @@
 	</list>
       </t>
     </section>
+
+  <section title="Additional Token Exchange Examples" anchor="more-examples">
+    <t>
+      Two example token exchanges are provided in the following sections illustrating impersonation and
+      delegation, respectively
+      (extra line breaks and indentation in all the examples are for display purposes only).
+    </t>
+  <section title="Impersonation Token Exchange Example" anchor="impersonation-example">
+
+    <section title="Token Exchange Request">
+      <t>
+        In the following token exchange request, an anonymous client is requesting a token with
+        with impersonation semantics, which is indicated by the inclusion of the
+        <spanx style="verb">subject_token</spanx> parameter and omission of
+        the <spanx style="verb">delegate_token</spanx> parameter.
+        The client tells the authorization server that it needs a token for use at
+        the target service with the logical name "example.org".
+      </t>
+    <figure>
+      <artwork><![CDATA[
+ POST /as/token.oauth2 HTTP/1.1
+ Host: as.example.com
+ Content-Type: application/x-www-form-urlencoded
+
+ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
+ &audience=example.org
+ &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFtc
+   GxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwNjAwLCJuYmY
+   iOjE0NDE5MDkwMDAsInN1YiI6ImJjQGV4YW1wbGUubmV0IiwiY3R4IjpbIm9yZGVyc
+   yIsInByb2ZpbGUiLCJoaXN0b3J5Il19.JqU2r2NBwqvtg_euvBGmR4Lni7U3i_7G0R
+   9liheGneKl20yGp5dU0N5Ain2K0GMopigQXSs0GrlLycCx015vpg
+ &subject_token_type=jwt
+]]></artwork>
+    </figure>
+    <!-- JWT signing key for example.net
+     {"kty":"EC","kid":"16","use":"sig","alg":"ES256",
+     "x":"N_MqlYd_Iq0rfzTqXAX7TUC0r7fQSp3YQKh42tn7uSc",
+     "y":"9tGuwMFkHYWPqkLa51f8GazZNQqdgMOVvJEd6fJ18PI",
+     "crv":"P-256",
+     "d":"cZ_4DqRSAWMMErQbKv6dCYqI9G1pi6lxvlvHU152Uts"}
+    -->
+    </section>
+
+    <section title="Subject Token Claims">
+<t>
+  The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
+  the decoded claim set is shown here. The JWT is
+  intended for consumption by the authorization server
+  within a specific time window. The subject (<spanx style="verb">sub</spanx>) of
+  the JWT is the party on behalf of whom the new token is being requested.
+</t>
+    <figure>
+      <artwork><![CDATA[
+ {
+  "aud":"example.com",
+  "iss":"example.net",
+  "exp":1441910600,
+  "nbf":1441909000,
+  "sub":"bc@example.net",
+  "ctx":["orders","profile","history"]
+ }
+]]></artwork>
+    </figure>
+    </section>
+
+    <section title="Token Exchange Response">
+<t>
+  The <spanx style="verb">access_token</spanx> parameter of the token exchange
+  response shown below contains the new token that the client requested.
+  The other parameters of the response
+  indicates that the token is a JWT that expires in an hour.
+</t>
+    <figure>
+      <artwork><![CDATA[
+ HTTP/1.1 200 OK
+ Content-Type: application/json
+ Cache-Control: no-cache, no-store
+
+ {
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJle
+      GFtcGxlLm9yZyIsImlzcyI6ImV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTEzNj
+      EwLCJzdWIiOiJiY0BleGFtcGxlLm5ldCIsImN0eCI6WyJvcmRlcnMiLCJoaXN
+      0b3J5IiwicHJvZmlsZSJdfQ.A_EiUwvzIh-SGgzrl5dqX26QXNMi94ZEzP-dw
+      -ZqRk3LriPdNqcMpqhopM5oKkDQRZexQaYZBdDZLvgrnP6piA",
+  "token_type":"Bearer",
+  "security_token_type":"jwt"
+  "expires_in":3600,
+ }
+]]></artwork>
+    </figure>
+    <!-- JWT signing key for example.com
+     {"kty":"EC","kid":"72","use":"sig","alg":"ES256",
+     "x":"472aI8TvDdm2qfBRpXYw0uZ7feumuQOM-RPRkkTukSo",
+     "y":"VNNStdPhuxY6q7XfVIeYSW7xh_a4z5W2MCtNmQDcILc",
+     "crv":"P-256",
+     "d":"dtJiut8QBJxACG6fcX8NYnzIsAN1muCJvaMiLSrOjIc"}
+
+    -->
+      </section>
+
+    <section title="Requested Token Claims">
+<t>
+  The decoded claim set of the requested token is shown below. The new JWT is
+  issued by the authorization server and intended for consumption by a system entity
+  known by the logical name "example.org" anytime before the its expiration.
+  The subject (<spanx style="verb">sub</spanx>) of
+  the JWT is the same as the subject of the token used to make the request,
+  which effectively enables the client to impersonate the subject by
+  using the token at the system entity known as "example.org".
+</t>
+    <figure>
+      <artwork><![CDATA[
+ {
+  "aud":"example.org",
+  "iss":"example.com",
+  "exp":1441913610,
+  "sub":"bc@example.net",
+  "ctx":["orders","history","profile"]
+ }
+]]></artwork>
+    </figure>
+      </section>
+  </section>
+
+  <section title="Delegation Token Exchange Example" anchor="delegation-example">
+
+  </section>
+
+  </section>
 
     <section title='Acknowledgements'>
       <t>
