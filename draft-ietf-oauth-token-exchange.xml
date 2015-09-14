@@ -417,7 +417,8 @@
   NOT RECOMMENDED.
   Refresh tokens will typically not be issued in response to a
   <spanx style="verb">urn:ietf:params:oauth:grant-type:token-exchange</spanx>
-  grant type requests.
+  grant type requests. Profiles or deployments of this specification that do
+  issue refresh tokens SHOULD clearly document the conditions and reasons for doing so.
 </t>
 
         </list>
