@@ -812,6 +812,10 @@ Additional examples can be found in <xref target="more-examples"/>
       <t>
 	The following decisions need to be made and updates on this spec performed:
 	<list style="symbols">
+    <t>
+      Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
+      returned token?
+    </t>
 	  <t>
       Understand and define exactly how the presentation of PoP/non-bearer tokens works.
 	  </t>
