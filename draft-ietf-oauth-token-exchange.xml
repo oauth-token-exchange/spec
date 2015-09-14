@@ -195,7 +195,7 @@
     by including a <spanx style="verb">subject_token</spanx> token in the request and omitting the <spanx style="verb">delegate_token</spanx>.
     The <spanx style="verb">subject_token</spanx> represents the identity of the party on behalf of whom
     the token is being requested and the token returned to the client will contain
-    information about that party.
+    information about that party. An example of such an exchange can be found in <xref target="impersonation-example"/>
   </t>
   <t>
     A security token with delegation semantics is requested using this
@@ -204,7 +204,7 @@
     behalf of whom the token is being requested while the <spanx style="verb">delegate_token</spanx> represents
     the identity of the party to whom the access rights of the returned token are
     being delegated. In this case, the token returned to the client will contain
-    information about both parties.
+    information about both parties. An example of such an exchange can be found in <xref target="delegation-example"/>
   </t>
 
       </section>
@@ -555,6 +555,9 @@
   "crv":"P-256",
   "d":"LncS7zrx6c8X5qZRxoSN18ZEYDeI2wfKfUvX_DgwRH8"}
   -->
+  <t>
+Additional examples can be found in <xref target="more-examples"/>
+  </t>
 </section>
     </section>
     <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
