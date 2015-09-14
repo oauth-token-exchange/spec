@@ -376,7 +376,7 @@
   <vspace/>
   REQUIRED.  An identifier, as described in <xref target="TokenTypeIdentifiers"/>,
   for the general type of the returned security token.
-  For example, if the security token is a JWT, this value of the
+  For example, if the returned token is a JWT, this value of the
   <spanx style="verb">requested_token_type</spanx> is
   <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
 </t>
@@ -398,7 +398,7 @@
 
 <t hangText="expires_in">
   <vspace/>
-  RECOMMENDED.  The validity lifetime, in seconds, of the security token issued by the
+  RECOMMENDED.  The validity lifetime, in seconds, of the token issued by the
   authorization server. Oftentimes the client will not have the inclination or capability
   to inspect the content of the token and this parameter provides a consistent and token type
   agnostic indication of long the token can be expected to be valid.
