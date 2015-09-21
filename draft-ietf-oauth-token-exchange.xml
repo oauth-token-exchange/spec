@@ -819,6 +819,11 @@ Additional examples can be found in <xref target="more-examples"/>
 	  <t>
       Understand and define exactly how the presentation of PoP/non-bearer tokens works.
 	  </t>
+    <t>
+      Seems there are cases where it'd be desirable for the authenticated client to be somehow represented in the returned token.
+      Perhaps as the actor "act" claim, in which case maybe there needs to be a way to say that in the request.
+      Or maybe as the "azp" or something like azp as azp itself is kind of a mess.
+    </t>
 	</list>
       </t>
     </section>
