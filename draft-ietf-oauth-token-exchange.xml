@@ -4,7 +4,7 @@
 
 <?rfc toc="yes"?>
 <?rfc tocompact="yes"?>
-<?rfc tocdepth="2"?>
+<?rfc tocdepth="4"?>
 <?rfc tocindent="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes"?>
@@ -16,7 +16,7 @@
 <rfc category="std" docName="draft-ietf-oauth-token-exchange-03"
      ipr="trust200902">
   <front>
-    <title abbrev="Token Exchange">OAuth 2.0 Token Exchange: An STS for the REST of Us</title>
+    <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange: An STS for the REST of Us</title>
 
     <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
       <organization>Microsoft</organization>
@@ -77,7 +77,7 @@
   </front>
 
   <middle>
-    <section title="Introduction">
+    <section anchor="Introduction" title="Introduction">
 <t>
   A security token is a set of information that facilitates
   the sharing of identity and security information in heterogeneous environments or across security domains.
@@ -151,7 +151,7 @@
   the specifics of which are also beyond the scope of this specification.
 </t>
 
-      <section title="Delegation vs. Impersonation Semantics">
+      <section anchor="DelegationImpersonation" title="Delegation vs. Impersonation Semantics">
 
   <t>
     When principal A impersonates principal B, A is given all
@@ -183,7 +183,8 @@
     by including a <spanx style="verb">subject_token</spanx> token in the request and omitting the <spanx style="verb">actor_token</spanx>.
     The <spanx style="verb">subject_token</spanx> represents the identity of the party on behalf of whom
     the token is being requested and the issued token will contain
-    information about that party. An example of such an exchange can be found in <xref target="impersonation-example"/>
+    information about that party.
+    An example of such an exchange can be found in <xref target="ImpersonationExample"/>.
   </t>
   <t>
     A security token with delegation semantics is requested
@@ -192,12 +193,13 @@
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
     the identity of the party to whom the access rights of the issued token are
     being delegated. In this case, the issued token will contain
-    information about both parties. An example of such an exchange can be found in <xref target="delegation-example"/>
+    information about both parties.
+    An example of such an exchange can be found in <xref target="DelegationExample"/>.
   </t>
 
       </section>
 
-      <section title="Requirements Notation and Conventions">
+      <section anchor="RNC" title="Requirements Notation and Conventions">
 	<t>
 	  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 	  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
@@ -206,7 +208,7 @@
 	</t>
       </section>
 
-      <section title="Terminology">
+      <section anchor="Terminology" title="Terminology">
         <t>
 	  This specification uses the terms
 	  "access token type", "authorization server", "client", "client identifier",
@@ -219,7 +221,7 @@
 
     </section>
 
-    <section title="Token Exchange Request and Response">
+    <section anchor="Messages" title="Token Exchange Request and Response">
     <section title="Request" anchor="Request">
 <t>
   A client requests a security token by making a token request to the authorization
@@ -465,7 +467,7 @@
         </list>
         </t>
       </section>
-      <section title="Error Response">
+      <section anchor="ErrorResponse" title="Error Response">
   <t>
     If either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">actor_token</spanx>
     are invalid for any reason, or are unacceptable based on policy, the authorization server
@@ -481,7 +483,7 @@
 
     </section>
 
-<section title="Example Token Exchange" anchor="main-example">
+<section title="Example Token Exchange" anchor="MainExample">
 <t>
   The following example demonstrates a hypothetical token exchange in which
   an OAuth resource server
@@ -601,7 +603,7 @@
   "d":"LncS7zrx6c8X5qZRxoSN18ZEYDeI2wfKfUvX_DgwRH8"}
   -->
   <t>
-Additional examples can be found in <xref target="more-examples"/>.
+    Additional examples can be found in <xref target="AdditionalExamples"/>.
   </t>
 </section>
     </section>
@@ -625,7 +627,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 </t>
    </section>
 
-    <section title="JSON Web Token Claims" anchor="jwtclaims">
+    <section title="JSON Web Token Claims" anchor="JWTClaims">
  <t>
    It is useful to have defined mechanisms to express delegation within a token as well as to express
    authorization to delegate or impersonate. Although the token exchange protocol described
@@ -660,7 +662,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 
     </section>
 
-    <section title="IANA Considerations">
+    <section anchor="IANA" title="IANA Considerations">
 
       <section anchor="URIReg" title="OAuth URI Registration">
 
@@ -785,7 +787,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 	</section>
       </section>
 
-      <section title='OAuth Access Token Type Registration'>
+      <section anchor="TokenTypeReg" title='OAuth Access Token Type Registration'>
 
         <t>
           This specification registers the following access token type
@@ -794,7 +796,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 	  established by <xref target="RFC6749"/>.
         </t>
 
-        <section title='The "N/A" OAuth Access Token Type'>
+        <section anchor="TokenTypeContents" title='Registry Contents'>
 
           <t>
 	    <?rfc subcompact="yes"?>
@@ -846,7 +848,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 
     </section>
 
-    <section title="Security Considerations">
+    <section anchor="Security" title="Security Considerations">
       <t>
         All of the normal security issues that are discussed in <xref target="JWT"/>,
 	especially in relationship to comparing URIs and dealing with unrecognized values,
@@ -967,15 +969,15 @@ Additional examples can be found in <xref target="more-examples"/>.
 
     </references>
 
-  <section title="Additional Token Exchange Examples" anchor="more-examples">
+  <section title="Additional Token Exchange Examples" anchor="AdditionalExamples">
     <t>
       Two example token exchanges are provided in the following sections
       illustrating impersonation and delegation, respectively
       (with extra line breaks and indentation for display purposes only).
     </t>
-  <section title="Impersonation Token Exchange Example" anchor="impersonation-example">
+  <section title="Impersonation Token Exchange Example" anchor="ImpersonationExample">
 
-    <section title="Token Exchange Request">
+    <section anchor="ImpersonationRequest" title="Token Exchange Request">
       <t>
         In the following token exchange request, an anonymous client is requesting a token
         with impersonation semantics, which is indicated by the inclusion of the
@@ -1010,7 +1012,7 @@ Additional examples can be found in <xref target="more-examples"/>.
     -->
     </section>
 
-    <section title="Subject Token Claims">
+    <section anchor="ImpersonationSubjectClaims" title="Subject Token Claims">
 <t>
   The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
   the decoded JWT Claims Set is shown here. The JWT is
@@ -1033,7 +1035,7 @@ Additional examples can be found in <xref target="more-examples"/>.
     </figure>
     </section>
 
-    <section title="Token Exchange Response">
+    <section anchor="ImpersonationResponse" title="Token Exchange Response">
 <t>
   The <spanx style="verb">access_token</spanx> parameter of the token exchange
   response shown below contains the new token that the client requested.
@@ -1069,7 +1071,7 @@ Additional examples can be found in <xref target="more-examples"/>.
     -->
       </section>
 
-    <section title="Issued Token Claims">
+    <section anchor="ImpersonationIssuedClaims" title="Issued Token Claims">
 <t>
   The decoded JWT Claims Set of the issued token is shown below. The new JWT is
   issued by the authorization server and intended for consumption by a system entity
@@ -1096,10 +1098,9 @@ Additional examples can be found in <xref target="more-examples"/>.
       </section>
   </section>
 
-  <section title="Delegation Token Exchange Example" anchor="delegation-example">
+  <section title="Delegation Token Exchange Example" anchor="DelegationExample">
 
-
-    <section title="Token Exchange Request">
+    <section anchor="DelegationRequest" title="Token Exchange Request">
       <t>
         In the following token exchange request, an anonymous client is requesting a token
         with delegation semantics, which is indicated by the inclusion of both the
@@ -1139,7 +1140,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       -->
     </section>
 
-    <section title="Subject Token Claims">
+    <section anchor="DelegationSubjectClaims" title="Subject Token Claims">
       <t>
         The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
         the decoded JWT Claims Set is shown here. The JWT is
@@ -1162,7 +1163,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       </figure>
     </section>
 
-    <section title="Actor Token Claims">
+    <section anchor="DelegationActorClaims" title="Actor Token Claims">
       <t>
         The <spanx style="verb">actor_token</spanx> in the prior request is a JWT and
         the decoded JWT Claims Set is shown here. This JWT is also
@@ -1187,7 +1188,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       </figure>
     </section>
 
-    <section title="Token Exchange Response">
+    <section anchor="DelegationResponse" title="Token Exchange Response">
       <t>
         The <spanx style="verb">access_token</spanx> parameter of the token exchange
         response shown below contains the new token that the client requested.
@@ -1223,7 +1224,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       -->
     </section>
 
-    <section title="Issued Token Claims">
+    <section anchor="DelegationIssuedClaims" title="Issued Token Claims">
       <t>
         The decoded JWT Claims Set of the issued token is shown below. The new JWT is
         issued by the authorization server and intended for consumption by a system entity
@@ -1262,7 +1263,7 @@ Additional examples can be found in <xref target="more-examples"/>.
 
   </section>
 
-    <section title='Acknowledgements'>
+    <section anchor="Acknowledgements" title="Acknowledgements">
       <t>
         This specification was developed within the OAuth Working Group, which
         includes dozens of active and dedicated participants.
@@ -1287,7 +1288,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       </t>
     </section>
 
-    <section title="Open Issues">
+    <section anchor="OpenIssues" title="Open Issues">
       <t>
 	The following decisions need to be made and updates to this spec performed:
 	<list style="symbols">
@@ -1341,10 +1342,15 @@ Additional examples can be found in <xref target="more-examples"/>.
 	  </t>
 	  <t>
 	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
+	    Of course, the specifications defining these kinds of tokens need to do so
+	    first before there is much we can do in this specification in this regard.
 	  </t>
 	  <t>
-	    Seems there are cases where it'd be desirable for the authenticated client to be somehow represented in the issued token.
-	    Perhaps as the actor "act" claim, in which case maybe there needs to be a way to say that in the request.
+	    It seems there may be cases in which it would be desirable for
+	    the authenticated client to be somehow represented in the issued token,
+	    sometimes in addition to the actor, which can already be represented
+	    using the <spanx style="verb">act</spanx> claim.
+	    Perhaps with a <spanx style="verb">client_id</spanx> claim?
 	  </t>
 	  <t>
 	    The encoded examples need to be updated to match the corresponding unencoded text.
@@ -1353,7 +1359,7 @@ Additional examples can be found in <xref target="more-examples"/>.
       </t>
     </section>
 
-    <section title="Document History">
+    <section anchor="History" title="Document History">
       <?rfc subcompact="yes"?>
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
