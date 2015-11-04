@@ -507,7 +507,7 @@
   <artwork><![CDATA[
  GET /resource HTTP/1.1
  Host: frontend.example.com
- Authorization: Bearer accVkjcJyb4LBxGsndESCJQbdFMogUC5PbRDqceLTC
+ Authorization: Bearer accVkjcJyb4BWCxGsndESCJQbdFMogUC5PbRDqceLTC
 ]]></artwork>
 </figure>
 
@@ -536,7 +536,7 @@
 
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
  &resource=https%3A%2F%2Fbackend.example.com%2Fapi%20
- &subject_token=accVkjcJyb4LBxGsndESCJQbdFMogUC5PbRDqceLTC
+ &subject_token=accVkjcJyb4BWCxGsndESCJQbdFMogUC5PbRDqceLTC
  &subject_token_type=
   urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
 ]]></artwork>
