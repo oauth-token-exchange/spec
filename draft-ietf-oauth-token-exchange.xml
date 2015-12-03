@@ -573,7 +573,8 @@
       N1YiI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.YQ9
       7nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe66
       cplnQQ_FRxP7i2tnK0Hlug",
-  "issued_token_type":"urn:ietf:params:oauth:token-type:access_token",
+  "issued_token_type":
+      "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
   "expires_in":60
  }
