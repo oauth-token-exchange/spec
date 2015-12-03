@@ -1305,12 +1305,6 @@
 	The following decisions need to be made and updates to this spec performed:
 	<list style="symbols">
 	  <t>
-	    Even when impersonation is being performed, for some use cases,
-	    a representation of the agent is still needed in the request,
-	    just as it is for delegation.
-	    This is not possible using the currently specified request syntax.
-	  </t>
-	  <t>
 	    Actors sometimes need to be identified by security tokens - not just strings or
 	    URIs. For instance, it takes an ID Token to identify an OpenID Connect identity
 	    - at a minimum the pair of an "iss" and "sub" claim, and if security is needed,
