@@ -173,30 +173,28 @@
     being taken by A representing B. In a sense, A is an agent for B.
   </t>
   <t>
-    <!--
-	TBD: As discussed between the authors, even when impersonation is being performed,
-	for some use cases, a representation of the agent is still needed in the request.
-	This is not possible using the currently specified request syntax.
-	This needs to be addressed.
-    -->
-    A security token with impersonation semantics is requested
-    by including a <spanx style="verb">subject_token</spanx> token in the request and omitting the <spanx style="verb">actor_token</spanx>.
-    The <spanx style="verb">subject_token</spanx> represents the identity of the party on behalf of whom
-    the token is being requested and the issued token will contain
-    information about that party.
-    An example of such an exchange can be found in <xref target="ImpersonationExample"/>.
+    Delegation and impersonation are not inclusive of all situations.
+    When a principal is acting directly on its own behalf, for example,
+    neither delegation nor impersonation is in play. They are, however,
+    the more common semantics in play for token exchange and, as such, are
+    given more direct treatment in this specification.
   </t>
   <t>
-    A security token with delegation semantics is requested
-    by including both a <spanx style="verb">subject_token</spanx> and a <spanx style="verb">actor_token</spanx> in
-    the request. The <spanx style="verb">subject_token</spanx> represents the identity of the party on
+    Delegation semantics are typically expressed in a token by including information about both the
+    primary subject of the token as well as the actor to whom that subject has delegated some of its rights.
+    Such a token is sometimes referred to as a composite token because it is made up of information
+    about multiple subjects. A client can indicate the desire for a
+    composite token by including a <spanx style="verb">want_composite</spanx> parameter in the request with the value
+    <spanx style="verb">true</spanx>. Typically, in the request, the <spanx style="verb">subject_token</spanx>
+    represents the identity of the party on
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
-    the identity of the party to whom the access rights of the issued token are
-    being delegated. In this case, the issued token will contain
-    information about both parties.
-    An example of such an exchange can be found in <xref target="DelegationExample"/>.
+    the identity of the party to whom the access rights of the issued token are being delegated and
+    a composite token issued by the authorization server will will contain information about both parties.
+    The specifics of a composite token and even whether or not such a token is supported depends on the details of the
+    token type itself and is generally beyond the scope of this specification.
+    <xref target="actor"/>, however, does provide a means for a composite JWT though the representation
+    of a chain of delegation using the <spanx style="verb">act</spanx> claim.
   </t>
-
       </section>
 
       <section anchor="RNC" title="Requirements Notation and Conventions">
@@ -336,12 +334,7 @@
     <vspace/>
     OPTIONAL.
     A security token that represents
-    the identity of the party that is authorized to use the requested security token.
-    When this parameter is present, it indicates that the client wants a token
-    that contains claims about two distinct entities:
-    1) the entity represented by the token in the <spanx style="verb">subject_token</spanx>
-    parameter as the subject and 2) the entity represented by this token as a
-    party who is authorized to act on behalf of that subject.
+    the identity of the party that is authorized to use the requested security token and act on behalf of that subject.
   </t>
 
   <t hangText="actor_token_type">
@@ -350,7 +343,17 @@
     <spanx style="verb">actor_token</spanx> parameter.
     This is REQUIRED when the <spanx style="verb">actor_token</spanx> parameter
     is present in the request but MUST NOT be included otherwise.
+  </t>
 
+  <t hangText="want_composite">
+    <vspace/>
+    OPTIONAL.
+    When the value of this parameter is <spanx style="verb">true</spanx>, it indicates the client's desire
+    for a composite security token to be issued, which contains claims about both the main subject of the
+    token as well as about the party who is authorized to act on behalf of that subject. Note that this
+    parameter only provides a means for the client to indicate its preference. The authorization server
+    is not required to honor the stated preference and the nature of the tokens it issues are ultimately at
+    its discretion.
   </t>
 </list>
 </t>
@@ -774,6 +777,14 @@
 	      <t>Specification document(s): <xref target="Request"/> of [[ this specification ]]</t>
 	    </list>
 	  </t>
+    <t>
+      <list style='symbols'>
+        <t>Parameter name: want_composite</t>
+        <t>Parameter usage location: token request</t>
+        <t>Change controller: IESG</t>
+        <t>Specification document(s): <xref target="Request"/> of [[ this specification ]]</t>
+      </list>
+    </t>
 	  <t>
 	    <list style='symbols'>
 	      <t>Parameter name: issued_token_type</t>
@@ -1403,6 +1414,11 @@
             Added an <spanx style="verb">audience</spanx> request parameter used to
 	    indicate the logical names of the target services at which the client
 	    intends to use the requested security token.
+          </t>
+          <t>
+      Added a <spanx style="verb">want_composite</spanx> request parameter used to
+      indicate the desire for a composite token rather than trying to infer it from the
+      presence/absence of token(s) in the request.
           </t>
           <t>
             Added a <spanx style="verb">resource</spanx> request parameter used to
