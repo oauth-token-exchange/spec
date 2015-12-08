@@ -651,7 +651,7 @@
       however, they pertain only to the identity of the actor and are not relevant to the validity of the containing JWT
       in the same manner as top level claims.
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
-      <spanx style="verb">aud</spanx> are not meaningful when used withing an <spanx style="verb">act</spanx>
+      <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">act</spanx>
       claim. For example, the combination of the two claims <spanx style="verb">iss</spanx>
       and <spanx style="verb">sub</spanx> are oftentimes necessary to uniquely identify an actor
       while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
@@ -735,6 +735,48 @@
    "nbf":1443904077,
    "sub":"dgaf4mvfs75Fci_FL3heQA",
    "scp":["email","address","profile","phone"]
+ }
+]]></artwork>
+    </figure>
+  </section>
+
+  <section title='"may_act" (May Act For) Claim' anchor="may_act">
+    <t>
+      The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to act on behalf of another party.
+      The claim value is a JSON object and members in the JSON object are claims that identify the party that
+      is asserted as being eligible to act for the party identified by
+      the JWT containing the claim.
+      The claims that make up the <spanx style="verb">may_act</spanx>
+      claim identify and possibly provide additional information about the authorized party,
+      however, they pertain only to the identity of that party and are not relevant to the validity of the containing JWT
+      in the same manner as top level claims.
+      Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
+      <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">may_act</spanx>
+      claim.
+      For example, the combination of the two claims <spanx style="verb">iss</spanx>
+      and <spanx style="verb">sub</spanx> are oftentimes necessary to uniquely identify an authorized party
+      while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
+      that party, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
+      identity of that authorized party.
+    </t>
+
+    <figure>
+      <preamble>
+        The following example illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
+        The claims of the token itself are about user@example.com while the <spanx style="verb">may_act</spanx> claim indicates
+        that admin@example.com is authorized to act on behalf of user@example.com.
+      </preamble>
+      <artwork><![CDATA[
+ {
+   "aud":"https://consumer.example.com",
+   "iss":"https://issuer.example.com",
+   "exp":1443904177,
+   "nbf":1443904077,
+   "sub":"user@example.com",
+   "may_act":
+   {
+     "sub":"admin@example.com"
+   }
  }
 ]]></artwork>
     </figure>
@@ -929,6 +971,14 @@
 	      <t>Specification Document(s): <xref target="scopes"/> of [[ this specification ]]</t>
 	    </list>
 	  </t>
+    <t>
+      <list style='symbols'>
+        <t>Claim Name: <spanx style="verb">may_act</spanx></t>
+        <t>Claim Description: May Act For</t>
+        <t>Change Controller: IESG</t>
+        <t>Specification Document(s): <xref target="may_act"/> of [[ this specification ]]</t>
+      </list>
+    </t>
 	  <?rfc subcompact="no"?>
 
 	</section>
@@ -1408,11 +1458,6 @@
 	    - for example, <spanx style="verb">urn:example:cooperation-context</spanx>.
 	  </t>
 	  <t>
-	    We need examples using "act" both to
-	    express a statement in a subject_token by A that B has permission to act for A
-	    and to express a statement in an issued token that A is acting for B.
-	  </t>
-	  <t>
 	    Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
 	    issued token?
 	  </t>
@@ -1494,10 +1539,14 @@
 	    Specified that multiple <spanx style="verb">audience</spanx> and
 	    <spanx style="verb">resource</spanx> request parameter values may be used.
 	  </t>
-          <t>
-            Defined the JWT claim <spanx style="verb">act</spanx> (actor) to express
-	    the delegation principal.
+    <t>
+      Defined the JWT claim <spanx style="verb">act</spanx> (actor) to express
+	    the current actor or delegation principal.
 	  </t>
+    <t>
+      Defined the JWT claim <spanx style="verb">may_act</spanx> to express
+      that one party is authorized to act on behalf of another party.
+    </t>
 	  <t>
 	    Defined the JWT claim <spanx style="verb">scp</spanx> (scopes) to express
 	    OAuth 2.0 scope-token values.
