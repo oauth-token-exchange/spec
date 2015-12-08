@@ -495,11 +495,6 @@
   token that it will use to call to a backend service
   (extra line breaks and indentation in the examples are for display purposes only).
 </t>
-
-<!--
-    TBD: The resource access doesn't really seem like a necessary part of this example.
-    Is there a reason it needs to be here? - Mike
--->
 <t>
   The resource server receives the following request containing
   an OAuth access token in the Authorization request header, as specified in
