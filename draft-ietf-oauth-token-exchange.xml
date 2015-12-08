@@ -86,7 +86,7 @@
   SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
   Security tokens are typically signed to achieve integrity
   and sometimes also encrypted to achieve confidentiality.
-  Security tokens are also described as Assertions in
+  Security tokens are also sometimes described as Assertions, such as in
   <xref target="RFC7521"/>.
 </t>
 
