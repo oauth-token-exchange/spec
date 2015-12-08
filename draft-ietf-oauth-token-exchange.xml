@@ -182,14 +182,14 @@
   <t>
     Delegation semantics are typically expressed in a token by including information about both the
     primary subject of the token as well as the actor to whom that subject has delegated some of its rights.
-    Such a token is sometimes referred to as a composite token because it is made up of information
+    Such a token is sometimes referred to as a composite token because it is composed of information
     about multiple subjects. A client can indicate the desire for a
     composite token by including a <spanx style="verb">want_composite</spanx> parameter in the request with the value
     <spanx style="verb">true</spanx>. Typically, in the request, the <spanx style="verb">subject_token</spanx>
     represents the identity of the party on
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
-    the identity of the party to whom the access rights of the issued token are being delegated and
-    a composite token issued by the authorization server will will contain information about both parties.
+    the identity of the party to whom the access rights of the issued token are being delegated.
+    A composite token issued by the authorization server will will contain information about both parties.
     The specifics of a composite token and even whether or not such a token is supported depends on the details of the
     token type itself and is generally beyond the scope of this specification.
     <xref target="actor"/>, however, does provide a means for a composite JWT though the representation
@@ -643,15 +643,76 @@
   <section title='"act" (Actor) Claim' anchor="actor">
     <t>
       The <spanx style="verb">act</spanx> (actor) claim provides a means within a JWT
-      to express that delegation may occur (when used in a token request)
-      or has occurred (when used in an issued token).
-      The <spanx style="verb">act</spanx> claim value is a case-sensitive string
-      containing a StringOrURI value that identifies the principal that
-      is the actor to whom authority may be or has been delegated.
-      <!--
-	  TBD: The actor has to be able to be a security token - not just a string. - Mike
-      -->
+      to express that delegation has occurred and identify the acting party to whom authority has been delegated.
+      The <spanx style="verb">act</spanx> claim value is a JSON object and
+      members in the JSON object are claims that identify the actor.
+      The claims that make up the <spanx style="verb">act</spanx>
+      claim identify and possibly provide additional information about the actor,
+      however, they pertain only to the identity of the actor and are not relevant to the validity of the containing JWT
+      in the same manner as top level claims.
+      Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
+      <spanx style="verb">aud</spanx> are not meaningful when used withing an <spanx style="verb">act</spanx>
+      claim. For example, the combination of the two claims <spanx style="verb">iss</spanx>
+      and <spanx style="verb">sub</spanx> are oftentimes necessary to uniquely identify an actor
+      while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
+      that actor, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
+      actor's identity.
     </t>
+
+    <figure>
+      <preamble>
+        The following example illustrates the <spanx style="verb">act</spanx> (actor) claim within a JWT Claims Set.
+        The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
+        that admin@example.com is the current actor.
+      </preamble>
+    <artwork><![CDATA[
+ {
+   "aud":"https://consumer.example.com",
+   "iss":"https://issuer.example.com",
+   "exp":1443904177,
+   "nbf":1443904077,
+   "sub":"user@example.com",
+   "act":
+   {
+     "sub":"admin@example.com"
+   }
+ }
+]]></artwork>
+    </figure>
+
+    <t>
+      A chain of delegation can be expressed by nesting one <spanx style="verb">act</spanx> claim within
+      another. The outermost <spanx style="verb">act</spanx> claim represents the current actor while nested
+      <spanx style="verb">act</spanx> claims represent prior actors. The least recent actor is the most deeply
+      nested.
+    </t>
+    <figure>
+      <preamble>
+        The following example illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
+        The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
+        that the system consumer.example.com-web-application is the current actor and admin@example.com was a prior actor. Such a token
+        might come about as the result of the web application receiving a token like the one in the previous example
+        and exchanging it for a new token that lists it as the current actor and that can be used at https://backend.example.com.
+      </preamble>
+      <artwork><![CDATA[
+ {
+   "aud":"https://backend.example.com",
+   "iss":"https://issuer.example.com",
+   "exp":1443904100,
+   "nbf":1443904000,
+   "sub":"user@example.com",
+   "act":
+   {
+     "sub":"consumer.example.com-web-application",
+     "iss":"https://issuer.example.com",
+     "act":
+     {
+       "sub":"admin@example.com"
+     }
+   }
+ }
+]]></artwork>
+    </figure>
   </section>
   <section title='"scp" (Scopes) Claim' anchor="scopes">
     <t>
@@ -1304,12 +1365,6 @@
       <t>
 	The following decisions need to be made and updates to this spec performed:
 	<list style="symbols">
-	  <t>
-	    Actors sometimes need to be identified by security tokens - not just strings or
-	    URIs. For instance, it takes an ID Token to identify an OpenID Connect identity
-	    - at a minimum the pair of an "iss" and "sub" claim, and if security is needed,
-	    also a signature.  The current actor syntax doesn't accommodate this reality.
-	  </t>
 	  <t>
 	    Should the identifier for an access token be
 	    <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx> or
