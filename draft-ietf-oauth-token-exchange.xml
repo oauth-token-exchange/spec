@@ -717,12 +717,27 @@
   <section title='"scp" (Scopes) Claim' anchor="scopes">
     <t>
       The <spanx style="verb">scp</spanx> claim is an array of strings, each of which
-      represents an OAuth scope requested (when used in a token request)
-      or granted (when used in an issued token) for the issued security token.
-      The array MUST contain at least one scope value.
+      represents an OAuth scope granted for the issued security token.
       Each array entry of the claim value is a scope-token, as defined in
       Section 3.3 of <xref target="RFC6749">OAuth 2.0</xref>.
     </t>
+
+    <figure>
+      <preamble>
+        The following example illustrates the <spanx style="verb">scp</spanx> claim within a JWT Claims Set with
+        four scope-tokens.
+      </preamble>
+      <artwork><![CDATA[
+ {
+   "aud":"https://consumer.example.com",
+   "iss":"https://issuer.example.com",
+   "exp":1443904177,
+   "nbf":1443904077,
+   "sub":"dgaf4mvfs75Fci_FL3heQA",
+   "scp":["email","address","profile","phone"]
+ }
+]]></artwork>
+    </figure>
   </section>
 
     </section>
