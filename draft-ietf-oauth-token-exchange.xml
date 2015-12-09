@@ -433,7 +433,7 @@
   If the <spanx style="verb">issued_token_type</spanx> value is not
   <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>,
   then the <spanx style="verb">token_type</spanx> value MUST be
-  <spanx style="verb">N/A</spanx>, indicating an OAuth 2.0
+  <spanx style="verb">NA</spanx>, indicating an OAuth 2.0
   <spanx style="verb">token_type</spanx> identifier is not applicable in this context.
   <!-- TBD: I would prefer that we make token_type REQUIRED only when the issued_token_type
   is an access token and otherwise prohibit its inclusion,
@@ -926,7 +926,7 @@
           <t>
 	    <?rfc subcompact="yes"?>
             <list style='symbols'>
-              <t>Type name: N/A</t>
+              <t>Type name: NA</t>
               <t>Additional Token Endpoint Response Parameters: (none)</t>
               <t>HTTP Authentication Scheme(s): (none)</t>
               <t>Change controller: IESG</t>
@@ -1189,7 +1189,7 @@
       0b3J5IiwicHJvZmlsZSJdfQ.A_EiUwvzIh-SGgzrl5dqX26QXNMi94ZEzP-dw
       -ZqRk3LriPdNqcMpqhopM5oKkDQRZexQaYZBdDZLvgrnP6piA",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"N/A",
+  "token_type":"NA",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1342,7 +1342,7 @@
     iLCJzdWIiOiJhY2NAZXhhbXBsZS5uZXQifQ.Oq_CJ6Fdf5R8-mLfkZfVfoVKIrW
     oHoh_V4NSKZQVnezSLMahkipL6dj-KKwp8JCdiEiXzHW2lRta-gfl9pGCyQ",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"N/A",
+  "token_type":"NA",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1547,7 +1547,7 @@
 	    OAuth 2.0 scope-token values.
           </t>
 	  <t>
-	    Added the <spanx style="verb">N/A</spanx> (not applicable)
+	    Added the <spanx style="verb">NA</spanx> (not applicable)
 	    OAuth Access Token Type definition for use in contexts in which
 	    the token exchange syntax requires a <spanx style="verb">token_type</spanx>
 	    value, but in which the token being issued is not an access token.
