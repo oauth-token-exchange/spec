@@ -176,7 +176,7 @@
     Delegation and impersonation are not inclusive of all situations.
     When a principal is acting directly on its own behalf, for example,
     neither delegation nor impersonation is in play. They are, however,
-    the more common semantics in play for token exchange and, as such, are
+    the more common semantics operating for token exchange and, as such, are
     given more direct treatment in this specification.
   </t>
   <t>
@@ -212,7 +212,7 @@
 	  "access token type", "authorization server", "client", "client identifier",
 	  "resource server", "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
-	  and the terms "Claim", "JWT Claims Set", and "StringOrURI" defined by
+	  and the terms "Claim", and "JWT Claims Set" defined by
 	  <xref target="JWT">JSON Web Token (JWT)</xref>.
         </t>
       </section>
@@ -334,7 +334,7 @@
     <vspace/>
     OPTIONAL.
     A security token that represents
-    the identity of the party that is authorized to use the requested security token and act on behalf of that subject.
+    the identity of the party that is authorized to use the requested security token and act on behalf of the subject.
   </t>
 
   <t hangText="actor_token_type">
@@ -398,13 +398,9 @@
   <vspace/>
   REQUIRED.  An identifier, as described in <xref target="TokenTypeIdentifiers"/>,
   for the representation of the issued security token.
-  If the issued token is an access token, the value of the
-  <spanx style="verb">issued_token_type</spanx> MUST be
-  <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>.
-  If the token is not an access token, then
-  for example, if the issued token is a JWT, the value of the
-  <spanx style="verb">issued_token_type</spanx> is
-  <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
+  For example, a value of <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
+  indicates that the issued token is an access token and a value of
+  <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> indicates that it is a JWT.
 </t>
 
 <t hangText="token_type">
@@ -441,7 +437,7 @@
   RECOMMENDED.  The validity lifetime, in seconds, of the token issued by the
   authorization server. Oftentimes the client will not have the inclination or capability
   to inspect the content of the token and this parameter provides a consistent and token type
-  agnostic indication of long the token can be expected to be valid.
+  agnostic indication of how long the token can be expected to be valid.
   For example, the value 1800 denotes that the token will
   expire in thirty minutes from the time the response was generated.
 </t>
@@ -512,7 +508,7 @@
   access token and the value of
   the <spanx style="verb">subject_token_type</spanx> parameter indicates that it is
   an OAuth 2.0 access token.
-  The client uses its identifier and secret to authenticate to
+  The resource server, acting as the client, uses its identifier and secret to authenticate to
   the authorization server using the HTTP Basic authentication scheme.
   The <spanx style="verb">resource</spanx> parameter indicates the location
   of the backend service, https://backend.example.com/api,
@@ -642,7 +638,7 @@
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
       <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">act</spanx>
       claim. For example, the combination of the two claims <spanx style="verb">iss</spanx>
-      and <spanx style="verb">sub</spanx> are oftentimes necessary to uniquely identify an actor
+      and <spanx style="verb">sub</spanx> are sometimes necessary to uniquely identify an actor
       while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
       that actor, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
       actor's identity.
@@ -731,7 +727,8 @@
 
   <section title='"may_act" (May Act For) Claim' anchor="may_act">
     <t>
-      The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to act on behalf of another party.
+      The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to
+      become the actor and act on behalf of another party.
       The claim value is a JSON object and members in the JSON object are claims that identify the party that
       is asserted as being eligible to act for the party identified by
       the JWT containing the claim.
@@ -743,7 +740,7 @@
       <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">may_act</spanx>
       claim.
       For example, the combination of the two claims <spanx style="verb">iss</spanx>
-      and <spanx style="verb">sub</spanx> are oftentimes necessary to uniquely identify an authorized party
+      and <spanx style="verb">sub</spanx> are sometimes necessary to uniquely identify an authorized party
       while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
       that party, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
       identity of that authorized party.
@@ -1301,7 +1298,7 @@
         before a specific expiration time.
 	The subject of the JWT
 	(<spanx style="verb">admin@example.net</spanx>) is
-	that is the actor that will use the requested security token.
+	the actor that will wield the security token being requested.
       </t>
       <figure anchor="DelegationActorClaimsEx" title="Actor Token Claims">
         <artwork><![CDATA[
