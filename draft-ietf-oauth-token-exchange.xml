@@ -648,7 +648,7 @@
       actor's identity.
     </t>
 
-    <figure>
+    <figure title="Actor Claim" anchor="act-ex">
       <preamble>
         The following example illustrates the <spanx style="verb">act</spanx> (actor) claim within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
@@ -675,7 +675,7 @@
       <spanx style="verb">act</spanx> claims represent prior actors. The least recent actor is the most deeply
       nested.
     </t>
-    <figure>
+    <figure title="Nested Actor Claim" anchor="acts-ex">
       <preamble>
         The following example illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
@@ -711,7 +711,7 @@
       Section 3.3 of <xref target="RFC6749">OAuth 2.0</xref>.
     </t>
 
-    <figure>
+    <figure title="Scopes Claim" anchor="scp-ex">
       <preamble>
         The following example illustrates the <spanx style="verb">scp</spanx> claim within a JWT Claims Set with
         four scope-tokens.
@@ -749,7 +749,7 @@
       identity of that authorized party.
     </t>
 
-    <figure>
+    <figure title="May Act For Claim" anchor="may_act-ex">
       <preamble>
         The following example illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">may_act</spanx> claim indicates
