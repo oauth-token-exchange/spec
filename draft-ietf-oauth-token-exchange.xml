@@ -1439,7 +1439,7 @@
 	  </t>
 	  <t>
 	    Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
-	    issued token?
+	    issued token. There are real cases for this but need to work though how it would look.
 	  </t>
 	  <t>
 	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
