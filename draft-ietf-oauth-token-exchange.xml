@@ -495,7 +495,7 @@
   Section 2.1 of <xref target="RFC6750"/>.
 </t>
 
-<figure>
+<figure title="Protected Resource Request" anchor="main-prr">
   <artwork><![CDATA[
  GET /resource HTTP/1.1
  Host: frontend.example.com
@@ -519,7 +519,7 @@
   where the issued token will be used.
 </t>
 
-<figure>
+<figure title="Token Exchange Request" anchor="main-tereq">
   <artwork><![CDATA[
  POST /as/token.oauth2 HTTP/1.1
  Host: as.example.com
@@ -549,7 +549,7 @@
   indicates only that it is an access token.
 </t>
 
-  <figure>
+  <figure title="Token Exchange Response" anchor="main-teresp">
     <artwork><![CDATA[
  HTTP/1.1 200 OK
  Content-Type: application/json
@@ -575,7 +575,7 @@
   a request to the backend server.
 </t>
 
-      <figure>
+      <figure title="Backend Protected Resource Request" anchor="main-beprr">
         <artwork><![CDATA[
  GET /api HTTP/1.1
  Host: backend.example.com
