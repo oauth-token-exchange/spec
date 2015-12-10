@@ -1107,14 +1107,12 @@
     <section anchor="ImpersonationRequest" title="Token Exchange Request">
       <t>
         In the following token exchange request, an anonymous client is requesting a token
-        with impersonation semantics, which is indicated by the inclusion of the
-        <spanx style="verb">subject_token</spanx> parameter and omission of
-        the <spanx style="verb">actor_token</spanx> parameter.
+        with impersonation semantics.
         The client tells the authorization server that it needs a token for use at
         the target service with the logical name
 	<spanx style="verb">urn:example:cooperation-context</spanx>.
       </t>
-    <figure>
+    <figure title="Token Exchange Request" anchor="ImpersonationRequestEx">
       <artwork><![CDATA[
  POST /as/token.oauth2 HTTP/1.1
  Host: as.example.com
@@ -1122,11 +1120,12 @@
 
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
  &audience=urn%3Aexample%3Acooperation-context
- &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFtc
-   GxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwNjAwLCJuYmY
-   iOjE0NDE5MDkwMDAsInN1YiI6ImJjQGV4YW1wbGUubmV0IiwiY3R4IjpbIm9yZGVyc
-   yIsInByb2ZpbGUiLCJoaXN0b3J5Il19.JqU2r2NBwqvtg_euvBGmR4Lni7U3i_7G0R
-   9liheGneKl20yGp5dU0N5Ain2K0GMopigQXSs0GrlLycCx015vpg
+ &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
+   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5
+   uZXQiLCJleHAiOjE0NDE5MTA2MDAsIm5iZiI6MTQ0MTkwOTAwMCwic3ViIjoiYmNAZ
+   XhhbXBsZS5uZXQiLCJzY3AiOlsib3JkZXJzIiwicHJvZmlsZSIsImhpc3RvcnkiXX0
+   .F1EZzN9j3LwyrLkDD8pjR7fzHqdYl1ly-jEILfmgKY_0hNuT3_fmUChu9oQdBNjHj
+   wu58iLSmagZl-5_9-ilzw
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
     </figure>
@@ -1144,20 +1143,18 @@
   The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
   the decoded JWT Claims Set is shown here. The JWT is
   intended for consumption by the authorization server within a specific time window.
-  The subject (<spanx style="verb">sub</spanx>) of the JWT is
-  the party at the issuer (<spanx style="verb">iss</spanx>)
-  on behalf of whom the new token is being requested.
+  The subject of the JWT (<spanx style="verb">bc@example.net</spanx>) is
+  the party on behalf of whom the new token is being requested.
 </t>
-    <figure>
+    <figure title="Subject Token Claims" anchor="ImpersonationSubjectClaimsEx">
       <artwork><![CDATA[
- {
-  "aud":"example.com",
-  "iss":"example.net",
-  "exp":1441910600,
-  "nbf":1441909000,
-  "sub":"bc@example.net",
-  "scp":["orders","profile","history"]
- }
+  {
+    "aud":"https://as.example.com",
+    "iss":"https://client.example.net",
+    "exp":1441910600,"nbf":1441909000,
+    "sub":"bc@example.net",
+    "scp":["orders","profile","history"]
+  }
 ]]></artwork>
     </figure>
     </section>
@@ -1170,18 +1167,19 @@
   that expires in an hour and that the access token type is not applicable
   since the issued token is not an access token.
 </t>
-    <figure>
+    <figure title="Token Exchange Response" anchor="ImpersonationResponseEx">
       <artwork><![CDATA[
  HTTP/1.1 200 OK
  Content-Type: application/json
  Cache-Control: no-cache, no-store
 
  {
-  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJle
-      GFtcGxlLm9yZyIsImlzcyI6ImV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTEzNj
-      EwLCJzdWIiOiJiY0BleGFtcGxlLm5ldCIsImN0eCI6WyJvcmRlcnMiLCJoaXN
-      0b3J5IiwicHJvZmlsZSJdfQ.A_EiUwvzIh-SGgzrl5dqX26QXNMi94ZEzP-dw
-      -ZqRk3LriPdNqcMpqhopM5oKkDQRZexQaYZBdDZLvgrnP6piA",
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJ1cm4
+    6ZXhhbXBsZTpjb29wZXJhdGlvbi1jb250ZXh0IiwiaXNzIjoiaHR0cHM6Ly9hcy5l
+    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic3ViIjoiYmNAZXhhbXBsZS5uZ
+    XQiLCJzY3AiOlsib3JkZXJzIiwiaGlzdG9yeSIsInByb2ZpbGUiXX0.YQHuLmI1YD
+    TugbfEvgGY2gaGBmMyj9BepZSECCBE9j9ogqZv2qx6VQQPrbT1k7vBYGLNMOkkpmm
+    JkxZDS0YV7g",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
   "token_type":"NA",
   "expires_in":3600
@@ -1204,22 +1202,21 @@
   issued by the authorization server and intended for consumption by a system entity
   known by the logical name <spanx style="verb">urn:example:cooperation-context</spanx>
   any time before its expiration.
-  The subject (<spanx style="verb">sub</spanx>) and
-  issuer (<spanx style="verb">iss</spanx>) of the JWT
-  are the same as the subject an issuer of the token used to make the request,
-  which effectively enables the client to impersonate the subject by
-  using the token at the system entity known by the logical name of
-  <spanx style="verb">urn:example:cooperation-context</spanx>.
+  The subject (<spanx style="verb">sub</spanx>) of the JWT
+  is the same as the subject the token used to make the request,
+  which effectively enables the client to impersonate that subject
+  at the system entity known by the logical name of
+  <spanx style="verb">urn:example:cooperation-context</spanx> by using the token.
 </t>
-    <figure>
+    <figure anchor="ImpersonationIssuedClaimsEx" title="Issued Token Claims">
       <artwork><![CDATA[
- {
-  "aud":"urn:example:cooperation-context",
-  "iss":"example.com",
-  "exp":1441913610,
-  "sub":"bc@example.net",
-  "scp":["orders","history","profile"]
- }
+  {
+    "aud":"urn:example:cooperation-context",
+    "iss":"https://as.example.com",
+    "exp":1441913610,
+    "sub":"bc@example.net",
+    "scp":["orders","history","profile"]
+  }
 ]]></artwork>
     </figure>
       </section>
@@ -1230,14 +1227,13 @@
     <section anchor="DelegationRequest" title="Token Exchange Request">
       <t>
         In the following token exchange request, an anonymous client is requesting a token
-        with delegation semantics, which is indicated by the inclusion of both the
-        <spanx style="verb">subject_token</spanx> parameter and
-        the <spanx style="verb">actor_token</spanx> parameter.
+        with delegation semantics, which is indicated by the inclusion of the
+        <spanx style="verb">want_composite</spanx> parameter.
         The client tells the authorization server that it needs a token for use at
         the target service with the logical name
 	<spanx style="verb">urn:example:cooperation-context</spanx>.
       </t>
-      <figure>
+      <figure anchor="DelegationRequestEx" title="Token Exchange Request">
         <artwork><![CDATA[
  POST /as/token.oauth2 HTTP/1.1
  Host: as.example.com
@@ -1245,16 +1241,19 @@
 
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
  &audience=urn%3Aexample%3Acooperation-context
- &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFtc
-   GxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwMDYwLCJzdWI
-   iOiJhY2NAZXhhbXBsZS5uZXQifQ.LWlZ2dc96bLt5LZ9xgkxyjUaiC-akdL_wFgwRQ
-   JblY7FrYA2pmZj3oViNyyWVBcA9yd_vP5se1PtBJtrrYOP1w
+ &want_composite=true
+ &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
+   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5
+   uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjcCI6WyJzdGF0dXMiLCJmZWVkIl0sInN1Y
+   iI6InVzZXJAZXhhbXBsZS5uZXQiLCJtYXlfYWN0Ijp7InN1YiI6ImFkbWluQGV4YW1
+   wbGUubmV0In19.cklRpQMYzs9AYoJ3DMht1OnMhAF_0YeQgV35rp7J7ErkvnPm1gr_
+   OeQD1wTbnbburbyC7nwKdK5Jrn31aQPxUg
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
- &actor_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJleGFt
-   cGxlLmNvbSIsImlzcyI6ImV4YW1wbGUubmV0IiwiZXhwIjoxNDQxOTEwMDYwLCJjdH
-   giOlsic3RhdHVzIiwiZmVlZCJdLCJvYm8iOiJhY2NAZXhhbXBsZS5uZXQiLCJzdWIi
-   OiJsdGNAZXhhbXBsZS5uZXQifQ.4TimxtHq8xEXXWssUPe-UB8ONTmdyZ8bNQiT8H7
-   Fmmtvk7nD3JGNAkjEuV7rMFrrz6HOOhbryr5WoIdAExYG4A
+ &actor_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwczo
+   vL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5uZ
+   XQiLCJleHAiOjE0NDE5MTAwNjAsInN1YiI6ImFkbWluQGV4YW1wbGUubmV0In0.X15
+   8zUsO55Fo0humOUCUCy582BQRAWbMsIKbxT1mJRrQrk2cpU6r6CWeI4ukQoQRe6RTr
+   Esk4wX2lMf8sELxaA
  &actor_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
       </figure>
@@ -1273,19 +1272,23 @@
         the decoded JWT Claims Set is shown here. The JWT is
         intended for consumption by the authorization server
         before a specific expiration time.
-	The subject (<spanx style="verb">sub</spanx>) of the JWT
-	(<spanx style="verb">acc@example.net</spanx>) is
-	the party at the issuer (<spanx style="verb">iss</spanx>)
-	on behalf of whom the new token is being requested.
+	The subject of the JWT
+	(<spanx style="verb">user@example.net</spanx>) is
+	the party on behalf of whom the new token is being requested.
       </t>
-      <figure>
+      <figure anchor="DelegationSubjectClaimsEx" title="Subject Token Claims">
         <artwork><![CDATA[
- {
-  "aud":"example.com",
-  "iss":"example.net",
-  "exp":1441910060,
-  "sub":"acc@example.net"
- }
+  {
+    "aud":"https://as.example.com",
+    "iss":"https://client.example.net",
+    "exp":1441910060,
+    "scp":["status","feed"],
+    "sub":"user@example.net",
+    "may_act":
+    {
+      "sub":"admin@example.net"
+    }
+  }
 ]]></artwork>
       </figure>
     </section>
@@ -1296,21 +1299,18 @@
         the decoded JWT Claims Set is shown here. This JWT is also
         intended for consumption by the authorization server
         before a specific expiration time.
-	The subject (<spanx style="verb">sub</spanx>) of the JWT
-	(<spanx style="verb">ltc@example.net</spanx>) is
-	the party at the issuer (<spanx style="verb">iss</spanx>)
+	The subject of the JWT
+	(<spanx style="verb">admin@example.net</spanx>) is
 	that is the actor that will use the requested security token.
-	<!-- TBD: Add an "act" claim to this example -->
       </t>
-      <figure>
+      <figure anchor="DelegationActorClaimsEx" title="Actor Token Claims">
         <artwork><![CDATA[
- {
-  "aud":"example.com",
-  "iss":"example.net",
-  "exp":1441910060,
-  "scp":["status","feed"],
-  "sub":"ltc@example.net"
- }
+  {
+    "aud":"https://as.example.com",
+    "iss":"https://client.example.net",
+    "exp":1441910060,
+    "sub":"admin@example.net"
+  }
 ]]></artwork>
       </figure>
     </section>
@@ -1323,18 +1323,19 @@
 	that expires in an hour and that the access token type is not applicable
 	since the issued token is not an access token.
       </t>
-      <figure>
+      <figure anchor="DelegationResponseEx" title="Token Exchange Response">
         <artwork><![CDATA[
  HTTP/1.1 200 OK
  Content-Type: application/json
  Cache-Control: no-cache, no-store
 
  {
-  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJle
-    GFtcGxlLm9yZyIsImlzcyI6ImV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTEzNjEw
-    LCJjdHgiOlsic3RhdHVzIiwiZmVlZCJdLCJhY3QiOiJsdGNAZXhhbXBsZS5uZXQ
-    iLCJzdWIiOiJhY2NAZXhhbXBsZS5uZXQifQ.Oq_CJ6Fdf5R8-mLfkZfVfoVKIrW
-    oHoh_V4NSKZQVnezSLMahkipL6dj-KKwp8JCdiEiXzHW2lRta-gfl9pGCyQ",
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJ1cm4
+    6ZXhhbXBsZTpjb29wZXJhdGlvbi1jb250ZXh0IiwiaXNzIjoiaHR0cHM6Ly9hcy5l
+    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic2NwIjpbInN0YXR1cyIsImZlZ
+    WQiXSwic3ViIjoidXNlckBleGFtcGxlLm5ldCIsImFjdCI6eyJzdWIiOiJhZG1pbk
+    BleGFtcGxlLm5ldCJ9fQ._qjM7Ij_HcrC78omT4jiZTFJOuzsAj1wPo31ymQS-Suq
+    r64S1jCp6pfQR-in_OOAosAGamEg4jyPsht6kMAiYA",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
   "token_type":"NA",
   "expires_in":3600
@@ -1359,30 +1360,29 @@
 	<spanx style="verb">urn:example:cooperation-context</spanx>
 	any time before its expiration.
         The subject (<spanx style="verb">sub</spanx>)
-	and issuer (<spanx style="verb">iss</spanx>) of the JWT
-	are the same as the subject and issuer of
+  of the JWT
+	is the same as the subject of
 	the <spanx style="verb">subject_token</spanx> used to make the request.
-        The actor (<spanx style="verb">act</spanx>) of the JWT is the same as the subject
-	<!--
-	    TBD: The actor has to be able to be a security token - not just a string.
-	    Once we address this, this text will need to be revised accordingly. - Mike
-	-->
+  The actor (<spanx style="verb">act</spanx>) of the JWT is the same as the subject
 	of the <spanx style="verb">actor_token</spanx> used to make the request.
 
         This indicates delegation and identifies
-	<spanx style="verb">ltc@example.net</spanx> as the current actor to whom authority
-        has been delegated to act on behalf of <spanx style="verb">acc@example.net</spanx>.
+	<spanx style="verb">admin@example.net</spanx> as the current actor to whom authority
+        has been delegated to act on behalf of <spanx style="verb">user@example.net</spanx>.
       </t>
-      <figure>
+      <figure anchor="DelegationIssuedClaimsEx" title="Issued Token Claims">
         <artwork><![CDATA[
- {
-  "aud":"urn:example:cooperation-context",
-  "iss":"example.com",
-  "exp":1441913610,
-  "scp":["status","feed"],
-  "act":"ltc@example.net",
-  "sub":"acc@example.net"
- }
+  {
+    "aud":"urn:example:cooperation-context",
+    "iss":"https://as.example.com",
+    "exp":1441913610,
+    "scp":["status","feed"],
+    "sub":"user@example.net",
+    "act":
+    {
+      "sub":"admin@example.net"
+    }
+  }
 ]]></artwork>
       </figure>
     </section>
@@ -1599,14 +1599,6 @@
   <!--   code used to create the JWTs in examples
 
 
-import org.jose4j.jwk.JsonWebKey;
-import org.jose4j.jwk.PublicJsonWebKey;
-
-import org.jose4j.jws.AlgorithmIdentifiers;
-import org.jose4j.jws.JsonWebSignature;
-import org.jose4j.jwt.JwtClaims;
-import org.jose4j.jwt.NumericDate;
-
 public class TokenExExamplesTest
 {
     @Test
@@ -1631,7 +1623,8 @@ public class TokenExExamplesTest
 
         JwtClaims claims = new JwtClaims();
         claims.setAudience("https://backend.example.com");
-        claims.setIssuer("https://as.example.com");
+        final String asDotComUri = "https://as.example.com";
+        claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setIssuedAt(iat);
         claims.setStringClaim("azp", "rs08");
@@ -1659,8 +1652,9 @@ public class TokenExExamplesTest
         nbf.addSeconds(-1000);
 
         claims = new JwtClaims();
-        claims.setAudience("example.com");
-        claims.setIssuer("example.net");
+        claims.setAudience(asDotComUri);
+        final String clientNetUri = "https://client.example.net";
+        claims.setIssuer(clientNetUri);
         claims.setExpirationTime(exp);
         claims.setNotBefore(nbf);
         claims.setSubject("bc@example.net");
@@ -1686,7 +1680,7 @@ public class TokenExExamplesTest
 
         claims = new JwtClaims();
         claims.setAudience("urn:example:cooperation-context");
-        claims.setIssuer("example.com");
+        claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setSubject("bc@example.net");
         claims.setStringListClaim("scp", "orders", "history", "profile");
@@ -1710,12 +1704,18 @@ public class TokenExExamplesTest
         exp = NumericDate.fromSeconds(iat.getValue());
         exp.addSeconds(60);
 
+        String admin = "admin@example.net";
+
         claims = new JwtClaims();
-        claims.setAudience("example.com");
-        claims.setIssuer("example.net");
+        claims.setAudience(asDotComUri);
+        claims.setIssuer(clientNetUri);
         claims.setExpirationTime(exp);
-        String acc = "acc@example.net";
-        claims.setSubject(acc);
+        claims.setStringListClaim("scp", "status", "feed");
+        String sub = "user@example.net";
+        claims.setSubject(sub);
+        JwtClaims mayAct = new JwtClaims();
+        mayAct.setSubject(admin);
+        claims.setClaim("may_act", mayAct.getClaimsMap());
 
         jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -1726,15 +1726,13 @@ public class TokenExExamplesTest
         System.out.println(payload);
         System.out.println("sub token: " + jws.getCompactSerialization());
 
-        String ltc = "ltc@example.net";
+
 
         claims = new JwtClaims();
-        claims.setAudience("example.com");
-        claims.setIssuer("example.net");
+        claims.setAudience(asDotComUri);
+        claims.setIssuer(clientNetUri);
         claims.setExpirationTime(exp);
-        claims.setStringListClaim("scp", "status", "feed");
-        claims.setStringClaim("obo", acc);
-        claims.setSubject(ltc);
+        claims.setSubject(admin);
 
         jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -1751,12 +1749,15 @@ public class TokenExExamplesTest
         exp.addSeconds(3600);
 
         claims = new JwtClaims();
-        claims.setAudience("example.org");
-        claims.setIssuer("example.com");
+        claims.setAudience("urn:example:cooperation-context");
+        claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setStringListClaim("scp", "status", "feed");
-        claims.setStringClaim("act", ltc);
-        claims.setSubject(acc);
+        claims.setSubject(sub);
+        JwtClaims actor = new JwtClaims();
+        actor.setSubject(admin);
+        claims.setClaim("act", actor.getClaimsMap());
+
 
         jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -1765,7 +1766,7 @@ public class TokenExExamplesTest
         payload = claims.toJson();
         jws.setPayload(payload);
         System.out.println(payload);
-        System.out.println("requested token: " + jws.getCompactSerialization());
+        System.out.println("issued token: " + jws.getCompactSerialization());
     }
 }
 
