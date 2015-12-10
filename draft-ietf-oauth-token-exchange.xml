@@ -1453,9 +1453,6 @@
 	    using the <spanx style="verb">act</spanx> claim.
 	    Perhaps with a <spanx style="verb">client_id</spanx> claim?
 	  </t>
-	  <t>
-	    The encoded examples need to be updated to match the corresponding unencoded text.
-	  </t>
 	</list>
       </t>
     </section>
