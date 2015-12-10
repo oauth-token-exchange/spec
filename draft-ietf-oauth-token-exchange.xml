@@ -1451,7 +1451,7 @@
 	    the authenticated client to be somehow represented in the issued token,
 	    sometimes in addition to the actor, which can already be represented
 	    using the <spanx style="verb">act</spanx> claim.
-	    Perhaps with a <spanx style="verb">client_id</spanx> claim?
+	    Perhaps with a <spanx style="verb">client_id</spanx> claim? Or  <spanx style="verb">azp</spanx>...
 	  </t>
 	</list>
       </t>
