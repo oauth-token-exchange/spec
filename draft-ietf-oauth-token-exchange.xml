@@ -556,12 +556,12 @@
  Cache-Control: no-cache, no-store
 
  {
-  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJi
-      YWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iLCJle
-      HAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCIsIn
-      N1YiI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.YQ9
-      7nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe66
-      cplnQQ_FRxP7i2tnK0Hlug",
+  "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJo
+    dHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV
+    4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsIm
+    F6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJhcGkiX
+    X0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDaVoXIQ
+    e_HkTVdljIzavVlPT60_b_9pDQ",
   "issued_token_type":
       "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -580,11 +580,11 @@
  GET /api HTTP/1.1
  Host: backend.example.com
  Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQ
-     iOiJiYWNrZW5kLmV4YW1wbGUuY29tIiwiaXNzIjoiYXMuZXhhbXBsZS5jb20iL
-     CJleHAiOjE0NDE5MTc1OTMsImlhdCI6MTQ0MTkxNzUzMywiYXpwIjoicnMwOCI
-     sInN1YiI6ImJjYW1wYmVsbEBleGFtcGxlLmNvbSIsImN0eCI6WyJhcGkiXX0.Y
-     Q97nJpB37bcwnOCJFRckGUzl_eIGl_setidJPLv4u-DHZq8NV6KNTpggr1zPe6
-     6cplnQQ_FRxP7i2tnK0Hlug
+    iOiJodHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2
+    FzLmV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1M
+    zMsImF6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJh
+    cGkiXX0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDa
+    VoXIQe_HkTVdljIzavVlPT60_b_9pDQ
 ]]></artwork>
       </figure>
 
@@ -1617,7 +1617,8 @@ public class TokenExExamplesTest
 
     public static void main(String[] args) throws Exception
     {
-        System.out.println("main-example");
+        AlgorithmFactoryFactory.getInstance(); // init to get the logging out of the way
+        System.out.println("\nmain-example");
         System.out.println(" main :::::");
 
         PublicJsonWebKey mainExKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"9er\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"5yoR9FjZHn7kJDALhDzhZ8i8F06mc12YswUMTBv4BoA\",\"y\":\"4uxuIItWj5Duzspth5mUbpLXWrPFzFPQkOCeAGGI6KM\",\"crv\":\"P-256\",\"d\":\"LncS7zrx6c8X5qZRxoSN18ZEYDeI2wfKfUvX_DgwRH8\"}");
@@ -1629,12 +1630,12 @@ public class TokenExExamplesTest
         exp.addSeconds(60);
 
         JwtClaims claims = new JwtClaims();
-        claims.setAudience("backend.example.com");
-        claims.setIssuer("as.example.com");
+        claims.setAudience("https://backend.example.com");
+        claims.setIssuer("https://as.example.com");
         claims.setExpirationTime(exp);
         claims.setIssuedAt(iat);
         claims.setStringClaim("azp", "rs08");
-        claims.setSubject("bcampbell@example.com");
+        claims.setSubject("bc@example.com");
         claims.setStringListClaim("scp", "api");
 
         JsonWebSignature jws = new JsonWebSignature();
@@ -1645,7 +1646,7 @@ public class TokenExExamplesTest
         System.out.println(jws.getCompactSerialization());
 
 
-        System.out.println("impersonation-example");
+        System.out.println("\n\n\n\nimpersonation-example");
         System.out.println("\n dot net:::::");
         PublicJsonWebKey dotNetKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"16\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"N_MqlYd_Iq0rfzTqXAX7TUC0r7fQSp3YQKh42tn7uSc\",\"y\":\"9tGuwMFkHYWPqkLa51f8GazZNQqdgMOVvJEd6fJ18PI\",\"crv\":\"P-256\",\"d\":\"cZ_4DqRSAWMMErQbKv6dCYqI9G1pi6lxvlvHU152Uts\"}");
         System.out.println(dotNetKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
