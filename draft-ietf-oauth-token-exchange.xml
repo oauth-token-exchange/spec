@@ -435,11 +435,6 @@
   then the <spanx style="verb">token_type</spanx> value MUST be
   <spanx style="verb">NA</spanx>, indicating an OAuth 2.0
   <spanx style="verb">token_type</spanx> identifier is not applicable in this context.
-  <!-- TBD: I would prefer that we make token_type REQUIRED only when the issued_token_type
-  is an access token and otherwise prohibit its inclusion,
-  since it will only result in confusing developers and causing interop problems.
-  - Mike
-  -->
 </t>
 
 <t hangText="expires_in">
