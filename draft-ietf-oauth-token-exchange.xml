@@ -1438,11 +1438,6 @@
       the supporting code.
 	  </t>
 	  <t>
-	    To help illustrate the difference between "resource" and "audience",
-	    we should have example audience values be URNs that cannot possibly be URLs
-	    - for example, <spanx style="verb">urn:example:cooperation-context</spanx>.
-	  </t>
-	  <t>
 	    Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
 	    issued token?
 	  </t>
