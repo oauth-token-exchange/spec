@@ -1607,8 +1607,14 @@ import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.NumericDate;
 
-public class TokenExExamples
+public class TokenExExamplesTest
 {
+    @Test
+    public void go() throws Exception
+    {
+        main(null);
+    }
+
     public static void main(String[] args) throws Exception
     {
         System.out.println("main-example");
