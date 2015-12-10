@@ -430,11 +430,10 @@
   which declares the representation of the issued security token;
   the term "token type" is typically used with this meaning, as it is in
   all <spanx style="verb">*_token_type</spanx> parameters in this specification.
-  If the <spanx style="verb">issued_token_type</spanx> value is not
-  <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>,
-  then the <spanx style="verb">token_type</spanx> value MUST be
-  <spanx style="verb">NA</spanx>, indicating an OAuth 2.0
-  <spanx style="verb">token_type</spanx> identifier is not applicable in this context.
+  If the issued token is not an access token or usable as an access token,
+  then the <spanx style="verb">token_type</spanx> value <spanx style="verb">NA</spanx> is used
+  to indicate that an OAuth 2.0
+  <spanx style="verb">token_type</spanx> identifier is not applicable in that context.
 </t>
 
 <t hangText="expires_in">
