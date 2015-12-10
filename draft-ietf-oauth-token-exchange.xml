@@ -1438,17 +1438,6 @@
       the supporting code.
 	  </t>
 	  <t>
-	    Make the names used in the examples more meaningful.
-	    For instance, OpenID Connect uses names like https://server.example.com and
-	    https://client.example.org in its examples to make it clear what the roles of
-	    the different players are.  Whereas, this spec's examples currently mostly use
-	    more opaque names like "example.com" and "example.net".
-	    For instance, I'd suggest that we use names like
-	    https://sts.example.com for the STS,
-	    https://client.example.org for the client,
-	    https://resource.example.com for a resource, etc.
- 	  </t>
-	  <t>
 	    As a best practice, all our examples should use explicit https:// URLs where
 	    domains are being referenced, rather than unadorned names like "example.com".
  	  </t>
