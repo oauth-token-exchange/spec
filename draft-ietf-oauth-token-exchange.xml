@@ -175,7 +175,7 @@
   <t>
     Delegation and impersonation are not inclusive of all situations.
     When a principal is acting directly on its own behalf, for example,
-    neither delegation nor impersonation is in play. They are, however,
+    neither delegation nor impersonation are in play. They are, however,
     the more common semantics operating for token exchange and, as such, are
     given more direct treatment in this specification.
   </t>
@@ -189,11 +189,14 @@
     represents the identity of the party on
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
     the identity of the party to whom the access rights of the issued token are being delegated.
-    A composite token issued by the authorization server will will contain information about both parties.
-    The specifics of a composite token and even whether or not such a token is supported depends on the details of the
-    token type itself and is generally beyond the scope of this specification.
-    <xref target="actor"/>, however, does provide a means for a composite JWT though the representation
-    of a chain of delegation using the <spanx style="verb">act</spanx> claim.
+    A composite token issued by the authorization server will contain information about both parties.
+  </t>
+  <t>
+    The specifics of representing a composite token and even whether or not such a token will be issued depend on the details of the implementation and the kind of token.
+    The representations of composite tokens that are not JWTs are beyond the scope of this specification.
+    The <xref target="actor"/> request parameter, however, does provide a means
+    for providing information about the desired actor though the representation
+    of a chain of delegation using the JWT <spanx style="verb">act</spanx> claim.
   </t>
       </section>
 
@@ -212,7 +215,7 @@
 	  "access token type", "authorization server", "client", "client identifier",
 	  "resource server", "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
-	  and the terms "Claim", and "JWT Claims Set" defined by
+	  and the terms "Claim" and "JWT Claims Set" defined by
 	  <xref target="JWT">JSON Web Token (JWT)</xref>.
         </t>
       </section>
@@ -427,7 +430,7 @@
   the term "token type" is typically used with this meaning, as it is in
   all <spanx style="verb">*_token_type</spanx> parameters in this specification.
   If the issued token is not an access token or usable as an access token,
-  then the <spanx style="verb">token_type</spanx> value <spanx style="verb">NA</spanx> is used
+  then the <spanx style="verb">token_type</spanx> value <spanx style="verb">N_A</spanx> is used
   to indicate that an OAuth 2.0
   <spanx style="verb">token_type</spanx> identifier is not applicable in that context.
 </t>
@@ -599,7 +602,7 @@
     <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
 <t>
   Several parameters in this specification utilize an identifier as the value to
-  describe the type of token in question. Specifically they are the
+  describe the type of token in question. Specifically, they are the
   <spanx style="verb">requested_token_type</spanx>,
   <spanx style="verb">subject_token_type</spanx>, <spanx style="verb">actor_token_type</spanx>
   parameters of the request and the <spanx style="verb">issued_token_type</spanx> member of the response.
@@ -632,16 +635,16 @@
       The <spanx style="verb">act</spanx> claim value is a JSON object and
       members in the JSON object are claims that identify the actor.
       The claims that make up the <spanx style="verb">act</spanx>
-      claim identify and possibly provide additional information about the actor,
-      however, they pertain only to the identity of the actor and are not relevant to the validity of the containing JWT
-      in the same manner as top level claims.
+      claim identify and possibly provide additional information about the actor.
+      For example, the combination of the two claims <spanx style="verb">iss</spanx>
+      and <spanx style="verb">sub</spanx> might be necessary to uniquely identify an actor.
+    </t>
+    <t>
+      However, claims within the <spanx style="verb">act</spanx> claim pertain only to the identity of the actor
+      and are not relevant to the validity of the containing JWT in the same manner as the top-level claims.
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
       <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">act</spanx>
-      claim. For example, the combination of the two claims <spanx style="verb">iss</spanx>
-      and <spanx style="verb">sub</spanx> are sometimes necessary to uniquely identify an actor
-      while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
-      that actor, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
-      actor's identity.
+      claim, and therefore should not be used.
     </t>
 
     <figure title="Actor Claim" anchor="act-ex">
@@ -689,7 +692,7 @@
    "act":
    {
      "sub":"consumer.example.com-web-application",
-     "iss":"https://issuer.example.com",
+     "iss":"https://issuer.example.net",
      "act":
      {
        "sub":"admin@example.com"
@@ -733,17 +736,19 @@
       is asserted as being eligible to act for the party identified by
       the JWT containing the claim.
       The claims that make up the <spanx style="verb">may_act</spanx>
-      claim identify and possibly provide additional information about the authorized party,
-      however, they pertain only to the identity of that party and are not relevant to the validity of the containing JWT
+      claim identify and possibly provide additional information about the authorized actor.
+      For example, the combination of the two claims <spanx style="verb">iss</spanx>
+      and <spanx style="verb">sub</spanx> are sometimes necessary to uniquely identify an authorized actor,
+      while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
+      that party.
+    </t>
+    <t>
+      However, claims within the <spanx style="verb">may_act</spanx> claim pertain only to the identity of that party
+      and are not relevant to the validity of the containing JWT
       in the same manner as top level claims.
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
-      <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">may_act</spanx>
-      claim.
-      For example, the combination of the two claims <spanx style="verb">iss</spanx>
-      and <spanx style="verb">sub</spanx> are sometimes necessary to uniquely identify an authorized party
-      while the <spanx style="verb">email</spanx> claim might be used to provide additional useful information about
-      that party, however, an <spanx style="verb">exp</spanx> claim doesn't contribute any information about the
-      identity of that authorized party.
+      <spanx style="verb">aud</spanx> are not meaningful when used within a <spanx style="verb">may_act</spanx>
+      claim, and therefore should not be used.
     </t>
 
     <figure title="May Act For Claim" anchor="may_act-ex">
@@ -917,7 +922,7 @@
           <t>
 	    <?rfc subcompact="yes"?>
             <list style='symbols'>
-              <t>Type name: NA</t>
+              <t>Type name: N_A</t>
               <t>Additional Token Endpoint Response Parameters: (none)</t>
               <t>HTTP Authentication Scheme(s): (none)</t>
               <t>Change controller: IESG</t>
@@ -1148,7 +1153,8 @@
   {
     "aud":"https://as.example.com",
     "iss":"https://client.example.net",
-    "exp":1441910600,"nbf":1441909000,
+    "exp":1441910600,
+    "nbf":1441909000,
     "sub":"bc@example.net",
     "scp":["orders","profile","history"]
   }
@@ -1178,7 +1184,7 @@
     TugbfEvgGY2gaGBmMyj9BepZSECCBE9j9ogqZv2qx6VQQPrbT1k7vBYGLNMOkkpmm
     JkxZDS0YV7g",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"NA",
+  "token_type":"N_A",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1334,7 +1340,7 @@
     BleGFtcGxlLm5ldCJ9fQ._qjM7Ij_HcrC78omT4jiZTFJOuzsAj1wPo31ymQS-Suq
     r64S1jCp6pfQR-in_OOAosAGamEg4jyPsht6kMAiYA",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"NA",
+  "token_type":"N_A",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1436,7 +1442,7 @@
 	  </t>
 	  <t>
 	    Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
-	    issued token. There are real cases for this but need to work though how it would look.
+	    issued token. There are real use cases for this but we would need to work through what it would look like.
 	  </t>
 	  <t>
 	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
@@ -1448,7 +1454,7 @@
 	    the authenticated client to be somehow represented in the issued token,
 	    sometimes in addition to the actor, which can already be represented
 	    using the <spanx style="verb">act</spanx> claim.
-	    Perhaps with a <spanx style="verb">client_id</spanx> claim? Or  <spanx style="verb">azp</spanx>...
+	    Perhaps with a <spanx style="verb">client_id</spanx> claim?
 	  </t>
 	</list>
       </t>
@@ -1470,7 +1476,7 @@
 	    request parameters and the response to use the existing token endpoint
 	    JSON parameters defined in OAuth 2.0.
           </t>
-          <t>Changed the grant type to urn:ietf:params:oauth:grant-type:token-exchange.</t>
+          <t>Changed the grant type identifier to urn:ietf:params:oauth:grant-type:token-exchange.</t>
           <t>
 	    Added RFC 6755 registration requests for
 	    urn:ietf:params:oauth:token-type:refresh_token,
@@ -1526,7 +1532,7 @@
 	    OAuth 2.0 scope-token values.
           </t>
 	  <t>
-	    Added the <spanx style="verb">NA</spanx> (not applicable)
+	    Added the <spanx style="verb">N_A</spanx> (not applicable)
 	    OAuth Access Token Type definition for use in contexts in which
 	    the token exchange syntax requires a <spanx style="verb">token_type</spanx>
 	    value, but in which the token being issued is not an access token.
