@@ -1136,11 +1136,11 @@
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
  &audience=urn%3Aexample%3Acooperation-context
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
-   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5
-   uZXQiLCJleHAiOjE0NDE5MTA2MDAsIm5iZiI6MTQ0MTkwOTAwMCwic3ViIjoiYmNAZ
-   XhhbXBsZS5uZXQiLCJzY3AiOlsib3JkZXJzIiwicHJvZmlsZSIsImhpc3RvcnkiXX0
-   .F1EZzN9j3LwyrLkDD8pjR7fzHqdYl1ly-jEILfmgKY_0hNuT3_fmUChu9oQdBNjHj
-   wu58iLSmagZl-5_9-ilzw
+   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
+   uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTA2MDAsIm5iZiI6MTQ0MTkwOTAwMCwic
+   3ViIjoiYmNAZXhhbXBsZS5uZXQiLCJzY3AiOlsib3JkZXJzIiwicHJvZmlsZSIsImh
+   pc3RvcnkiXX0.JDe7fZ267iIRXwbFmOugyCt5dmGoy6EeuzNQ3MqDek5cCUlyPhQC6
+   cz9laKjK1bnjMQbLJqWix6ZdBI0isjsTA
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
     </figure>
@@ -1165,7 +1165,7 @@
       <artwork><![CDATA[
   {
     "aud":"https://as.example.com",
-    "iss":"https://client.example.net",
+    "iss":"https://original-issuer.example.net",
     "exp":1441910600,
     "nbf":1441909000,
     "sub":"bc@example.net",
@@ -1197,7 +1197,7 @@
     TugbfEvgGY2gaGBmMyj9BepZSECCBE9j9ogqZv2qx6VQQPrbT1k7vBYGLNMOkkpmm
     JkxZDS0YV7g",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"N_A",
+  "token_type":"Bearer",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1259,17 +1259,17 @@
  &audience=urn%3Aexample%3Acooperation-context
  &want_composite=true
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
-   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5
-   uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjcCI6WyJzdGF0dXMiLCJmZWVkIl0sInN1Y
-   iI6InVzZXJAZXhhbXBsZS5uZXQiLCJtYXlfYWN0Ijp7InN1YiI6ImFkbWluQGV4YW1
-   wbGUubmV0In19.cklRpQMYzs9AYoJ3DMht1OnMhAF_0YeQgV35rp7J7ErkvnPm1gr_
-   OeQD1wTbnbburbyC7nwKdK5Jrn31aQPxUg
+   zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
+   uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjcCI6WyJzdGF0dXMiLCJmZ
+   WVkIl0sInN1YiI6InVzZXJAZXhhbXBsZS5uZXQiLCJtYXlfYWN0Ijp7InN1YiI6ImF
+   kbWluQGV4YW1wbGUubmV0In19.ut0Ll7wm920VzRvuLGLFoPJLeO5DDElxsax1L_xK
+   Um2eooiNSfuif-OGa2382hPyFYnddKIa0wmDhQksW018Rw
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
  &actor_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwczo
-   vL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZS5uZ
-   XQiLCJleHAiOjE0NDE5MTAwNjAsInN1YiI6ImFkbWluQGV4YW1wbGUubmV0In0.X15
-   8zUsO55Fo0humOUCUCy582BQRAWbMsIKbxT1mJRrQrk2cpU6r6CWeI4ukQoQRe6RTr
-   Esk4wX2lMf8sELxaA
+   vL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXIuZ
+   XhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTAwNjAsInN1YiI6ImFkbWluQGV4YW1wbGU
+   ubmV0In0.7YQ-3zPfhUvzje5oqw8COCvN5uP6NsKik9CVV6cAOf4QKgM-tKfiOwcgZ
+   oUuDL2tEs6tqPlcBlMjiSzEjm3yBg
  &actor_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
       </figure>
@@ -1296,7 +1296,7 @@
         <artwork><![CDATA[
   {
     "aud":"https://as.example.com",
-    "iss":"https://client.example.net",
+    "iss":"https://original-issuer.example.net",
     "exp":1441910060,
     "scp":["status","feed"],
     "sub":"user@example.net",
@@ -1323,7 +1323,7 @@
         <artwork><![CDATA[
   {
     "aud":"https://as.example.com",
-    "iss":"https://client.example.net",
+    "iss":"https://original-issuer.example.net",
     "exp":1441910060,
     "sub":"admin@example.net"
   }
@@ -1353,7 +1353,7 @@
     BleGFtcGxlLm5ldCJ9fQ._qjM7Ij_HcrC78omT4jiZTFJOuzsAj1wPo31ymQS-Suq
     r64S1jCp6pfQR-in_OOAosAGamEg4jyPsht6kMAiYA",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"N_A",
+  "token_type":"Bearer",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1633,7 +1633,7 @@ public class TokenExExamplesTest
 
 
         System.out.println("\n\n\n\nimpersonation-example");
-        System.out.println("\n dot net:::::");
+        System.out.println("\n subject :::::");
         PublicJsonWebKey dotNetKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"16\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"N_MqlYd_Iq0rfzTqXAX7TUC0r7fQSp3YQKh42tn7uSc\",\"y\":\"9tGuwMFkHYWPqkLa51f8GazZNQqdgMOVvJEd6fJ18PI\",\"crv\":\"P-256\",\"d\":\"cZ_4DqRSAWMMErQbKv6dCYqI9G1pi6lxvlvHU152Uts\"}");
         System.out.println(dotNetKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
 
@@ -1646,8 +1646,8 @@ public class TokenExExamplesTest
 
         claims = new JwtClaims();
         claims.setAudience(asDotComUri);
-        final String clientNetUri = "https://client.example.net";
-        claims.setIssuer(clientNetUri);
+        String originalIssuerDotNetUri = "https://original-issuer.example.net";
+        claims.setIssuer(originalIssuerDotNetUri);
         claims.setExpirationTime(exp);
         claims.setNotBefore(nbf);
         claims.setSubject("bc@example.net");
@@ -1659,10 +1659,10 @@ public class TokenExExamplesTest
         jws.setKey(dotNetKey.getPrivateKey());
         String payload = claims.toJson();
         jws.setPayload(payload);
-        System.out.println(payload);
         System.out.println("sub token: " + jws.getCompactSerialization());
+        System.out.println("sub token claims: " + payload);
 
-        System.out.println("\n dot com:::::");
+        System.out.println("\n issued :::::");
         PublicJsonWebKey dotComKey = PublicJsonWebKey.Factory.newPublicJwk("{\"kty\":\"EC\",\"kid\":\"72\",\"use\":\"sig\",\"alg\":\"ES256\",\"x\":\"472aI8TvDdm2qfBRpXYw0uZ7feumuQOM-RPRkkTukSo\",\"y\":\"VNNStdPhuxY6q7XfVIeYSW7xh_a4z5W2MCtNmQDcILc\",\"crv\":\"P-256\",\"d\":\"dtJiut8QBJxACG6fcX8NYnzIsAN1muCJvaMiLSrOjIc\"}");
         System.out.println(dotComKey.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
 
@@ -1684,12 +1684,12 @@ public class TokenExExamplesTest
         jws.setKey(dotComKey.getPrivateKey());
         payload = claims.toJson();
         jws.setPayload(payload);
-        System.out.println(payload);
         System.out.println("issued token: " + jws.getCompactSerialization());
+        System.out.println("issued token claims: " + payload);
 
 
         System.out.println("\n\n\ndelegation-example");
-        System.out.println("\n dot net:::::");
+        System.out.println("\n :::::");
 
 
         iat = NumericDate.fromSeconds(1441910000);
@@ -1701,7 +1701,7 @@ public class TokenExExamplesTest
 
         claims = new JwtClaims();
         claims.setAudience(asDotComUri);
-        claims.setIssuer(clientNetUri);
+        claims.setIssuer(originalIssuerDotNetUri);
         claims.setExpirationTime(exp);
         claims.setStringListClaim("scp", "status", "feed");
         String sub = "user@example.net";
@@ -1716,14 +1716,14 @@ public class TokenExExamplesTest
         jws.setKey(dotNetKey.getPrivateKey());
         payload = claims.toJson();
         jws.setPayload(payload);
-        System.out.println(payload);
         System.out.println("sub token: " + jws.getCompactSerialization());
+        System.out.println("sub token claims: " + payload);
 
 
 
         claims = new JwtClaims();
         claims.setAudience(asDotComUri);
-        claims.setIssuer(clientNetUri);
+        claims.setIssuer(originalIssuerDotNetUri);
         claims.setExpirationTime(exp);
         claims.setSubject(admin);
 
@@ -1733,8 +1733,8 @@ public class TokenExExamplesTest
         jws.setKey(dotNetKey.getPrivateKey());
         payload = claims.toJson();
         jws.setPayload(payload);
-        System.out.println(payload);
-        System.out.println("del token: " + jws.getCompactSerialization());
+        System.out.println("actor token: " + jws.getCompactSerialization());
+        System.out.println("actor token claims: " + payload);
 
         iat = NumericDate.fromSeconds(1441910010);
         System.out.println(iat);
@@ -1758,9 +1758,8 @@ public class TokenExExamplesTest
         jws.setKey(dotComKey.getPrivateKey());
         payload = claims.toJson();
         jws.setPayload(payload);
-        System.out.println(payload);
         System.out.println("issued token: " + jws.getCompactSerialization());
+        System.out.println("issued token claims: " + payload);
     }
 }
-
 -->
