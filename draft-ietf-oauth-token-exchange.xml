@@ -13,7 +13,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc category="std" docName="draft-ietf-oauth-token-exchange-03"
+<rfc category="std" docName="draft-ietf-oauth-token-exchange-04"
      ipr="trust200902">
   <front>
     <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange: An STS for the REST of Us</title>
@@ -1420,11 +1420,14 @@
       <t>
 	Caleb Baker,
 	William Denniss,
+  Vladimir Dzhuvinov,
 	Phil Hunt,
 	Jason Keglovitz,
+  Nov Matake,
 	Matt Miller,
 	Matthew Perry,
 	Justin Richer,
+  Rifaat Shekh-Yusef,
 	Scott Tomilson,
 	and
         Hannes Tschofenig.
@@ -1478,6 +1481,27 @@
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
+
+      <t>
+  -04
+  <list style='symbols'>
+  <t>
+    Clarify that "resource" and "audience" request parameters can be used at the same
+    time (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
+  </t>
+  <t>
+    Clarification on subject/actor token validity after exchange and explain a
+    bit more about recommendation to not issue refresh tokens
+    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15318.html).
+  </t>
+  <t>
+    Update examples in Appendix to use an issuer value that doesn't imply
+    the client issued and signed the tokens and use Bearer in the responses
+    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
+  </t>
+  </list>
+      </t>
+
       <t>
         -03
         <list style='symbols'>
