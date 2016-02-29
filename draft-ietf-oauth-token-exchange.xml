@@ -291,6 +291,8 @@
     might be used as <spanx style="verb">audience</spanx> parameter values.
     Multiple <spanx style="verb">audience</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple audiences listed.
+    The <spanx style="verb">audience</spanx> and <spanx style="verb">resource</spanx> parameters may
+    be used together to indicate multiple target services with a mix of logical names and physical locations.
   </t>
 
   <t hangText="scope">
