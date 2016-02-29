@@ -362,6 +362,11 @@
   </t>
 </list>
 </t>
+<t>
+  In the absence of one-time-use or other semantics specific to the token type, the general act of doing
+  a token exchange has no impact on the validity of the subject token or actor token.
+
+</t>
 
     </section>
 
@@ -458,7 +463,13 @@
   NOT RECOMMENDED.
   Refresh tokens will typically not be issued in response to
   <spanx style="verb">urn:ietf:params:oauth:grant-type:token-exchange</spanx>
-  grant type requests. Profiles or deployments of this specification that do
+  grant type requests.
+  Typically a token exchange is done to exchange one temporary credential (the subject_token
+  sent in the request) for a different temporary credential (the issued token) that can be
+  used in some other context. Issuing a refresh token would add an additional credential
+  that likely has a much longer lifetime, which
+  undermines the typical model of swapping temporary credentials.
+  Profiles or deployments of this specification that do
   issue refresh tokens SHOULD clearly document the conditions and reasons for doing so.
 </t>
 
