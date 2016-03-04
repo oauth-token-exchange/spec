@@ -627,6 +627,9 @@
   that the token is an OAuth 2.0 access token or refresh token, respectively.
   The value <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> defined in
   Section 9 of <xref target="JWT"/> indicates that the token is a JWT.
+  This specification also defines the token type identifier
+  <spanx style="verb">urn:ietf:params:oauth:token-type:id_token</spanx> to indicate
+  that the token is an ID Token, as defined in Section 2 of <xref target="OpenID.Core"/>.
   Other URIs to indicate other token types MAY be used.
 </t>
    </section>
@@ -824,7 +827,14 @@
 	      <t>Change controller: IESG</t>
 	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
 	    </list>
-
+	  </t>
+	  <t>
+	    <list style="symbols">
+	      <t>URN: urn:ietf:params:oauth:token-type:id_token</t>
+	      <t>Common Name: Token Type URI for an ID Token</t>
+	      <t>Change controller: IESG</t>
+	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
+	    </list>
 	  </t>
 	  <?rfc subcompact="no"?>
 
@@ -1482,23 +1492,28 @@
       </t>
 
       <t>
-  -04
-  <list style='symbols'>
-  <t>
-    Clarify that "resource" and "audience" request parameters can be used at the same
-    time (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
-  </t>
-  <t>
-    Clarification on subject/actor token validity after exchange and explain a
-    bit more about recommendation to not issue refresh tokens
-    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15318.html).
-  </t>
-  <t>
-    Update examples in Appendix to use an issuer value that doesn't imply
-    the client issued and signed the tokens and use Bearer in the responses
-    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
-  </t>
-  </list>
+	-04
+	<list style='symbols'>
+	  <t>
+	    Clarified that the "resource" and "audience" request parameters can be used at the same
+	    time (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
+	  </t>
+	  <t>
+	    Clarified subject/actor token validity after token exchange and explained a
+	    bit more about the recommendation to not issue refresh tokens
+	    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15318.html).
+	  </t>
+	  <t>
+	    Updated the examples appendix to use an issuer value that doesn't imply
+	    that the client issued and signed the tokens and used "Bearer" in a response
+	    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
+	  </t>
+	  <t>
+	    Defined and registered urn:ietf:params:oauth:token-type:id_token,
+	    since some use cases perform token exchanges for ID Tokens
+	    and no URI to indicate that a token is an ID Token had previously been defined.
+	  </t>
+	</list>
       </t>
 
       <t>
