@@ -13,7 +13,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc category="std" docName="draft-ietf-oauth-token-exchange-04"
+<rfc category="std" docName="draft-ietf-oauth-token-exchange-05"
      ipr="trust200902">
   <front>
     <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange: An STS for the REST of Us</title>
