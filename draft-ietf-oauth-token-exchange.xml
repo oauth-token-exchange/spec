@@ -1188,9 +1188,8 @@
 <t>
   The <spanx style="verb">access_token</spanx> parameter of the token exchange
   response shown below contains the new token that the client requested.
-  The other parameters of the response indicate that the token is a JWT
-  that expires in an hour and that the access token type is not applicable
-  since the issued token is not an access token.
+  The other parameters of the response indicate that the token is a bearer access token
+  that expires in an hour.
 </t>
     <figure title="Token Exchange Response" anchor="ImpersonationResponseEx">
       <artwork><![CDATA[
@@ -1205,7 +1204,8 @@
     XQiLCJzY3AiOlsib3JkZXJzIiwiaGlzdG9yeSIsInByb2ZpbGUiXX0.YQHuLmI1YD
     TugbfEvgGY2gaGBmMyj9BepZSECCBE9j9ogqZv2qx6VQQPrbT1k7vBYGLNMOkkpmm
     JkxZDS0YV7g",
-  "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
+  "issued_token_type":
+    "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
   "expires_in":3600
  }
@@ -1362,7 +1362,7 @@
     BleGFtcGxlLm5ldCJ9fQ._qjM7Ij_HcrC78omT4jiZTFJOuzsAj1wPo31ymQS-Suq
     r64S1jCp6pfQR-in_OOAosAGamEg4jyPsht6kMAiYA",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
-  "token_type":"Bearer",
+  "token_type":"N_A",
   "expires_in":3600
  }
 ]]></artwork>
@@ -1504,9 +1504,10 @@
 	    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15318.html).
 	  </t>
 	  <t>
-	    Updated the examples appendix to use an issuer value that doesn't imply
-	    that the client issued and signed the tokens and used "Bearer" in a response
-	    (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
+      Updated the examples appendix to use an issuer value that doesn't imply
+      that the client issued and signed the tokens and used "Bearer" and
+      "urn:ietf:params:oauth:token-type:access_token" in one of the responses
+      (via http://www.ietf.org/mail-archive/web/oauth/current/msg15335.html).
 	  </t>
 	  <t>
 	    Defined and registered urn:ietf:params:oauth:token-type:id_token,
