@@ -272,7 +272,7 @@
     The authorization server will typically have the capability to map from a resource URI value to
     an appropriate policy. The value of the <spanx style="verb">resource</spanx> parameter MUST be an
     absolute URI, as specified by Section 4.3 of <xref target="RFC3986"/>,
-    which MAY include a query component and MUST NOT include a fragment component.
+    which MAY include a query component and MUST NOT include a fragment component.   <!--todo maybe not query here similar to https://tools.ietf.org/html/draft-campbell-oauth-resource-indicators-01#section-2...-->
     Multiple <spanx style="verb">resource</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple resources listed.
   </t>
@@ -569,10 +569,10 @@
  {
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJo
     dHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV
-    4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsIm
-    F6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJhcGkiX
-    X0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDaVoXIQ
-    e_HkTVdljIzavVlPT60_b_9pDQ",
+    4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsIn
+    N1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NwIjpbImFwaSJdfQ.MXgnpvPMo0nhce
+    PwnQbunD2gw_pDyCFA-Saobl6gyLAdyPbaALFuAOyFc4XTWaPEnHV_LGmXklSTp
+    z0yC7hlSQ",
   "issued_token_type":
       "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -593,9 +593,9 @@
  Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQ
     iOiJodHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2
     FzLmV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1M
-    zMsImF6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJh
-    cGkiXX0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDa
-    VoXIQe_HkTVdljIzavVlPT60_b_9pDQ
+    zMsInN1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NwIjpbImFwaSJdfQ.MXgnpvPMo
+    0nhcePwnQbunD2gw_pDyCFA-Saobl6gyLAdyPbaALFuAOyFc4XTWaPEnHV_LGmX
+    klSTpz0yC7hlSQ
 ]]></artwork>
       </figure>
 
@@ -1659,7 +1659,6 @@ public class TokenExExamplesTest
         claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setIssuedAt(iat);
-        claims.setStringClaim("azp", "rs08");
         claims.setSubject("bc@example.com");
         claims.setStringListClaim("scp", "api");
 
