@@ -1512,6 +1512,9 @@
   <t>
     Tighten resource parameter definition a bit so as to disallow both fragment and query components.
   </t>
+  <t>
+    Close out (remove) some of the Open Issues bullets that have been resolved.
+  </t>
 </list>
       </t>
 
