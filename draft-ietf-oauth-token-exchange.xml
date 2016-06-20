@@ -1482,10 +1482,6 @@
       the supporting code.
 	  </t>
 	  <t>
-	    Provide a way to include supplementary claims or information in the request that would/could potentially be included in the
-	    issued token. There are real use cases for this but we would need to work through what it would look like.
-	  </t>
-	  <t>
 	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
 	    Of course, the specifications defining these kinds of tokens need to do so
 	    first before there is much we can do in this specification in this regard.
