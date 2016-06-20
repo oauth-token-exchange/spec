@@ -272,7 +272,7 @@
     The authorization server will typically have the capability to map from a resource URI value to
     an appropriate policy. The value of the <spanx style="verb">resource</spanx> parameter MUST be an
     absolute URI, as specified by Section 4.3 of <xref target="RFC3986"/>,
-    which MAY include a query component and MUST NOT include a fragment component.   <!--todo maybe not query here similar to https://tools.ietf.org/html/draft-campbell-oauth-resource-indicators-01#section-2...-->
+    which MUST NOT include a query or fragment component.
     Multiple <spanx style="verb">resource</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple resources listed.
   </t>
@@ -1489,6 +1489,15 @@
       <?rfc subcompact="yes"?>
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+
+      <t>
+-05
+<list style='symbols'>
+  <t>
+    Tighten resource parameter definition a bit so as to disallow both fragment and query components.
+  </t>
+</list>
       </t>
 
       <t>
