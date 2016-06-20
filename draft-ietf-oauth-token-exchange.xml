@@ -632,6 +632,20 @@
   that the token is an ID Token, as defined in Section 2 of <xref target="OpenID.Core"/>.
   Other URIs to indicate other token types MAY be used.
 </t>
+<t>
+  The distinction between an access token and a JWT is subtle and not perfectly clean.
+  An access token represents a delegated authorization decision, whereas JWT is a token format.
+  An access token can be formatted as a JWT but doesn't necessarily have to be. And a
+  JWT might well be an access token but not all JWTs are access tokens.
+
+  The intent of this specification is that <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
+  be an indicator that the token is a typical OAuth access token issued by the authorization server in question, opaque to the client,
+  and usable the same manner as any other access token obtained from that authorization server
+  (it could well be a JWT but the client isn't and needn't be aware of that fact).
+  Whereas <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> is to indicate specifically that a JWT is
+  being requested or sent (perhaps in a cross-domain use-case where the JWT is used as an authorization grant to
+  obtain an access token from a different authorization server as is facilitated by <xref target="RFC7523"/>).
+</t>
    </section>
 
     <section title="JSON Web Token Claims" anchor="JWTClaims">
@@ -1432,6 +1446,7 @@
   Vladimir Dzhuvinov,
 	Phil Hunt,
 	Jason Keglovitz,
+  Adam Lewis,
   Nov Matake,
 	Matt Miller,
 	Matthew Perry,
@@ -1494,6 +1509,9 @@
       <t>
 -05
 <list style='symbols'>
+  <t>
+    Add clarifying text about the distinction between JWT and access token URIs.
+  </t>
   <t>
     Tighten resource parameter definition a bit so as to disallow both fragment and query components.
   </t>
