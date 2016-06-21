@@ -758,7 +758,32 @@
     </figure>
   </section>
 
-  <section title='"may_act" (May Act For) Claim' anchor="may_act">
+  <section title='"cid" (Client Identifier) Claim' anchor="cid">
+    <t>
+      The <spanx style="verb">cid</spanx> claim carries the
+      client identifier of the <xref target="RFC6749">OAuth 2.0</xref> client that
+      requested the token.
+    </t>
+
+    <figure title="Client Identifier Claim" anchor="cid-ex">
+      <preamble>
+        The following example illustrates the <spanx style="verb">cid</spanx> claim within a JWT Claims Set
+        indicating an OAuth 2.0 client with "s6BhdRkqt3" as its identifier.
+      </preamble>
+      <artwork><![CDATA[
+ {
+   "aud":"https://consumer.example.com",
+   "iss":"https://issuer.example.com",
+   "exp":1443904177,
+   "sub":"user@example.com",
+   "cid":"s6BhdRkqt3"
+ }
+]]></artwork>
+        </figure>
+  </section>
+
+
+      <section title='"may_act" (May Act For) Claim' anchor="may_act">
     <t>
       The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to
       become the actor and act on behalf of another party.
@@ -999,6 +1024,14 @@
 	      <t>Specification Document(s): <xref target="scopes"/> of [[ this specification ]]</t>
 	    </list>
 	  </t>
+    <t>
+      <list style='symbols'>
+        <t>Claim Name: <spanx style="verb">cid</spanx></t>
+        <t>Claim Description: Client Identifier</t>
+        <t>Change Controller: IESG</t>
+        <t>Specification Document(s): <xref target="cid"/> of [[ this specification ]]</t>
+      </list>
+    </t>
     <t>
       <list style='symbols'>
         <t>Claim Name: <spanx style="verb">may_act</spanx></t>
@@ -1486,13 +1519,6 @@
 	    Of course, the specifications defining these kinds of tokens need to do so
 	    first before there is much we can do in this specification in this regard.
 	  </t>
-	  <t>
-	    It seems there may be cases in which it would be desirable for
-	    the authenticated client to be somehow represented in the issued token,
-	    sometimes in addition to the actor, which can already be represented
-	    using the <spanx style="verb">act</spanx> claim.
-	    Perhaps with a <spanx style="verb">client_id</spanx> claim?
-	  </t>
 	</list>
       </t>
     </section>
@@ -1506,6 +1532,10 @@
       <t>
 -05
 <list style='symbols'>
+  <t>
+    Defined the JWT claim <spanx style="verb">cid</spanx> to express
+    the OAuth 2.0 client identifier of the client that requested the token.
+  </t>
   <t>
     Add clarifying text about the distinction between JWT and access token URIs.
   </t>
