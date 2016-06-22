@@ -649,12 +649,12 @@
 </t>
    </section>
 
-    <section title="JSON Web Token Claims" anchor="JWTClaims">
+    <section title="JSON Web Token Claims and Introspection Response Parameters" anchor="JWTClaims">
  <t>
    It is useful to have defined mechanisms to express delegation within a token as well as to express
    authorization to delegate or impersonate. Although the token exchange protocol described
    herein can be used with any type of token, this section defines claims to express such
-   semantics specifically for JWTs.
+   semantics specifically for JWTs and in an <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> response.
    Similar definitions for other types of tokens are possible but
    beyond the scope of this specification.
  </t>
@@ -731,6 +731,10 @@
  }
 ]]></artwork>
     </figure>
+    <t>
+      When included as a top-level member of an OAuth token introspection response, <spanx style="verb">act</spanx>
+      has the same semantics and format as the the claim of the same name.
+    </t>
   </section>
   <section title='"scp" (Scopes) Claim' anchor="scopes">
     <t>
@@ -826,6 +830,10 @@
  }
 ]]></artwork>
     </figure>
+    <t>
+      When included as a top-level member of an OAuth token introspection response, <spanx style="verb">may_act</spanx>
+      has the same semantics and format as the the claim of the same name.
+    </t>
   </section>
 
     </section>
@@ -1045,6 +1053,40 @@
 	</section>
       </section>
 
+      <section anchor="IntrospectionReg" title="OAuth Token Introspection Response Registration">
+
+        <t>
+          This specification registers the following values
+          in the IANA "OAuth Token Introspection Response" registry
+          <xref target="IANA.OAuth.Parameters"/>
+          established by <xref target="RFC7662"/>.
+        </t>
+
+        <section anchor='IntrospectionContents' title='Registry Contents'>
+
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style='symbols'>
+              <t>Claim Name: <spanx style="verb">act</spanx></t>
+              <t>Claim Description: Actor</t>
+              <t>Change Controller: IESG</t>
+              <t>Specification Document(s): <xref target="actor"/> of [[ this specification ]]</t>
+            </list>
+          </t>
+          <t>
+            <list style='symbols'>
+              <t>Claim Name: <spanx style="verb">may_act</spanx></t>
+              <t>Claim Description: May Act For</t>
+              <t>Change Controller: IESG</t>
+              <t>Specification Document(s): <xref target="may_act"/> of [[ this specification ]]</t>
+            </list>
+          </t>
+          <?rfc subcompact="no"?>
+
+        </section>
+      </section>
+
+
     </section>
 
     <section anchor="Security" title="Security Considerations">
@@ -1070,6 +1112,7 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7662.xml' ?>
 
 
       <reference anchor="JWT" target="http://tools.ietf.org/html/rfc7519">
@@ -1476,6 +1519,7 @@
       </t>
       <t>
 	Caleb Baker,
+  Thomas Broyer,
 	William Denniss,
   Vladimir Dzhuvinov,
 	Phil Hunt,
@@ -1535,6 +1579,11 @@
   <t>
     Defined the JWT claim <spanx style="verb">cid</spanx> to express
     the OAuth 2.0 client identifier of the client that requested the token.
+  </t>
+  <t>
+    Defined and requested registration for <spanx style="verb">act</spanx> and
+    <spanx style="verb">may_act</spanx> as Token introspection response parameters
+    (in addition to being JWT claims).
   </t>
   <t>
     Add clarifying text about the distinction between JWT and access token URIs.
