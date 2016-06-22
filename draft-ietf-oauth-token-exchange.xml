@@ -760,6 +760,10 @@
  }
 ]]></artwork>
     </figure>
+    <t>
+      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> defines the <spanx style="verb">scope</spanx>
+      parameter to convey the scopes associated with the token.
+    </t>
   </section>
 
   <section title='"cid" (Client Identifier) Claim' anchor="cid">
@@ -784,6 +788,10 @@
  }
 ]]></artwork>
         </figure>
+    <t>
+      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> defines the <spanx style="verb">client_id</spanx>
+      parameter as the client identifier for the OAuth 2.0 client that requested the token.
+    </t>
   </section>
 
 
