@@ -1549,24 +1549,6 @@
 	The following decisions need to be made and updates to this spec performed:
 	<list style="symbols">
 	  <t>
-      Should there be a way to use short names for some common token type identifiers?
-      URIs are necessary in the general case for extensibility and vendor/deployment specific types.
-      But short names like <spanx style="verb">access_token</spanx> and <spanx style="verb">jwt</spanx>
-      are aesthetically appealing and slightly more efficient in terms of bytes on the wire and url-encoding.
-      There seemed to be rough consensus in Prague ('No objection to use the proposed mechanism for a default prefix'
-      from https://www.ietf.org/proceedings/93/minutes/minutes-93-oauth) for supporting a shorthand for
-      commonly used types - i.e. when the value does not contain a ":" character, the value would
-      be treated as though <spanx style="verb">urn:ietf:params:oauth:token-type:</spanx>
-      were prepended to it. So, for example, the value <spanx style="verb">jwt</spanx>
-      for <spanx style="verb">requested_token_type</spanx> would be semantically equivalent
-      to <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> and the value
-      <spanx style="verb">access_token</spanx> would be equivalent to
-      <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>.
-      However, it was a fairly brief discussion in Prague and it has since been
-      suggested that making participants handle both syntaxes will unnecessarily complicate
-      the supporting code.
-	  </t>
-	  <t>
 	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
 	    Of course, the specifications defining these kinds of tokens need to do so
 	    first before there is much we can do in this specification in this regard.
