@@ -460,17 +460,18 @@
 
 <t hangText="refresh_token">
   <vspace/>
-  NOT RECOMMENDED.
-  Refresh tokens will typically not be issued in response to
+  OPTIONAL.
+  A refresh token will typically not be issued when the the exchange is of one temporary
+  credential (the subject_token) for a different temporary credential (the issued token)
+  for use in some other context.
+  A refresh token can be issued in cases where the client of the token exchange needs the
+  ability to access a resource even when the original credential is no longer valid
+  (e.g. user-not-present or offline scenarios where there is no longer any user entertaining
+  an active session with the client).
+  Profiles or deployments of this specification should clearly document the conditions
+  under which a client should expect a refresh token in response to
   <spanx style="verb">urn:ietf:params:oauth:grant-type:token-exchange</spanx>
   grant type requests.
-  Typically, a token exchange is done to exchange one temporary credential (the subject_token
-  sent in the request) for a different temporary credential (the issued token) that can be
-  used in some other context. Issuing a refresh token would add an additional credential
-  that likely has a much longer lifetime, which
-  undermines the typical model of swapping temporary credentials.
-  Profiles or deployments of this specification that do
-  issue refresh tokens SHOULD clearly document the conditions and reasons for doing so.
 </t>
 
         </list>
@@ -1527,6 +1528,7 @@
       </t>
       <t>
 	Caleb Baker,
+  Vittorio Bertocci,
   Thomas Broyer,
 	William Denniss,
   Vladimir Dzhuvinov,
@@ -1574,6 +1576,10 @@
     Defined and requested registration for <spanx style="verb">act</spanx> and
     <spanx style="verb">may_act</spanx> as Token introspection response parameters
     (in addition to being JWT claims).
+  </t>
+  <t>
+    Loosen up the language about refresh_token in the response to OPTIONAL from NOT RECOMMENDED
+    based on feedback form real world deployment experience.
   </t>
   <t>
     Add clarifying text about the distinction between JWT and access token URIs.
