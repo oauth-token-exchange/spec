@@ -635,7 +635,7 @@
   Other URIs to indicate other token types MAY be used.
 </t>
 <t>
-  The distinction between an access token and a JWT is subtle and not perfectly clean.
+  The distinction between an access token and a JWT is subtle.
   An access token represents a delegated authorization decision, whereas JWT is a token format.
   An access token can be formatted as a JWT but doesn't necessarily have to be. And a
   JWT might well be an access token but not all JWTs are access tokens.
