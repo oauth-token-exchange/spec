@@ -273,7 +273,7 @@
     The authorization server will typically have the capability to map from a resource URI value to
     an appropriate policy. The value of the <spanx style="verb">resource</spanx> parameter MUST be an
     absolute URI, as specified by Section 4.3 of <xref target="RFC3986"/>,
-    which MUST NOT include a query or fragment component.
+    which MAY include a query component and MUST NOT include a fragment component.
     Multiple <spanx style="verb">resource</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple resources listed.
   </t>
@@ -1583,9 +1583,6 @@
   </t>
   <t>
     Add clarifying text about the distinction between JWT and access token URIs.
-  </t>
-  <t>
-    Tighten resource parameter definition a bit so as to disallow both fragment and query components.
   </t>
   <t>
     Close out (remove) some of the Open Issues bullets that have been resolved.
