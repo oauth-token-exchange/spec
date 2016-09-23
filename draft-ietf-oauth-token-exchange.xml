@@ -307,8 +307,6 @@
     <vspace/>
     OPTIONAL.
     An identifier, as described in <xref target="TokenTypeIdentifiers"/>, for the type of the requested security token.
-    For example, a JWT can be requested with the identifier
-    <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>.
     If the requested type is unspecified, the issued token type is at
     the discretion of the authorization server and may be dictated by
     knowledge of the requirements of the service or resource
@@ -329,11 +327,7 @@
     <vspace/>
     REQUIRED.
     An identifier, as described in <xref target="TokenTypeIdentifiers"/>, that indicates the type of the security token in
-    the <spanx style="verb">subject_token</spanx> parameter. For example,
-    a value of <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>,
-    would indicate that the token is a JWT and a value of
-    <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
-    would indicate that the token is an OAuth access token.
+    the <spanx style="verb">subject_token</spanx> parameter.
   </t>
 
   <t hangText="actor_token">
@@ -408,9 +402,6 @@
   <vspace/>
   REQUIRED.  An identifier, as described in <xref target="TokenTypeIdentifiers"/>,
   for the representation of the issued security token.
-  For example, a value of <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
-  indicates that the issued token is an access token and a value of
-  <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> indicates that it is a JWT.
 </t>
 
 <t hangText="token_type">
@@ -424,13 +415,6 @@
   as specified in <xref target="RFC6750"/>, indicates that
   the security token is a bearer token and the client can simply present it as is without any
   additional proof of eligibility beyond the contents of the token itself.
-  <!-- pop-key-distribution is very much in flux and doesn't define the "PoP" identifier
-       used below, other than in examples.  We should not take a dependence on this spec.
-  A value of <spanx style="verb">PoP</spanx>, on the other hand, indicates that use of
-  the token will require demonstrating possession of a cryptographic key associated with the
-  security token (<xref target="I-D.ietf-oauth-pop-key-distribution"/> describes the
-  <spanx style="verb">PoP</spanx> token type).
-  -->
   Note that the meaning of this parameter is different from the meaning of
   the <spanx style="verb">issued_token_type</spanx> parameter,
   which declares the representation of the issued security token;
@@ -616,11 +600,16 @@
     <section anchor="TokenTypeIdentifiers" title="Token Type Identifiers">
 <t>
   Several parameters in this specification utilize an identifier as the value to
-  describe the type of token in question. Specifically, they are the
+  describe the token in question.
+  Specifically, they are the
   <spanx style="verb">requested_token_type</spanx>,
   <spanx style="verb">subject_token_type</spanx>, <spanx style="verb">actor_token_type</spanx>
   parameters of the request and the <spanx style="verb">issued_token_type</spanx> member of the response.
   Token type identifiers are URIs.
+  Token Exchange can work with both tokens issued by other parties and tokens from
+  the given authorization server. For the former the token type identifier indicates
+  the syntax (e.g. JWT or SAML) so the AS can parse it; for the latter it indicates
+  what the AS issued it for (e.g. access_token or refresh_token).
 </t>
 <t>
   This specification defines the token type identifiers
@@ -1570,6 +1559,7 @@
 <list style='symbols'>
   <t>Drop "An STS for the REST of Us" from the title.</t>
   <t>Drop "heavyweight" and "lightweight" from the abstract and introduction.</t>
+  <t>Clarifications on the language around xxxxxx_token_type.</t>
 </list>
       </t>
       <t>
