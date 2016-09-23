@@ -184,13 +184,13 @@
     Delegation semantics are typically expressed in a token by including information about both the
     primary subject of the token as well as the actor to whom that subject has delegated some of its rights.
     Such a token is sometimes referred to as a composite token because it is composed of information
-    about multiple subjects. A client can indicate the desire for a
-    composite token by including a <spanx style="verb">want_composite</spanx> parameter in the request with the value
-    <spanx style="verb">true</spanx>. Typically, in the request, the <spanx style="verb">subject_token</spanx>
+    about multiple subjects. Typically, in the request, the <spanx style="verb">subject_token</spanx>
     represents the identity of the party on
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
     the identity of the party to whom the access rights of the issued token are being delegated.
     A composite token issued by the authorization server will contain information about both parties.
+    When and if a composite token is issued is at the desecration of the authorization server and
+    applicable policy and configuration.
   </t>
   <t>
     The specifics of representing a composite token and even whether or not such a token will be issued depend on the details of the implementation and the kind of token.
@@ -343,17 +343,6 @@
     <spanx style="verb">actor_token</spanx> parameter.
     This is REQUIRED when the <spanx style="verb">actor_token</spanx> parameter
     is present in the request but MUST NOT be included otherwise.
-  </t>
-
-  <t hangText="want_composite">
-    <vspace/>
-    OPTIONAL.
-    When the value of this parameter is <spanx style="verb">true</spanx>, it indicates the client's desire
-    for a composite security token to be issued, which contains claims about both the main subject of the
-    token as well as about the party who is authorized to act on behalf of that subject. Note that this
-    parameter only provides a means for the client to indicate its preference. The authorization server
-    is not required to honor the stated preference and the nature of the tokens it issues are ultimately at
-    its discretion.
   </t>
 </list>
 </t>
@@ -509,7 +498,7 @@
   access token and the value of
   the <spanx style="verb">subject_token_type</spanx> parameter indicates that it is
   an OAuth 2.0 access token.
-  The resource server, acting as the client, uses its identifier and secret to authenticate to
+  The resource server, acting in the roll of the client, uses its identifier and secret to authenticate to
   the authorization server using the HTTP Basic authentication scheme.
   The <spanx style="verb">resource</spanx> parameter indicates the location
   of the backend service, https://backend.example.com/api,
@@ -955,14 +944,6 @@
 	      <t>Specification document(s): <xref target="Request"/> of [[ this specification ]]</t>
 	    </list>
 	  </t>
-    <t>
-      <list style='symbols'>
-        <t>Parameter name: want_composite</t>
-        <t>Parameter usage location: token request</t>
-        <t>Change controller: IESG</t>
-        <t>Specification document(s): <xref target="Request"/> of [[ this specification ]]</t>
-      </list>
-    </t>
 	  <t>
 	    <list style='symbols'>
 	      <t>Parameter name: issued_token_type</t>
@@ -1219,7 +1200,7 @@
 
     <section anchor="ImpersonationRequest" title="Token Exchange Request">
       <t>
-        In the following token exchange request, an anonymous client is requesting a token
+        In the following token exchange request, a client is requesting a token
         with impersonation semantics.
         The client tells the authorization server that it needs a token for use at
         the target service with the logical name
@@ -1340,12 +1321,12 @@
 
     <section anchor="DelegationRequest" title="Token Exchange Request">
       <t>
-        In the following token exchange request, an anonymous client is requesting a token
-        with delegation semantics, which is indicated by the inclusion of the
-        <spanx style="verb">want_composite</spanx> parameter.
+        In the following token exchange request, a client is requesting a token
+        and providing both a <spanx style="verb">subject_token</spanx> and an <spanx style="verb">actor_token</spanx>.
         The client tells the authorization server that it needs a token for use at
         the target service with the logical name
-	<spanx style="verb">urn:example:cooperation-context</spanx>.
+	<spanx style="verb">urn:example:cooperation-context</spanx>. Policy at the
+        authorization server dictates that the issued token be a composite.
       </t>
       <figure anchor="DelegationRequestEx" title="Token Exchange Request">
         <artwork><![CDATA[
@@ -1355,7 +1336,6 @@
 
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
  &audience=urn%3Aexample%3Acooperation-context
- &want_composite=true
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
    zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
    uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjcCI6WyJzdGF0dXMiLCJmZ
@@ -1560,6 +1540,7 @@
   <t>Drop "An STS for the REST of Us" from the title.</t>
   <t>Drop "heavyweight" and "lightweight" from the abstract and introduction.</t>
   <t>Clarifications on the language around xxxxxx_token_type.</t>
+  <t>Remove the want_composite parameter.</t>
 </list>
       </t>
       <t>
