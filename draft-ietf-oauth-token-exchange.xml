@@ -16,7 +16,7 @@
 <rfc category="std" docName="draft-ietf-oauth-token-exchange-06"
      ipr="trust200902">
   <front>
-    <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange: An STS for the REST of Us</title>
+    <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange</title>
 
     <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
       <organization>Microsoft</organization>
@@ -68,7 +68,7 @@
 
     <abstract>
       <t>
-	This specification defines a protocol for a lightweight HTTP- and JSON- based
+	This specification defines a protocol for an HTTP- and JSON- based
 	Security Token Service (STS) by defining how to request and obtain
 	security tokens from OAuth 2.0 authorization servers,
 	including security tokens employing impersonation and delegation.
@@ -97,10 +97,10 @@
   access credentials for resources in heterogeneous environments or across security
   domains.
   Web Service clients have used <xref target="WS-Trust">WS-Trust</xref>
-  as the protocol to interact with an STS for token exchange,
-  however WS-Trust is a fairly heavyweight protocol, which uses XML, SOAP, etc.
-  Whereas, the trend in modern Web development
-  has been towards lightweight services utilizing RESTful patterns and JSON.
+  as the protocol to interact with an STS for token exchange.
+  While WS-Trust
+  uses XML and SOAP, the trend in modern Web development
+  has been towards RESTful patterns and JSON.
   <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
   and <xref target="RFC6750">OAuth 2.0 Bearer Tokens</xref>
   have emerged as popular standards for authorizing and securing access to HTTP and
@@ -108,7 +108,7 @@
   token exchange interactions.
 </t>
 <t>
-  This specification defines a lightweight protocol extending OAuth 2.0 that enables
+  This specification defines a protocol extending OAuth 2.0 that enables
   clients to request and obtain security tokens from authorization servers acting in
   the role of an STS.
   Similar to OAuth 2.0, this specification focuses on client developer simplicity and
@@ -1535,6 +1535,7 @@
 	Phil Hunt,
 	Jason Keglovitz,
   Adam Lewis,
+  James Manger,
   Nov Matake,
 	Matt Miller,
 	Matthew Perry,
@@ -1564,7 +1565,13 @@
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
-
+      <t>
+-06
+<list style='symbols'>
+  <t>Drop "An STS for the REST of Us" from the title.</t>
+  <t>Drop "heavyweight" and "lightweight" from the abstract and introduction.</t>
+</list>
+      </t>
       <t>
 -05
 <list style='symbols'>
