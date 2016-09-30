@@ -143,7 +143,8 @@
   are explicitly out of scope and no requirements are placed on the trust model in
   which an implementation might be deployed. Additional profiles may provide
   more detailed requirements around the specific nature of the parties and trust involved,
-  such as whether signing and/or encryption of tokens is required; however, such details
+  such as whether signing and/or encryption of tokens is needed or if proof-of-possession style
+  tokens will be required or issued; however, such details
   will often be policy decisions made with respect to the specific needs of individual
   deployments and will be configured or implemented accordingly.
 </t>
@@ -1516,19 +1517,6 @@
       </t>
     </section>
 
-    <section anchor="OpenIssues" title="Open Issues">
-      <t>
-	The following decisions need to be made and updates to this spec performed:
-	<list style="symbols">
-	  <t>
-	    Understand and define exactly how the presentation of PoP/non-bearer tokens works.
-	    Of course, the specifications defining these kinds of tokens need to do so
-	    first before there is much we can do in this specification in this regard.
-	  </t>
-	</list>
-      </t>
-    </section>
-
     <section anchor="History" title="Document History">
       <?rfc subcompact="yes"?>
       <t>
@@ -1541,6 +1529,10 @@
   <t>Drop "heavyweight" and "lightweight" from the abstract and introduction.</t>
   <t>Clarifications on the language around xxxxxx_token_type.</t>
   <t>Remove the want_composite parameter.</t>
+  <t>
+    Add a short mention of proof-of-possession style tokens to the introduction
+    and remove the respective open issue.
+  </t>
 </list>
       </t>
       <t>
