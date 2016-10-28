@@ -196,9 +196,9 @@
   <t>
     The specifics of representing a composite token and even whether or not such a token will be issued depend on the details of the implementation and the kind of token.
     The representations of composite tokens that are not JWTs are beyond the scope of this specification.
-    The <xref target="actor"/> request parameter, however, does provide a means
-    for providing information about the desired actor though the representation
-    of a chain of delegation using the JWT <spanx style="verb">act</spanx> claim.
+    The <spanx style="verb">actor_token</spanx> request parameter, however, does provide a means
+    for providing information about the desired actor and the JWT <spanx style="verb">act</spanx> claim
+    can provide a representation of a chain of delegation.
   </t>
       </section>
 
