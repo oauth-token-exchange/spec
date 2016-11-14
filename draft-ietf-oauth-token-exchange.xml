@@ -190,7 +190,7 @@
     behalf of whom the token is being requested while the <spanx style="verb">actor_token</spanx> represents
     the identity of the party to whom the access rights of the issued token are being delegated.
     A composite token issued by the authorization server will contain information about both parties.
-    When and if a composite token is issued is at the desecration of the authorization server and
+    When and if a composite token is issued is at the discretion of the authorization server and
     applicable policy and configuration.
   </t>
   <t>
