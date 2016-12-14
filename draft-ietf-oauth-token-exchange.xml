@@ -13,7 +13,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc category="std" docName="draft-ietf-oauth-token-exchange-06"
+<rfc category="std" docName="draft-ietf-oauth-token-exchange-07"
      ipr="trust200902">
   <front>
     <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange</title>
@@ -1503,6 +1503,7 @@
 	William Denniss,
   Vladimir Dzhuvinov,
 	Phil Hunt,
+  Benjamin Kaduk,
 	Jason Keglovitz,
   Adam Lewis,
   James Manger,
@@ -1521,6 +1522,12 @@
       <?rfc subcompact="yes"?>
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+      <t>
+        -07
+        <list style='symbols'>
+          <t>Fixed typo (desecration -> discretion).</t>
+        </list>
       </t>
       <t>
 -06
