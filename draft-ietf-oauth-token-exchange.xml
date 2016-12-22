@@ -351,6 +351,28 @@
   In the absence of one-time-use or other semantics specific to the token type, the act of performing
   a token exchange has no impact on the validity of the subject token or actor token.
 </t>
+      <section title="Relationship Between Resource, Audience and Scope">
+        <t>
+          When requesting a token the client can indicate the desired target service(s)
+          where it intends to use that token
+          by way of the <spanx style="verb">audience</spanx> and/or <spanx style="verb">resource</spanx>
+          parameters as well as indicating the
+          desired scope of the requested token using the <spanx style="verb">scope</spanx> parameter.
+
+          The semantics of such a request are that the client is asking for a token with the requested
+          scope that is usable at all the requested target services. Effectively the requested access rights of
+          the token are the cartesian product of all the scopes at all the target services.
+        </t>
+        <t>
+          An authorization server may be unwilling or unable to fulfill any token request but the likelihood
+          of unfulfillable request are significantly higher when very broad access rights are being solicited.
+          As such, in the absence of specific knowledge about the relationship of systems in a deployment,
+          clients should exercise discretion in the breadth of the access requested, particularly the
+          number of target services. An authorization server can use the <spanx style="verb">invalid_access_request</spanx>
+          error code, defined in <xref target="ErrorResponse"/>, to inform a client that it requested access to
+          too many target services simultaneously.
+        </t>
+      </section>
 
     </section>
 
@@ -457,9 +479,19 @@
     are invalid for any reason, or are unacceptable based on policy, the authorization server
     MUST construct an error response, as specified in Section 5.2 of <xref target="RFC6749"/>.
     The value of the <spanx style='verb'>error</spanx>
-    parameter MUST be the <spanx style='verb'>invalid_request</spanx> error code. The authorization
+    parameter MUST be the <spanx style='verb'>invalid_request</spanx> error code.
+  </t>
+  <t>
+    If the authorization server is unwilling or unable to issue a token for all the target services
+    indicated by the <spanx style="verb">resource</spanx> or <spanx style="verb">audience</spanx> parameters,
+    the <spanx style="verb">invalid_access_request</spanx> error code MAY be used in the error response.
+  </t>
+  <t>
+    The authorization
     server MAY include additional information regarding the reasons for the error
     using the <spanx style='verb'>error_description</spanx> and/or <spanx style='verb'>error_uri</spanx> parameters.
+  </t>
+  <t>
     Other error codes may also be used, as appropriate.
   </t>
       </section>
@@ -1066,6 +1098,32 @@
         </section>
       </section>
 
+      <section anchor="ErrorReg" title="OAuth Extensions Error Registration">
+
+        <t>
+          This specification registers the following values
+          in the IANA "OAuth Extensions Error" registry
+          <xref target="IANA.OAuth.Parameters"/>
+          established by <xref target="RFC6749"/>.
+        </t>
+
+        <section anchor='ErrorContents' title='Registry Contents'>
+
+          <t>
+            <?rfc subcompact="yes"?>
+            <list style='symbols'>
+              <t>Error Name: <spanx style="verb">invalid_access_request</spanx></t>
+              <t>Error Usage Location: token error response</t>
+              <t>Related Protocol Extension: OAuth 2.0 Token Exchange</t>
+              <t>Change Controller: IETF</t>
+              <t>Specification Document(s): <xref target="ErrorResponse"/> of [[ this specification ]]</t>
+            </list>
+          </t>
+          <?rfc subcompact="no"?>
+
+        </section>
+      </section>
+
 
     </section>
 
@@ -1505,6 +1563,7 @@
 	Phil Hunt,
   Benjamin Kaduk,
 	Jason Keglovitz,
+  Torsten Lodderstedt,
   Adam Lewis,
   James Manger,
   Nov Matake,
@@ -1524,10 +1583,14 @@
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
       <t>
-        -07
-        <list style='symbols'>
-          <t>Fixed typo (desecration -> discretion).</t>
-        </list>
+-07
+<list style='symbols'>
+  <t>Fixed typo (desecration -> discretion).</t>
+  <t>
+    Added an explanation of the relationship between scope, audience and resource in the request
+    and added an "invalid_access_request" error code for too broad of an audience/resource request.
+  </t>
+</list>
       </t>
       <t>
 -06
