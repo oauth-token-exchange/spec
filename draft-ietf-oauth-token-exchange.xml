@@ -355,7 +355,7 @@
         <t>
           When requesting a token the client can indicate the desired target service(s)
           where it intends to use that token
-          by way of the <spanx style="verb">audience</spanx> and/or <spanx style="verb">resource</spanx>
+          by way of the <spanx style="verb">audience</spanx> and <spanx style="verb">resource</spanx>
           parameters as well as indicating the
           desired scope of the requested token using the <spanx style="verb">scope</spanx> parameter.
 
