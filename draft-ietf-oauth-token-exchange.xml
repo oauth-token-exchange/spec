@@ -353,14 +353,14 @@
 </t>
       <section title="Relationship Between Resource, Audience and Scope">
         <t>
-          When requesting a token the client can indicate the desired target service(s)
+          When requesting a token, the client can indicate the desired target service(s)
           where it intends to use that token
           by way of the <spanx style="verb">audience</spanx> and <spanx style="verb">resource</spanx>
-          parameters as well as indicating the
+          parameters, as well as indicating the
           desired scope of the requested token using the <spanx style="verb">scope</spanx> parameter.
 
           The semantics of such a request are that the client is asking for a token with the requested
-          scope that is usable at all the requested target services. Effectively the requested access rights of
+          scope that is usable at all the requested target services. Effectively, the requested access rights of
           the token are the cartesian product of all the scopes at all the target services.
         </t>
         <t>
