@@ -368,7 +368,7 @@
           of an unfulfillable request is significantly higher when very broad access rights are being solicited.
           As such, in the absence of specific knowledge about the relationship of systems in a deployment,
           clients should exercise discretion in the breadth of the access requested, particularly the
-          number of target services. An authorization server can use the <spanx style="verb">invalid_access_request</spanx>
+          number of target services. An authorization server can use the <spanx style="verb">invalid_target</spanx>
           error code, defined in <xref target="ErrorResponse"/>, to inform a client that it requested access to
           too many target services simultaneously.
         </t>
@@ -484,7 +484,7 @@
   <t>
     If the authorization server is unwilling or unable to issue a token for all the target services
     indicated by the <spanx style="verb">resource</spanx> or <spanx style="verb">audience</spanx> parameters,
-    the <spanx style="verb">invalid_access_request</spanx> error code MAY be used in the error response.
+    the <spanx style="verb">invalid_target</spanx> error code MAY be used in the error response.
   </t>
   <t>
     The authorization
@@ -1112,7 +1112,7 @@
           <t>
             <?rfc subcompact="yes"?>
             <list style='symbols'>
-              <t>Error Name: <spanx style="verb">invalid_access_request</spanx></t>
+              <t>Error Name: <spanx style="verb">invalid_target</spanx></t>
               <t>Error Usage Location: token error response</t>
               <t>Related Protocol Extension: OAuth 2.0 Token Exchange</t>
               <t>Change Controller: IETF</t>
@@ -1588,7 +1588,7 @@
   <t>Fixed typo (desecration -> discretion).</t>
   <t>
     Added an explanation of the relationship between scope, audience and resource in the request
-    and added an "invalid_access_request" error code for too broad of an audience/resource request.
+    and added an "invalid_target" error code for too broad of an audience/resource request.
   </t>
 </list>
       </t>
