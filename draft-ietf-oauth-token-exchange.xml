@@ -365,7 +365,7 @@
         </t>
         <t>
           An authorization server may be unwilling or unable to fulfill any token request but the likelihood
-          of unfulfillable request are significantly higher when very broad access rights are being solicited.
+          of an unfulfillable request is significantly higher when very broad access rights are being solicited.
           As such, in the absence of specific knowledge about the relationship of systems in a deployment,
           clients should exercise discretion in the breadth of the access requested, particularly the
           number of target services. An authorization server can use the <spanx style="verb">invalid_access_request</spanx>
