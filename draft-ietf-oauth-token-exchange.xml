@@ -1588,7 +1588,7 @@
   <t>Fixed typo (desecration -> discretion).</t>
   <t>
     Added an explanation of the relationship between scope, audience and resource in the request
-    and added an "invalid_target" error code for too broad of an audience/resource request.
+    and added an "invalid_target" error code enabling the AS to tell the client that the requested audiences/resources were too broad.
   </t>
 </list>
       </t>
