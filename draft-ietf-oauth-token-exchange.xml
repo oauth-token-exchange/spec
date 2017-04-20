@@ -31,7 +31,7 @@
         <email>tonynad@microsoft.com</email>
       </address>
     </author>
-    <author fullname="Brian Campbell" initials="B." surname="Campbell">
+    <author fullname="Brian Campbell" initials="B." surname="Campbell" role="editor">
       <organization>Ping Identity</organization>
       <address><email>brian.d.campbell@gmail.com</email></address>
     </author>
