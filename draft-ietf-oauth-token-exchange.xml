@@ -335,7 +335,7 @@
     <vspace/>
     OPTIONAL.
     A security token that represents
-    the identity of the party that is authorized to use the requested security token and act on behalf of the subject.
+    the identity of the acting party. Typically this will be the party that is authorized to use the requested security token and act on behalf of the subject.
   </t>
 
   <t hangText="actor_token_type">
@@ -1555,6 +1555,14 @@
       <?rfc subcompact="yes"?>
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+      <t>
+  -08
+  <list style='symbols'>
+    <t>Use the bibxml reference for OpenID.Core rather than defining it inline.</t>
+    <t>Added editor role for Campbell.</t>
+    <t>Minor clarification of the text for actor_token.</t>
+  </list>
       </t>
       <t>
 -07
