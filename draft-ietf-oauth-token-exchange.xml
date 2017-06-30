@@ -149,7 +149,7 @@
   deployments and will be configured or implemented accordingly.
 </t>
 <t>
-  The security tokens obtained could be used in a number of contexts,
+  The security tokens obtained may be used in a number of contexts,
   the specifics of which are also beyond the scope of this specification.
 </t>
 
@@ -1559,7 +1559,8 @@
       <t>
   -09
   <list style='symbols'>
-    <t></t>
+    <t>Changed "security tokens obtained could be used in a number of contexts" to
+      "security tokens obtained may be used in a number of contexts" per a WGLC suggestion.</t>
   </list>
       </t>
       <t>
