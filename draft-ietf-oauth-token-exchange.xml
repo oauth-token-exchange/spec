@@ -350,6 +350,8 @@
 <t>
   In the absence of one-time-use or other semantics specific to the token type, the act of performing
   a token exchange has no impact on the validity of the subject token or actor token.
+  Furthermore, the validity of the subject token or actor token have no impact on the
+  validity of the issued token after the exchange has occurred.
 </t>
       <section title="Relationship Between Resource, Audience and Scope">
         <t>
@@ -484,7 +486,7 @@
   <t>
     If the authorization server is unwilling or unable to issue a token for all the target services
     indicated by the <spanx style="verb">resource</spanx> or <spanx style="verb">audience</spanx> parameters,
-    the <spanx style="verb">invalid_target</spanx> error code MAY be used in the error response.
+    the <spanx style="verb">invalid_target</spanx> error code SHOULD be used in the error response.
   </t>
   <t>
     The authorization
@@ -684,9 +686,9 @@
     <t>
       However, claims within the <spanx style="verb">act</spanx> claim pertain only to the identity of the actor
       and are not relevant to the validity of the containing JWT in the same manner as the top-level claims.
-      Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
-      <spanx style="verb">aud</spanx> are not meaningful when used within an <spanx style="verb">act</spanx>
-      claim, and therefore should not be used.
+      Consequently, non-identity claims (e.g. <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>,
+      and <spanx style="verb">aud</spanx>) are not meaningful when used within an
+      <spanx style="verb">act</spanx> claim, and therefore must not be used.
     </t>
 
     <figure title="Actor Claim" anchor="act-ex">
@@ -1142,6 +1144,8 @@
 	the delegated rights can be exercised.
       </t>
     </section>
+
+    <!-- TODO Privacy Considerations -->
   </middle>
 
   <back>
@@ -1561,6 +1565,11 @@
   <list style='symbols'>
     <t>Changed "security tokens obtained could be used in a number of contexts" to
       "security tokens obtained may be used in a number of contexts" per a WGLC suggestion.</t>
+    <t>Clarified that the validity of the subject or actor token have no impact on the validity
+      of the issued token after the exchange has occurred per a WGLC comment.</t>
+    <t>Changed use of invalid_target error code to a SHOULD per a WGLC comment.</t>
+    <t>Clarified text about non-identity claims within the "act" claim being meaningless
+      per a WGLC comment.</t>
   </list>
       </t>
       <t>
