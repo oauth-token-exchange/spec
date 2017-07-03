@@ -1144,8 +1144,13 @@
 	the delegated rights can be exercised.
       </t>
     </section>
-
-    <!-- TODO Privacy Considerations -->
+    <section anchor="Privacy" title="Privacy Considerations">
+      <t>
+        Tokens typically carry personal information and their usage in Token Exchange may reveal details
+        of the target services being accessed. As such, tokens should only be requested and
+        sent according to the privacy policies at the respective organizations.
+      </t>
+    </section>
   </middle>
 
   <back>
@@ -1570,6 +1575,7 @@
     <t>Changed use of invalid_target error code to a SHOULD per a WGLC comment.</t>
     <t>Clarified text about non-identity claims within the "act" claim being meaningless
       per a WGLC comment.</t>
+    <t>Added brief Privacy Considerations section per WGLC comments.</t>
   </list>
       </t>
       <t>
