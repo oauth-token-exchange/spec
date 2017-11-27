@@ -421,7 +421,7 @@
 <t hangText="token_type">
   <vspace/>
   REQUIRED.
-  A case-insensitive value specifying the method of using of the access token issued,
+  A case-insensitive value specifying the method of using the access token issued,
   as specified in Section 7.1 of <xref target="RFC6749"/>.
   It provides the client
   with information about how to utilize the access token to access protected resources.
@@ -1568,7 +1568,7 @@
       <t>
   -10
   <list style='symbols'>
-    <t></t>
+    <t>Editorial fixes.</t>
   </list>
       </t>
       <t>
