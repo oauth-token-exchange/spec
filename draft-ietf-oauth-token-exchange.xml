@@ -84,7 +84,7 @@
   the sharing of identity and security information in heterogeneous environments or across security domains.
   Examples of security tokens include
   JSON Web Tokens (JWTs) <xref target="JWT"/> and
-  SAML Assertions <xref target="OASIS.saml-core-2.0-os"/>.
+  SAML 2.0 Assertions <xref target="OASIS.saml-core-2.0-os"/>.
   Security tokens are typically signed to achieve integrity
   and sometimes also encrypted to achieve confidentiality.
   Security tokens are also sometimes described as Assertions, such as in
@@ -217,7 +217,7 @@
 	  "access token type", "authorization server", "client", "client identifier",
 	  "resource server", "token endpoint", "token request", and "token response"
 	  defined by <xref target="RFC6749">OAuth 2.0</xref>,
-	  and the terms "Claim" and "JWT Claims Set" defined by
+	  and the terms "Base64url Encoding", "Claim", and "JWT Claims Set" defined by
 	  <xref target="JWT">JSON Web Token (JWT)</xref>.
         </t>
       </section>
@@ -335,7 +335,7 @@
     <vspace/>
     OPTIONAL.
     A security token that represents
-    the identity of the acting party. Typically this will be the party that is authorized to use the requested security token and act on behalf of the subject.
+    the identity of the acting party. Typically, this will be the party that is authorized to use the requested security token and act on behalf of the subject.
   </t>
 
   <t hangText="actor_token_type">
@@ -459,12 +459,12 @@
 <t hangText="refresh_token">
   <vspace/>
   OPTIONAL.
-  A refresh token will typically not be issued when the the exchange is of one temporary
+  A refresh token will typically not be issued when the exchange is of one temporary
   credential (the subject_token) for a different temporary credential (the issued token)
   for use in some other context.
   A refresh token can be issued in cases where the client of the token exchange needs the
   ability to access a resource even when the original credential is no longer valid
-  (e.g. user-not-present or offline scenarios where there is no longer any user entertaining
+  (e.g., user-not-present or offline scenarios where there is no longer any user entertaining
   an active session with the client).
   Profiles or deployments of this specification should clearly document the conditions
   under which a client should expect a refresh token in response to
@@ -632,8 +632,8 @@
   Token type identifiers are URIs.
   Token Exchange can work with both tokens issued by other parties and tokens from
   the given authorization server. For the former the token type identifier indicates
-  the syntax (e.g. JWT or SAML) so the AS can parse it; for the latter it indicates
-  what the AS issued it for (e.g. access_token or refresh_token).
+  the syntax (e.g., JWT or SAML 2.0) so the AS can parse it; for the latter it indicates
+  what the AS issued it for (e.g., access_token or refresh_token).
 </t>
 <t>
   This specification defines the token type identifiers
@@ -645,6 +645,11 @@
   This specification also defines the token type identifier
   <spanx style="verb">urn:ietf:params:oauth:token-type:id_token</spanx> to indicate
   that the token is an ID Token, as defined in Section 2 of <xref target="OpenID.Core"/>.
+  Finally, this specification defines the token type identifiers
+  <spanx style="verb">urn:ietf:params:oauth:token-type:saml1</spanx> and
+  <spanx style="verb">urn:ietf:params:oauth:token-type:saml2</spanx> to indicate
+  that the token is a base64url-encoded SAML 1.1 <xref target="OASIS.saml-core-1.1"/> or
+  SAML 2.0 <xref target="OASIS.saml-core-2.0-os"/> assertion, respectively.
   Other URIs to indicate other token types MAY be used.
 </t>
 <t>
@@ -655,9 +660,9 @@
 
   The intent of this specification is that <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx>
   be an indicator that the token is a typical OAuth access token issued by the authorization server in question, opaque to the client,
-  and usable the same manner as any other access token obtained from that authorization server
-  (it could well be a JWT but the client isn't and needn't be aware of that fact).
-  Whereas <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> is to indicate specifically that a JWT is
+  and usable the same manner as any other access token obtained from that authorization server.
+  (It could well be a JWT, but the client isn't and needn't be aware of that fact.)
+  Whereas, <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> is to indicate specifically that a JWT is
   being requested or sent (perhaps in a cross-domain use-case where the JWT is used as an authorization grant to
   obtain an access token from a different authorization server as is facilitated by <xref target="RFC7523"/>).
 </t>
@@ -686,7 +691,7 @@
     <t>
       However, claims within the <spanx style="verb">act</spanx> claim pertain only to the identity of the actor
       and are not relevant to the validity of the containing JWT in the same manner as the top-level claims.
-      Consequently, non-identity claims (e.g. <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>,
+      Consequently, non-identity claims (e.g., <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>,
       and <spanx style="verb">aud</spanx>) are not meaningful when used within an
       <spanx style="verb">act</spanx> claim, and therefore must not be used.
     </t>
@@ -747,7 +752,7 @@
     </figure>
     <t>
       When included as a top-level member of an OAuth token introspection response, <spanx style="verb">act</spanx>
-      has the same semantics and format as the the claim of the same name.
+      has the same semantics and format as the claim of the same name.
     </t>
   </section>
   <section title='"scp" (Scopes) Claim' anchor="scopes">
@@ -826,7 +831,7 @@
     <t>
       However, claims within the <spanx style="verb">may_act</spanx> claim pertain only to the identity of that party
       and are not relevant to the validity of the containing JWT
-      in the same manner as top level claims.
+      in the same manner as top-level claims.
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
       <spanx style="verb">aud</spanx> are not meaningful when used within a <spanx style="verb">may_act</spanx>
       claim, and therefore should not be used.
@@ -854,7 +859,7 @@
     </figure>
     <t>
       When included as a top-level member of an OAuth token introspection response, <spanx style="verb">may_act</spanx>
-      has the same semantics and format as the the claim of the same name.
+      has the same semantics and format as the claim of the same name.
     </t>
   </section>
 
@@ -893,7 +898,7 @@
 	  <t>
 	    <list style="symbols">
 	      <t>URN: urn:ietf:params:oauth:token-type:refresh_token</t>
-	      <t>Common Name: Token Type URI for an OAuth 2.0 refresh token</t>
+	      <t>Common Name: Token type URI for an OAuth 2.0 refresh token</t>
 	      <t>Change controller: IESG</t>
 	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
 	    </list>
@@ -901,8 +906,24 @@
 	  <t>
 	    <list style="symbols">
 	      <t>URN: urn:ietf:params:oauth:token-type:id_token</t>
-	      <t>Common Name: Token Type URI for an ID Token</t>
+	      <t>Common Name: Token type URI for an ID Token</t>
 	      <t>Change controller: IESG</t>
+	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
+	    </list>
+	  </t>
+	  <t>
+	    <list style='symbols'>
+	      <t>URN: urn:ietf:params:oauth:token-type:saml1</t>
+	      <t>Common Name: Token type URI for a base64url-encoded SAML 1.1 assertion</t>
+	      <t>Change Controller: IESG</t>
+	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
+	    </list>
+	  </t>
+	  <t>
+	    <list style='symbols'>
+	      <t>URN: urn:ietf:params:oauth:token-type:saml2</t>
+	      <t>Common Name: Token type URI for a base64url-encoded SAML 2.0 assertion</t>
+	      <t>Change Controller: IESG</t>
 	      <t>Specification Document: <xref target="TokenTypeIdentifiers"/> of [[this specification]]</t>
 	    </list>
 	  </t>
@@ -1215,6 +1236,34 @@
       <!-- <?rfc include="reference.I-D.ietf-oauth-pop-key-distribution"?> -->
 
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
+
+      <reference anchor="OASIS.saml-core-1.1">
+	<front>
+	  <title>Assertions and Protocol for the OASIS Security Assertion Markup Language
+	  (SAML) V1.1</title>
+	  <author fullname="Eve Maler" initials="E." surname="Maler">
+            <organization>Sun Microsystems</organization>
+            <address>
+	      <email>eve.maler@sun.com</email>
+            </address>
+	  </author>
+	  <author fullname="Prateek Mishra" initials="P." surname="Mishra">
+            <organization>Netegrity, Inc.</organization>
+            <address>
+	      <email>pmishra@netegrity.com</email>
+            </address>
+	  </author>
+	  <author fullname="Rob Philpott" initials="R." surname="Philpott">
+            <organization>RSA Security</organization>
+            <address>
+	      <email>rphilpott@rsasecurity.com</email>
+            </address>
+	  </author>
+	  <date year="2003" month="September" day="2"/>
+	</front>
+	<seriesInfo name="OASIS Standard" value="oasis-sstc-saml-core-1.1"/>
+	<format type="PDF" target="https://www.oasis-open.org/committees/download.php/3406/oasis-sstc-saml-core-1.1.pdf"/>
+      </reference>
 
       <reference anchor="WS-Trust" target="http://docs.oasis-open.org/ws-sx/ws-trust/v1.4/ws-trust.html">
         <front>
@@ -1566,10 +1615,15 @@
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
       <t>
-  -10
-  <list style='symbols'>
-    <t>Editorial fixes.</t>
-  </list>
+	-10
+	<list style='symbols'>
+	  <t>
+	    Defined token type URIs for base64url-encoded SAML 1.1 and SAML 2.0 assertions.
+	  </t>
+	  <t>
+	    Applied editorial fixes.
+	  </t>
+	</list>
       </t>
       <t>
   -09
