@@ -533,7 +533,7 @@
   access token and the value of
   the <spanx style="verb">subject_token_type</spanx> parameter indicates that it is
   an OAuth 2.0 access token.
-  The resource server, acting in the roll of the client, uses its identifier and secret to authenticate to
+  The resource server, acting in the role of the client, uses its identifier and secret to authenticate to
   the authorization server using the HTTP Basic authentication scheme.
   The <spanx style="verb">resource</spanx> parameter indicates the location
   of the backend service, https://backend.example.com/api,
