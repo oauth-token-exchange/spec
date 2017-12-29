@@ -1580,8 +1580,8 @@
         This specification was developed within the OAuth Working Group, which
         includes dozens of active and dedicated participants.
         It was produced under the chairmanship of
-        Hannes Tschofenig and Derek Atkins
-        with Kathleen Moriarty and Stephen Farrell serving as
+        Hannes Tschofenig, Derek Atkins, and Rifaat Shekh-Yusef
+        with Kathleen Moriarty, Stephen Farrell, and Eric Rescorla serving as
         Security Area Directors.
         The following individuals contributed ideas, feedback, and wording
 	to this specification:
@@ -1617,8 +1617,7 @@
       <t>
   -11
   <list style='symbols'>
-    <t>
-    </t>
+    <t>Added new WG chair and AD to the Acknowledgements</t>
   </list>
     </t>
       <t>
