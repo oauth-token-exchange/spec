@@ -103,9 +103,13 @@
   has been towards RESTful patterns and JSON.
   <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
   and <xref target="RFC6750">OAuth 2.0 Bearer Tokens</xref>
-  have emerged as popular standards for authorizing and securing access to HTTP and
-  RESTful resources but do not provide everything necessary to facilitate
-  token exchange interactions.
+  have emerged as popular standards for authorizing third-party
+  applications access to HTTP and RESTful resources.
+  The conventional OAuth 2.0 interaction involves the exchange of some
+  representation of resource owner authorization for an access token,
+  which has proven to be an extremely useful pattern in practice, however,
+  its input and output are somewhat too constrained as is to fully
+  accommodate a security token exchange framework.
 </t>
 <t>
   This specification defines a protocol extending OAuth 2.0 that enables
@@ -1601,6 +1605,7 @@
   Nov Matake,
 	Matt Miller,
 	Matthew Perry,
+  Eric Rescorla,
 	Justin Richer,
   Rifaat Shekh-Yusef,
 	Scott Tomilson,
@@ -1618,6 +1623,7 @@
   -11
   <list style='symbols'>
     <t>Added new WG chair and AD to the Acknowledgements</t>
+    <t>Applied clarifications suggested during AD review by EKR</t>
   </list>
     </t>
       <t>
