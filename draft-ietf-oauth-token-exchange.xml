@@ -702,6 +702,11 @@
    Similar definitions for other types of tokens are possible but
    beyond the scope of this specification.
  </t>
+ <t>
+   Note that the claims not established herein but used in examples and descriptions,
+   such as <spanx style="verb">iss</spanx>, <spanx style="verb">sub</spanx>,
+   <spanx style="verb">exp</spanx>, etc., are defined by <xref target="JWT"/>.
+ </t>
   <section title='"act" (Actor) Claim' anchor="actor">
     <t>
       The <spanx style="verb">act</spanx> (actor) claim provides a means within a JWT
