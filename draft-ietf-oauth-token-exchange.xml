@@ -143,7 +143,7 @@
   basic request and response protocol for an STS-style token exchange utilizing OAuth 2.0.
   Although a few new JWT claims are defined that enable delegation semantics to be expressed,
   the specific syntax, semantics and security characteristics of the tokens themselves
-  (both those presented to the AS and those obtained by the client)
+  (both those presented to the authorization server and those obtained by the client)
   are explicitly out of scope and no requirements are placed on the trust model in
   which an implementation might be deployed. Additional profiles may provide
   more detailed requirements around the specific nature of the parties and trust involved,
@@ -636,25 +636,45 @@
   Token type identifiers are URIs.
   Token Exchange can work with both tokens issued by other parties and tokens from
   the given authorization server. For the former the token type identifier indicates
-  the syntax (e.g., JWT or SAML 2.0) so the AS can parse it; for the latter it indicates
-  what the AS issued it for (e.g., access_token or refresh_token).
+  the syntax (e.g., JWT or SAML 2.0) so the authorization server can parse it; for the latter it indicates
+  what the given authorization server issued it for (e.g., access_token or refresh_token).
 </t>
 <t>
-  This specification defines the token type identifiers
-  <spanx style="verb">urn:ietf:params:oauth:token-type:access_token</spanx> and
-  <spanx style="verb">urn:ietf:params:oauth:token-type:refresh_token</spanx> to indicate
-  that the token is an OAuth 2.0 access token or refresh token, respectively.
-  The value <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx> defined in
-  Section 9 of <xref target="JWT"/> indicates that the token is a JWT.
-  This specification also defines the token type identifier
-  <spanx style="verb">urn:ietf:params:oauth:token-type:id_token</spanx> to indicate
-  that the token is an ID Token, as defined in Section 2 of <xref target="OpenID.Core"/>.
-  Finally, this specification defines the token type identifiers
-  <spanx style="verb">urn:ietf:params:oauth:token-type:saml1</spanx> and
-  <spanx style="verb">urn:ietf:params:oauth:token-type:saml2</spanx> to indicate
-  that the token is a base64url-encoded SAML 1.1 <xref target="OASIS.saml-core-1.1"/> or
-  SAML 2.0 <xref target="OASIS.saml-core-2.0-os"/> assertion, respectively.
-  Other URIs to indicate other token types MAY be used.
+  The following token type identifiers are defined by this specification.
+  Other URIs MAY be used to indicate other token types.
+</t>
+<t>
+  <list style="hanging">
+
+  <t hangText="urn:ietf:params:oauth:token-type:access_token">
+    <vspace/>
+    Indicates that the token is an OAuth 2.0 access token issued by the given authorization server.
+  </t>
+
+  <t hangText="urn:ietf:params:oauth:token-type:refresh_token">
+    <vspace/>
+    Indicates that the token is an OAuth 2.0 refreshe token issued by the given authorization server.
+  </t>
+
+  <t hangText="urn:ietf:params:oauth:token-type:id_token">
+    <vspace/>
+    Indicates that the token is an ID Token, as defined in Section 2 of <xref target="OpenID.Core"/>.
+  </t>
+
+  <t hangText="urn:ietf:params:oauth:token-type:saml1">
+    <vspace/>
+    Indicates that the token is a base64url-encoded SAML 1.1 <xref target="OASIS.saml-core-1.1"/> assertion.
+  </t>
+
+  <t hangText="urn:ietf:params:oauth:token-type:saml2">
+    <vspace/>
+    Indicates that the token is a base64url-encoded SAML 2.0 <xref target="OASIS.saml-core-2.0-os"/> assertion.
+  </t>
+  </list>
+</t>
+<t>
+  The value <spanx style="verb">urn:ietf:params:oauth:token-type:jwt</spanx>, which is defined in
+  Section 9 of <xref target="JWT"/>, indicates that the token is a JWT.
 </t>
 <t>
   The distinction between an access token and a JWT is subtle.
