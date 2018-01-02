@@ -304,9 +304,10 @@
   <t hangText="scope">
     <vspace/>
     OPTIONAL.
-    A list of space-delimited, case-sensitive strings that allow the client to
+    A list of space-delimited, case-sensitive strings, as defined in Section 3.3 of <xref target="RFC6749"/>, that allow the client to
     specify the desired scope of the requested security token in the context of the
-    service or resource where the token will be used.</t>
+    service or resource where the token will be used. The values and associated semantics of scope
+    are service specific and expected to be described in the relevant service documentation.</t>
 
   <t hangText="requested_token_type">
     <vspace/>
