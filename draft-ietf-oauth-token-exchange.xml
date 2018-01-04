@@ -353,6 +353,13 @@
 </list>
 </t>
 <t>
+  In processing the request, the authorization sever MUST validate the subject token
+  as appropriate for the indicated token type and, if the actor token is present, also
+  validate it according to its token type.
+  The validity criteria and details of any particular token are beyond the scope of
+  this document and are specific to the respective type of token and its content.
+</t>
+<t>
   In the absence of one-time-use or other semantics specific to the token type, the act of performing
   a token exchange has no impact on the validity of the subject token or actor token.
   Furthermore, the validity of the subject token or actor token have no impact on the
@@ -482,7 +489,7 @@
       </section>
       <section anchor="ErrorResponse" title="Error Response">
   <t>
-    If either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">actor_token</spanx>
+    IF the request itself is not valid or if either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">actor_token</spanx>
     are invalid for any reason, or are unacceptable based on policy, the authorization server
     MUST construct an error response, as specified in Section 5.2 of <xref target="RFC6749"/>.
     The value of the <spanx style='verb'>error</spanx>
