@@ -13,7 +13,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc category="std" docName="draft-ietf-oauth-token-exchange-11"
+<rfc category="std" docName="draft-ietf-oauth-token-exchange-12"
      ipr="trust200902">
   <front>
     <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange</title>
@@ -1651,6 +1651,12 @@
       <?rfc subcompact="yes"?>
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+      <t>
+  -12
+  <list style='symbols'>
+    <t></t>
+  </list>
       </t>
       <t>
   -11
