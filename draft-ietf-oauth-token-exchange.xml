@@ -207,12 +207,13 @@
       </section>
 
       <section anchor="RNC" title="Requirements Notation and Conventions">
-	<t>
-	  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-	  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
-	  in this document are to be interpreted as described in
-	  <xref target="RFC2119">RFC 2119</xref>.
-	</t>
+<t>
+  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",  "MAY", and "OPTIONAL"
+  in this document are to be interpreted as described in
+  BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
+  when, and only when, they appear in all capitals, as shown here.
+</t>
       </section>
 
       <section anchor="Terminology" title="Terminology">
@@ -1270,6 +1271,8 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6750.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml' ?>
+      <?rfc include="http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"?>
+
       <!-- <?rfc include="reference.I-D.ietf-oauth-pop-key-distribution"?> -->
 
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
@@ -1655,7 +1658,7 @@
       <t>
   -12
   <list style='symbols'>
-    <t></t>
+    <t>Updated to use the boilerplate from RFC 8174.</t>
   </list>
       </t>
       <t>
