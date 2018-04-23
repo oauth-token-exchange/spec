@@ -593,9 +593,9 @@
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJo
     dHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV
     4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsIn
-    N1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NwIjpbImFwaSJdfQ.MXgnpvPMo0nhce
-    PwnQbunD2gw_pDyCFA-Saobl6gyLAdyPbaALFuAOyFc4XTWaPEnHV_LGmXklSTp
-    z0yC7hlSQ",
+    N1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NvcGUiOiJhcGkifQ.K4Ik-igqOKi_4C
+    nBu4dG3-gGUObfgv-rJhgXVDNOWW_MHgVwddhgVLLQf_bm3xlpQM6wHrLbMaZC4
+    LicsQC23g",
   "issued_token_type":
       "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -793,18 +793,16 @@
       has the same semantics and format as the claim of the same name.
     </t>
   </section>
-  <section title='"scp" (Scopes) Claim' anchor="scopes">
+  <section title='"scope" (Scopes) Claim' anchor="scopes">
     <t>
-      The <spanx style="verb">scp</spanx> claim is an array of strings, each of which
-      represents an OAuth scope granted for the issued security token.
-      Each array entry of the claim value is a scope-token, as defined in
+      The value of the <spanx style="verb">scope</spanx> claim is a
+      JSON string containing a space-separated list of
+      scopes associated with the token, in the format described in
       Section 3.3 of <xref target="RFC6749">OAuth 2.0</xref>.
     </t>
-
-    <figure title="Scopes Claim" anchor="scp-ex">
+    <figure title="Scopes Claim" anchor="scope-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">scp</spanx> claim within a JWT Claims Set with
-        four scope-tokens.
+        The following example illustrates the <spanx style="verb">scope</spanx> claim within a JWT Claims Set.
       </preamble>
       <artwork><![CDATA[
  {
@@ -813,12 +811,12 @@
    "exp":1443904177,
    "nbf":1443904077,
    "sub":"dgaf4mvfs75Fci_FL3heQA",
-   "scp":["email","address","profile","phone"]
+   "scope":"email profile phone address"
  }
 ]]></artwork>
     </figure>
     <t>
-      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> defines the <spanx style="verb">scope</spanx>
+      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> already defines the <spanx style="verb">scope</spanx>
       parameter to convey the scopes associated with the token.
     </t>
   </section>
@@ -1099,7 +1097,7 @@
 	  </t>
 	  <t>
 	    <list style='symbols'>
-	      <t>Claim Name: <spanx style="verb">scp</spanx></t>
+	      <t>Claim Name: <spanx style="verb">scope</spanx></t>
 	      <t>Claim Description: Scope Values</t>
 	      <t>Change Controller: IESG</t>
 	      <t>Specification Document(s): <xref target="scopes"/> of [[ this specification ]]</t>
@@ -1198,7 +1196,7 @@
         In addition, both delegation and impersonation introduce unique security
         issues.  Any time one principal is delegated the rights of
         another principal, the potential for abuse is a concern.
-	The use of the <spanx style="verb">scp</spanx> claim is suggested to mitigate
+	The use of the <spanx style="verb">scope</spanx> claim is suggested to mitigate
 	potential for such abuse, as it restricts the contexts in which
 	the delegated rights can be exercised.
       </t>
@@ -1348,9 +1346,9 @@
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
    zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
    uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTA2MDAsIm5iZiI6MTQ0MTkwOTAwMCwic
-   3ViIjoiYmNAZXhhbXBsZS5uZXQiLCJzY3AiOlsib3JkZXJzIiwicHJvZmlsZSIsImh
-   pc3RvcnkiXX0.JDe7fZ267iIRXwbFmOugyCt5dmGoy6EeuzNQ3MqDek5cCUlyPhQC6
-   cz9laKjK1bnjMQbLJqWix6ZdBI0isjsTA
+   3ViIjoiYmNAZXhhbXBsZS5uZXQiLCJzY29wZSI6Im9yZGVycyBwcm9maWxlIGhpc3R
+   vcnkifQ.u0slqvbnqU43EvI_itGdFJ11StrAwXlxczYfMYsaR5p4J_gBp019mxljSx
+   xmD3FfbrjTGyZ4eDh1JKJVpsnnPg
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
     </figure>
@@ -1379,7 +1377,7 @@
     "exp":1441910600,
     "nbf":1441909000,
     "sub":"bc@example.net",
-    "scp":["orders","profile","history"]
+    "scope":"orders profile history"
   }
 ]]></artwork>
     </figure>
@@ -1402,9 +1400,9 @@
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJ1cm4
     6ZXhhbXBsZTpjb29wZXJhdGlvbi1jb250ZXh0IiwiaXNzIjoiaHR0cHM6Ly9hcy5l
     eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic3ViIjoiYmNAZXhhbXBsZS5uZ
-    XQiLCJzY3AiOlsib3JkZXJzIiwiaGlzdG9yeSIsInByb2ZpbGUiXX0.YQHuLmI1YD
-    TugbfEvgGY2gaGBmMyj9BepZSECCBE9j9ogqZv2qx6VQQPrbT1k7vBYGLNMOkkpmm
-    JkxZDS0YV7g",
+    XQiLCJzY29wZSI6Im9yZGVycyBwcm9maWxlIGhpc3RvcnkifQ._OnH9oHT2cd0-Sz
+    OfBrNkVYlRdn48X8kI4_Is3LHeQmtkd-nDdR63IuuQ_GeZd7UafMV3bk8jqUDgi-l
+    rTfSwA",
   "issued_token_type":
     "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -1441,7 +1439,7 @@
     "iss":"https://as.example.com",
     "exp":1441913610,
     "sub":"bc@example.net",
-    "scp":["orders","history","profile"]
+    "scope":"orders profile history"
   }
 ]]></artwork>
     </figure>
@@ -1469,10 +1467,10 @@
  &audience=urn%3Aexample%3Acooperation-context
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
    zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
-   uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjcCI6WyJzdGF0dXMiLCJmZ
-   WVkIl0sInN1YiI6InVzZXJAZXhhbXBsZS5uZXQiLCJtYXlfYWN0Ijp7InN1YiI6ImF
-   kbWluQGV4YW1wbGUubmV0In19.ut0Ll7wm920VzRvuLGLFoPJLeO5DDElxsax1L_xK
-   Um2eooiNSfuif-OGa2382hPyFYnddKIa0wmDhQksW018Rw
+   uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTAwNjAsInNjb3BlIjoic3RhdHVzIGZlZ
+   WQiLCJzdWIiOiJ1c2VyQGV4YW1wbGUubmV0IiwibWF5X2FjdCI6eyJzdWIiOiJhZG1
+   pbkBleGFtcGxlLm5ldCJ9fQ.4rPRSWihQbpMIgAmAoqaJojAxj-p2X8_fAtAGTXrvM
+   xU-eEZHnXqY0_AOZgLdxw5DyLzua8H_I10MCcckF-Q_g
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
  &actor_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwczo
    vL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXIuZ
@@ -1507,7 +1505,7 @@
     "aud":"https://as.example.com",
     "iss":"https://original-issuer.example.net",
     "exp":1441910060,
-    "scp":["status","feed"],
+    "scope":"status feed",
     "sub":"user@example.net",
     "may_act":
     {
@@ -1557,10 +1555,10 @@
  {
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJ1cm4
     6ZXhhbXBsZTpjb29wZXJhdGlvbi1jb250ZXh0IiwiaXNzIjoiaHR0cHM6Ly9hcy5l
-    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic2NwIjpbInN0YXR1cyIsImZlZ
-    WQiXSwic3ViIjoidXNlckBleGFtcGxlLm5ldCIsImFjdCI6eyJzdWIiOiJhZG1pbk
-    BleGFtcGxlLm5ldCJ9fQ._qjM7Ij_HcrC78omT4jiZTFJOuzsAj1wPo31ymQS-Suq
-    r64S1jCp6pfQR-in_OOAosAGamEg4jyPsht6kMAiYA",
+    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic2NvcGUiOiJzdGF0dXMgZmVlZ
+    CIsInN1YiI6InVzZXJAZXhhbXBsZS5uZXQiLCJhY3QiOnsic3ViIjoiYWRtaW5AZX
+    hhbXBsZS5uZXQifX0.3paKl9UySKYB5ng6_cUtQ2qlO8Rc_y7Mea7IwEXTcYbNdwG
+    9-G1EKCFe5fW3H0hwX-MSZ49Wpcb1SiAZaOQBtw",
   "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
   "token_type":"N_A",
   "expires_in":3600
@@ -1601,7 +1599,7 @@
     "aud":"urn:example:cooperation-context",
     "iss":"https://as.example.com",
     "exp":1441913610,
-    "scp":["status","feed"],
+    "scope":"status feed",
     "sub":"user@example.net",
     "act":
     {
@@ -1658,7 +1656,8 @@
   <t>
     -13
     <list style='symbols'>
-      <t></t>
+      <t>Updated the claim name and value syntax for scope to be consistent with the treatment
+        of scope in RFC 7662 OAuth 2.0 Token Introspection.</t>
     </list>
   </t>
       <t>
@@ -1923,7 +1922,7 @@ public class TokenExExamplesTest
         claims.setExpirationTime(exp);
         claims.setIssuedAt(iat);
         claims.setSubject("bc@example.com");
-        claims.setStringListClaim("scp", "api");
+        claims.setClaim("scope", "api");
 
         JsonWebSignature jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -1952,7 +1951,7 @@ public class TokenExExamplesTest
         claims.setExpirationTime(exp);
         claims.setNotBefore(nbf);
         claims.setSubject("bc@example.net");
-        claims.setStringListClaim("scp", "orders", "profile", "history");
+        claims.setStringClaim("scope", "orders profile history");
 
         jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -1977,7 +1976,7 @@ public class TokenExExamplesTest
         claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setSubject("bc@example.net");
-        claims.setStringListClaim("scp", "orders", "history", "profile");
+        claims.setStringClaim("scope", "orders profile history");
 
         jws = new JsonWebSignature();
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.ECDSA_USING_P256_CURVE_AND_SHA256);
@@ -2004,7 +2003,7 @@ public class TokenExExamplesTest
         claims.setAudience(asDotComUri);
         claims.setIssuer(originalIssuerDotNetUri);
         claims.setExpirationTime(exp);
-        claims.setStringListClaim("scp", "status", "feed");
+        claims.setStringClaim("scope", "status feed");
         String sub = "user@example.net";
         claims.setSubject(sub);
         JwtClaims mayAct = new JwtClaims();
@@ -2046,7 +2045,7 @@ public class TokenExExamplesTest
         claims.setAudience("urn:example:cooperation-context");
         claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
-        claims.setStringListClaim("scp", "status", "feed");
+        claims.setStringClaim("scope", "status feed");
         claims.setSubject(sub);
         JwtClaims actor = new JwtClaims();
         actor.setSubject(admin);
