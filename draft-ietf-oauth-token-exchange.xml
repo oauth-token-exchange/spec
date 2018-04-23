@@ -821,16 +821,16 @@
     </t>
   </section>
 
-  <section title='"cid" (Client Identifier) Claim' anchor="cid">
+  <section title='"client_id" (Client Identifier) Claim' anchor="client_id">
     <t>
-      The <spanx style="verb">cid</spanx> claim carries the
+      The <spanx style="verb">client_id</spanx> claim carries the
       client identifier of the <xref target="RFC6749">OAuth 2.0</xref> client that
       requested the token.
     </t>
 
-    <figure title="Client Identifier Claim" anchor="cid-ex">
+    <figure title="Client Identifier Claim" anchor="client_id-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">cid</spanx> claim within a JWT Claims Set
+        The following example illustrates the <spanx style="verb">client_id</spanx> claim within a JWT Claims Set
         indicating an OAuth 2.0 client with "s6BhdRkqt3" as its identifier.
       </preamble>
       <artwork><![CDATA[
@@ -839,12 +839,12 @@
    "iss":"https://issuer.example.com",
    "exp":1443904177,
    "sub":"user@example.com",
-   "cid":"s6BhdRkqt3"
+   "client_id":"s6BhdRkqt3"
  }
 ]]></artwork>
         </figure>
     <t>
-      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> defines the <spanx style="verb">client_id</spanx>
+      <xref target="RFC7662">OAuth 2.0 Token Introspection</xref> already defines the <spanx style="verb">client_id</spanx>
       parameter as the client identifier for the OAuth 2.0 client that requested the token.
     </t>
   </section>
@@ -1105,10 +1105,10 @@
 	  </t>
     <t>
       <list style='symbols'>
-        <t>Claim Name: <spanx style="verb">cid</spanx></t>
+        <t>Claim Name: <spanx style="verb">client_id</spanx></t>
         <t>Claim Description: Client Identifier</t>
         <t>Change Controller: IESG</t>
-        <t>Specification Document(s): <xref target="cid"/> of [[ this specification ]]</t>
+        <t>Specification Document(s): <xref target="client_id"/> of [[ this specification ]]</t>
       </list>
     </t>
     <t>
@@ -1658,6 +1658,8 @@
     <list style='symbols'>
       <t>Updated the claim name and value syntax for scope to be consistent with the treatment
         of scope in RFC 7662 OAuth 2.0 Token Introspection.</t>
+      <t>Updated the client identifier claim name to be consistent with the treatment of client id
+        in RFC 7662 OAuth 2.0 Token Introspection.</t>
     </list>
   </t>
       <t>
