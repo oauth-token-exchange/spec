@@ -761,6 +761,12 @@
       <spanx style="verb">act</spanx> claims represent prior actors. The least recent actor is the most deeply
       nested.
     </t>
+    <t>
+      For the purpose of applying access control policy, the consumer of a token MUST only consider the token's
+      top-level claims and the party identified as the current actor by the <spanx style="verb">act</spanx>
+      claim. Prior actors identified by any nested <spanx style="verb">act</spanx> claims are
+      informational only and are not to be considered in access control decisions.
+    </t>
     <figure title="Nested Actor Claim" anchor="acts-ex">
       <preamble>
         The following example illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
@@ -1656,7 +1662,8 @@
   <t>
     -14
     <list style='symbols'>
-      <t></t>
+      <t>Added text in <xref target="actor"/> about the "act" claim stating that only the top-level claims
+        and the current actor are to be considered in applying access control decisions.</t>
     </list>
   </t>
   <t>
