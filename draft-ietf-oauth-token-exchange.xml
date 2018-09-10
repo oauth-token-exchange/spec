@@ -771,24 +771,24 @@
       <preamble>
         The following example illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
-        that the system consumer.example.com-web-application is the current actor and admin@example.com was a prior actor. Such a token
-        might come about as the result of the web application receiving a token like the one in the previous example
-        and exchanging it for a new token that lists it as the current actor and that can be used at https://backend.example.com.
+        that the system https://service16.example.com is the current actor and https://service77.example.com was a prior actor.
+        Such a token might come about as the result of service16 receiving a token in a call from service77
+        and exchanging it for a token suitable to call service26 while the authorization server
+        notes the situation in the newly issued token.
       </preamble>
       <artwork><![CDATA[
  {
-   "aud":"https://backend.example.com",
+   "aud":"https://service26.example.com",
    "iss":"https://issuer.example.com",
    "exp":1443904100,
    "nbf":1443904000,
    "sub":"user@example.com",
    "act":
    {
-     "sub":"consumer.example.com-web-application",
-     "iss":"https://issuer.example.net",
+     "sub":"https://service16.example.com",
      "act":
      {
-       "sub":"admin@example.com"
+       "sub":"https://service77.example.com",
      }
    }
  }
@@ -1644,6 +1644,7 @@
   James Manger,
   Nov Matake,
 	Matt Miller,
+        Hilarie Orman,
 	Matthew Perry,
   Eric Rescorla,
 	Justin Richer,
@@ -1662,7 +1663,7 @@
       <t>
         -15
         <list style='symbols'>
-          <t></t>
+          <t>Updated the nested actor claim example to (hopefully) be more straightforward.</t>
         </list>
       </t>
   <t>
