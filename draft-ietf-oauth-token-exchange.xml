@@ -1209,9 +1209,16 @@
     </section>
     <section anchor="Privacy" title="Privacy Considerations">
       <t>
-        Tokens typically carry personal information and their usage in Token Exchange may reveal details
-        of the target services being accessed. As such, tokens should only be requested and
-        sent according to the privacy policies at the respective organizations.
+        Tokens employed in the context of the functionality described herein
+        may contain privacy-sensitive information and, to prevent
+        disclosure of such information to unintended parties, should only be
+        transmitted over encrypted channels, such as Transport Layer Security
+        (TLS).  In cases where it is desirable to prevent disclosure of certain
+        information to the client, the token should be encrypted to its
+        intended recipient. Deployments should determine the minimally necessary
+        amount of data and only include such information in issued tokens.
+        In some cases, data minimization may include representing only an
+        anonymous or pseudonymous user.
       </t>
     </section>
   </middle>
@@ -1664,6 +1671,10 @@
         -15
         <list style='symbols'>
           <t>Updated the nested actor claim example to (hopefully) be more straightforward.</t>
+          <t>Reworked Privacy Considerations to say to use TLS in transit, minimize the amount of
+            information in the token, and encrypt the token if disclosure of its information to the
+            client is a concern per https://mailarchive.ietf.org/arch/msg/secdir/KJhx4aq_U5uk3k6zpYP-CEHbpVM
+          </t>
         </list>
       </t>
   <t>
