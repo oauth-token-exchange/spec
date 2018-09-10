@@ -907,6 +907,36 @@
 
     </section>
 
+    <section anchor="Security" title="Security Considerations">
+      <t>
+        All of the normal security issues that are discussed in <xref target="JWT"/>,
+        especially in relationship to comparing URIs and dealing with unrecognized values,
+        also apply here.
+      </t>
+      <t>
+        In addition, both delegation and impersonation introduce unique security
+        issues.  Any time one principal is delegated the rights of
+        another principal, the potential for abuse is a concern.
+        The use of the <spanx style="verb">scope</spanx> claim is suggested to mitigate
+        potential for such abuse, as it restricts the contexts in which
+        the delegated rights can be exercised.
+      </t>
+    </section>
+    <section anchor="Privacy" title="Privacy Considerations">
+      <t>
+        Tokens employed in the context of the functionality described herein
+        may contain privacy-sensitive information and, to prevent
+        disclosure of such information to unintended parties, should only be
+        transmitted over encrypted channels, such as Transport Layer Security
+        (TLS).  In cases where it is desirable to prevent disclosure of certain
+        information to the client, the token should be encrypted to its
+        intended recipient. Deployments should determine the minimally necessary
+        amount of data and only include such information in issued tokens.
+        In some cases, data minimization may include representing only an
+        anonymous or pseudonymous user.
+      </t>
+    </section>
+
     <section anchor="IANA" title="IANA Considerations">
 
       <section anchor="URIReg" title="OAuth URI Registration">
@@ -1192,35 +1222,6 @@
 
     </section>
 
-    <section anchor="Security" title="Security Considerations">
-      <t>
-        All of the normal security issues that are discussed in <xref target="JWT"/>,
-	especially in relationship to comparing URIs and dealing with unrecognized values,
-	also apply here.
-      </t>
-      <t>
-        In addition, both delegation and impersonation introduce unique security
-        issues.  Any time one principal is delegated the rights of
-        another principal, the potential for abuse is a concern.
-	The use of the <spanx style="verb">scope</spanx> claim is suggested to mitigate
-	potential for such abuse, as it restricts the contexts in which
-	the delegated rights can be exercised.
-      </t>
-    </section>
-    <section anchor="Privacy" title="Privacy Considerations">
-      <t>
-        Tokens employed in the context of the functionality described herein
-        may contain privacy-sensitive information and, to prevent
-        disclosure of such information to unintended parties, should only be
-        transmitted over encrypted channels, such as Transport Layer Security
-        (TLS).  In cases where it is desirable to prevent disclosure of certain
-        information to the client, the token should be encrypted to its
-        intended recipient. Deployments should determine the minimally necessary
-        amount of data and only include such information in issued tokens.
-        In some cases, data minimization may include representing only an
-        anonymous or pseudonymous user.
-      </t>
-    </section>
   </middle>
 
   <back>
@@ -1675,6 +1676,7 @@
             information in the token, and encrypt the token if disclosure of its information to the
             client is a concern per https://mailarchive.ietf.org/arch/msg/secdir/KJhx4aq_U5uk3k6zpYP-CEHbpVM
           </t>
+          <t>Moved the Security and Privacy Considerations sections to before the IANA Considerations.</t>
         </list>
       </t>
   <t>
