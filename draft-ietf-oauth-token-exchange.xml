@@ -490,7 +490,7 @@
       </section>
       <section anchor="ErrorResponse" title="Error Response">
   <t>
-    IF the request itself is not valid or if either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">actor_token</spanx>
+    If the request itself is not valid or if either the <spanx style="verb">subject_token</spanx> or <spanx style="verb">actor_token</spanx>
     are invalid for any reason, or are unacceptable based on policy, the authorization server
     MUST construct an error response, as specified in Section 5.2 of <xref target="RFC6749"/>.
     The value of the <spanx style='verb'>error</spanx>
@@ -1671,7 +1671,7 @@
       <t>
         -16
         <list style='symbols'>
-          <t></t>
+          <t>Fixed typo.</t>
         </list>
       </t>
       <t>
