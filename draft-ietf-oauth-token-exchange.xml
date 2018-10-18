@@ -1633,7 +1633,7 @@
         includes dozens of active and dedicated participants.
         It was produced under the chairmanship of
         Hannes Tschofenig, Derek Atkins, and Rifaat Shekh-Yusef
-        with Kathleen Moriarty, Stephen Farrell, and Eric Rescorla serving as
+        with Kathleen Moriarty, Stephen Farrell, Eric Rescorla, and Benjamin Kaduk serving as
         Security Area Directors.
         The following individuals contributed ideas, feedback, and wording
 	to this specification:
@@ -1671,7 +1671,7 @@
       <t>
         -16
         <list style='symbols'>
-          <t>Fixed typo.</t>
+          <t>Fixed typo and added an AD to Acknowledgements.</t>
         </list>
       </t>
       <t>
