@@ -163,8 +163,8 @@
     When principal A impersonates principal B, A is given all
     the rights that B has within some defined rights context
     and is indistinguishable from B in that context.
-    Thus, when principal A impersonates principal B, then in
-    so far as any entity receiving such a token is concerned, they are
+    Thus, when principal A impersonates principal B, then insofar
+    as any entity receiving such a token is concerned, they are
     actually dealing with B. It is true that some members of the
     identity system might have awareness that impersonation is
     going on, but it is not a requirement. For all intents and
@@ -403,7 +403,7 @@
   If the request is valid and meets all policy and other criteria of the authorization server,
   a successful token response is constructed by adding the following parameters
   to the entity-body of the HTTP response using the "application/json"
-  media type, as specified by <xref target="RFC7159"/>, and an HTTP 200 status code.  The
+  media type, as specified by <xref target="RFC8259"/>, and an HTTP 200 status code.  The
   parameters are serialized into a JavaScript Object Notation (JSON)
   structure by adding each parameter at the top level.
   Parameter names and string values are included as JSON strings.
@@ -662,7 +662,7 @@
 
   <t hangText="urn:ietf:params:oauth:token-type:refresh_token">
     <vspace/>
-    Indicates that the token is an OAuth 2.0 refreshe token issued by the given authorization server.
+    Indicates that the token is an OAuth 2.0 refresh token issued by the given authorization server.
   </t>
 
   <t hangText="urn:ietf:params:oauth:token-type:id_token">
@@ -1229,7 +1229,7 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml' ?>
-      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7159.xml' ?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7662.xml' ?>
 
 
@@ -1656,6 +1656,7 @@
 	Matthew Perry,
   Eric Rescorla,
 	Justin Richer,
+Adam Roach,
   Rifaat Shekh-Yusef,
 	Scott Tomilson,
 	and
