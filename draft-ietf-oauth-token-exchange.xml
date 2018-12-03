@@ -104,7 +104,7 @@
   <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
   and <xref target="RFC6750">OAuth 2.0 Bearer Tokens</xref>
   have emerged as popular standards for authorizing third-party
-  applications access to HTTP and RESTful resources.
+  applications' access to HTTP and RESTful resources.
   The conventional OAuth 2.0 interaction involves the exchange of some
   representation of resource owner authorization for an access token,
   which has proven to be an extremely useful pattern in practice, however,
@@ -158,7 +158,17 @@
 </t>
 
       <section anchor="DelegationImpersonation" title="Delegation vs. Impersonation Semantics">
-
+  <t>
+    One common use case for an STS (as alluded to in the previous section)
+    is to allow a resource server A to make calls to a backend service C on
+    behalf of the requesting user B.  Depending on the local site policy and
+    authorization infrastructure, it may be desirable for A to use its own
+    credentials to access C along with an annotation of some form that A is
+    acting on behalf of B ("delegation"), or for A to be granted a limited access
+    credential to C but that continues to identify B as the authorized
+    entity ("impersonation").  Delegation and impersonation can be useful
+    concepts in other scenarios involving multiple participants as well.
+  </t>
   <t>
     When principal A impersonates principal B, A is given all
     the rights that B has within some defined rights context
@@ -242,11 +252,17 @@
   Section 2.3.1 of <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
   defines password-based authentication of the client,
   however, client authentication is extensible and other mechanisms are possible.
-  For example, <xref target="RFC7523"/> defines client authentication using
+  For example, <xref target="RFC7523"/> defines client authentication using bearer
   JSON Web Tokens (JWTs) <xref target="JWT"/>.
   The supported methods of client authentication and whether or not to allow
   unauthenticated or unidentified clients are deployment decisions that are
   at the discretion of the authorization server.
+  Note that omitting client authentication allows
+  for a compromised token to be leveraged via an STS into other tokens by
+  anyone possessing the compromised token. Thus client
+  authentication allows for additional authorization checks by the STS as to which
+  entities are permitted to impersonate or receive delegations from other
+  entities.
 </t>
 <t>
   The client makes a token exchange request to the token endpoint with an extension
@@ -354,9 +370,9 @@
 </list>
 </t>
 <t>
-  In processing the request, the authorization sever MUST validate the subject token
-  as appropriate for the indicated token type and, if the actor token is present, also
-  validate it according to its token type.
+  In processing the request, the authorization sever MUST perform the appropriate validation procedures for the indicated token
+  type and, if the actor token is present, also
+  perform the appropriate validation procedures for its indicated token type.
   The validity criteria and details of any particular token are beyond the scope of
   this document and are specific to the respective type of token and its content.
 </t>
@@ -561,7 +577,7 @@
  Content-Type: application/x-www-form-urlencoded
 
  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
- &resource=https%3A%2F%2Fbackend.example.com%2Fapi%20
+ &resource=https%3A%2F%2Fbackend.example.com%2Fapi
  &subject_token=accVkjcJyb4BWCxGsndESCJQbdFMogUC5PbRDqceLTC
  &subject_token_type=
   urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
@@ -1672,7 +1688,7 @@ Adam Roach,
       <t>
         -17
         <list style='symbols'>
-          <t></t>
+          <t>Editorial improvements and example fixes resulting from IESG evaluation comments.</t>
         </list>
       </t>
       <t>
