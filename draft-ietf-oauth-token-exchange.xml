@@ -609,9 +609,9 @@
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJo
     dHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV
     4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsIn
-    N1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NvcGUiOiJhcGkifQ.K4Ik-igqOKi_4C
-    nBu4dG3-gGUObfgv-rJhgXVDNOWW_MHgVwddhgVLLQf_bm3xlpQM6wHrLbMaZC4
-    LicsQC23g",
+    N1YiI6ImJkY0BleGFtcGxlLmNvbSIsInNjb3BlIjoiYXBpIn0.40y3ZgQedw6rx
+    f59WlwHDD9jryFOr0_Wh3CGozQBihNBhnXEQgU85AI9x3KmsPottVMLPIWvmDCM
+    y5-kdXjwhw",
   "issued_token_type":
       "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -632,9 +632,9 @@
  Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQ
     iOiJodHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2
     FzLmV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1M
-    zMsInN1YiI6ImJjQGV4YW1wbGUuY29tIiwic2NwIjpbImFwaSJdfQ.MXgnpvPMo
-    0nhcePwnQbunD2gw_pDyCFA-Saobl6gyLAdyPbaALFuAOyFc4XTWaPEnHV_LGmX
-    klSTpz0yC7hlSQ
+    zMsInN1YiI6ImJkY0BleGFtcGxlLmNvbSIsInNjb3BlIjoiYXBpIn0.40y3ZgQe
+    dw6rxf59WlwHDD9jryFOr0_Wh3CGozQBihNBhnXEQgU85AI9x3KmsPottVMLPIW
+    vmDCMy5-kdXjwhw
 ]]></artwork>
       </figure>
 
@@ -1376,9 +1376,9 @@
  &subject_token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0.eyJhdWQiOiJodHRwc
    zovL2FzLmV4YW1wbGUuY29tIiwiaXNzIjoiaHR0cHM6Ly9vcmlnaW5hbC1pc3N1ZXI
    uZXhhbXBsZS5uZXQiLCJleHAiOjE0NDE5MTA2MDAsIm5iZiI6MTQ0MTkwOTAwMCwic
-   3ViIjoiYmNAZXhhbXBsZS5uZXQiLCJzY29wZSI6Im9yZGVycyBwcm9maWxlIGhpc3R
-   vcnkifQ.u0slqvbnqU43EvI_itGdFJ11StrAwXlxczYfMYsaR5p4J_gBp019mxljSx
-   xmD3FfbrjTGyZ4eDh1JKJVpsnnPg
+   3ViIjoiYmRjQGV4YW1wbGUubmV0Iiwic2NvcGUiOiJvcmRlcnMgcHJvZmlsZSBoaXN
+   0b3J5In0.PRBg-jXn4cJuj1gmYXFiGkZzRuzbXZ_sDxdE98ddW44ufsbWLKd3JJ1VZ
+   hF64pbTtfjy4VXFVBDaQpKjn5JzAw
  &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Ajwt
 ]]></artwork>
     </figure>
@@ -1396,7 +1396,7 @@
   The <spanx style="verb">subject_token</spanx> in the prior request is a JWT and
   the decoded JWT Claims Set is shown here. The JWT is
   intended for consumption by the authorization server within a specific time window.
-  The subject of the JWT (<spanx style="verb">bc@example.net</spanx>) is
+  The subject of the JWT (<spanx style="verb">bdc@example.net</spanx>) is
   the party on behalf of whom the new token is being requested.
 </t>
     <figure title="Subject Token Claims" anchor="ImpersonationSubjectClaimsEx">
@@ -1406,7 +1406,7 @@
     "iss":"https://original-issuer.example.net",
     "exp":1441910600,
     "nbf":1441909000,
-    "sub":"bc@example.net",
+    "sub":"bdc@example.net",
     "scope":"orders profile history"
   }
 ]]></artwork>
@@ -1429,10 +1429,10 @@
  {
   "access_token":"eyJhbGciOiJFUzI1NiIsImtpZCI6IjcyIn0.eyJhdWQiOiJ1cm4
     6ZXhhbXBsZTpjb29wZXJhdGlvbi1jb250ZXh0IiwiaXNzIjoiaHR0cHM6Ly9hcy5l
-    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic3ViIjoiYmNAZXhhbXBsZS5uZ
-    XQiLCJzY29wZSI6Im9yZGVycyBwcm9maWxlIGhpc3RvcnkifQ._OnH9oHT2cd0-Sz
-    OfBrNkVYlRdn48X8kI4_Is3LHeQmtkd-nDdR63IuuQ_GeZd7UafMV3bk8jqUDgi-l
-    rTfSwA",
+    eGFtcGxlLmNvbSIsImV4cCI6MTQ0MTkxMzYxMCwic3ViIjoiYmRjQGV4YW1wbGUub
+    mV0Iiwic2NvcGUiOiJvcmRlcnMgcHJvZmlsZSBoaXN0b3J5In0.rMdWpSGNACTvnF
+    uOL74sYZ6MVuld2Z2WkGLmQeR9ztj6w2OXraQlkJmGjyiCq24kcB7AI2VqVxl3wSW
+    nVKh85A",
   "issued_token_type":
     "urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -1468,7 +1468,7 @@
     "aud":"urn:example:cooperation-context",
     "iss":"https://as.example.com",
     "exp":1441913610,
-    "sub":"bc@example.net",
+    "sub":"bdc@example.net",
     "scope":"orders profile history"
   }
 ]]></artwork>
@@ -1985,7 +1985,7 @@ public class TokenExExamplesTest
         claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
         claims.setIssuedAt(iat);
-        claims.setSubject("bc@example.com");
+        claims.setSubject("bdc@example.com");
         claims.setClaim("scope", "api");
 
         JsonWebSignature jws = new JsonWebSignature();
@@ -2014,7 +2014,7 @@ public class TokenExExamplesTest
         claims.setIssuer(originalIssuerDotNetUri);
         claims.setExpirationTime(exp);
         claims.setNotBefore(nbf);
-        claims.setSubject("bc@example.net");
+        claims.setSubject("bdc@example.net");
         claims.setStringClaim("scope", "orders profile history");
 
         jws = new JsonWebSignature();
@@ -2039,7 +2039,7 @@ public class TokenExExamplesTest
         claims.setAudience("urn:example:cooperation-context");
         claims.setIssuer(asDotComUri);
         claims.setExpirationTime(exp);
-        claims.setSubject("bc@example.net");
+        claims.setSubject("bdc@example.net");
         claims.setStringClaim("scope", "orders profile history");
 
         jws = new JsonWebSignature();
