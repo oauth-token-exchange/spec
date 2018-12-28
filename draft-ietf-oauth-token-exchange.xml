@@ -370,7 +370,7 @@
 </list>
 </t>
 <t>
-  In processing the request, the authorization sever MUST perform the appropriate validation procedures for the indicated token
+  In processing the request, the authorization server MUST perform the appropriate validation procedures for the indicated token
   type and, if the actor token is present, also
   perform the appropriate validation procedures for its indicated token type.
   The validity criteria and details of any particular token are beyond the scope of
