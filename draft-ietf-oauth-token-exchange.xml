@@ -283,12 +283,12 @@
   <t hangText="resource">
     <vspace/>
     OPTIONAL.
-    Indicates the location of the target service or resource where the client intends to use
+    A URI that indicates the target service or resource where the client intends to use
     the requested security token. This enables the authorization server to apply policy as appropriate
     for the target, such as determining the type and content of the token to be issued or if and how
     the token is to be encrypted.
     In many cases, a client will not have knowledge of the logical organization of the systems with
-    which it interacts and will only know the location of the service where it intends to use the token.
+    which it interacts and will only know a URI of the service where it intends to use the token.
     The <spanx style="verb">resource</spanx> parameter allows the client to indicate to the authorization server
     where it intends to use the issued token by providing the location, typically as an https URL, in the
     token exchange request in the same form that will be used to access that resource.
@@ -306,16 +306,16 @@
     The logical name of the target service where the client intends to use
     the requested security token. This serves a purpose similar to the
     <spanx style="verb">resource</spanx> parameter, but with the client providing a logical name
-    rather than a location. Interpretation of the name requires that the value be something
+    for the target service. Interpretation of the name requires that the value be something
     that both the client and the authorization server understand. An OAuth client identifier,
-    a SAML entity identifier  <xref target="OASIS.saml-core-2.0-os"/>,
+    a SAML entity identifier <xref target="OASIS.saml-core-2.0-os"/>,
     an OpenID Connect Issuer Identifier <xref target="OpenID.Core"/>,
-    or a URI are examples of things that
+    are examples of things that
     might be used as <spanx style="verb">audience</spanx> parameter values.
     Multiple <spanx style="verb">audience</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple audiences listed.
     The <spanx style="verb">audience</spanx> and <spanx style="verb">resource</spanx> parameters may
-    be used together to indicate multiple target services with a mix of logical names and locations.
+    be used together to indicate multiple target services with a mix of logical names and resource URIs.
   </t>
 
   <t hangText="scope">
