@@ -1302,8 +1302,6 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml' ?>
       <?rfc include="http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"?>
 
-      <!-- <?rfc include="reference.I-D.ietf-oauth-pop-key-distribution"?> -->
-
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
 
       <reference anchor="OASIS.saml-core-1.1">
