@@ -462,7 +462,8 @@
   Note that the meaning of this parameter is different from the meaning of
   the <spanx style="verb">issued_token_type</spanx> parameter,
   which declares the representation of the issued security token;
-  the term "token type" is typically used with this meaning, as it is in
+  the term "token type" is more typically used with the aforementioned meaning as the structural or syntactical
+  representation of the security token, as it is in
   all <spanx style="verb">*_token_type</spanx> parameters in this specification.
   If the issued token is not an access token or usable as an access token,
   then the <spanx style="verb">token_type</spanx> value <spanx style="verb">N_A</spanx> is used
