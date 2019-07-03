@@ -521,7 +521,7 @@
   <t>
     The authorization
     server MAY include additional information regarding the reasons for the error
-    using the <spanx style='verb'>error_description</spanx> and/or <spanx style='verb'>error_uri</spanx> parameters.
+    using the <spanx style='verb'>error_description</spanx> as discussed in Section 5.2 of <xref target="RFC6749"/>.
   </t>
   <t>
     Other error codes may also be used, as appropriate.
