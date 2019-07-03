@@ -266,7 +266,7 @@
 </t>
 <t>
   The client makes a token exchange request to the token endpoint with an extension
-  grant type by including the
+  grant type using the HTTP <spanx style='verb'>POST</spanx> method and including the
   following parameters using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
   format with a character encoding of UTF-8 in the HTTP request entity-body as described in
   Appendix B of RFC6749 <xref target="RFC6749"/>.
