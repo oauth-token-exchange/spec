@@ -268,7 +268,8 @@
   The client makes a token exchange request to the token endpoint with an extension
   grant type by including the
   following parameters using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
-  format with a character encoding of UTF-8 in the HTTP request entity-body:
+  format with a character encoding of UTF-8 in the HTTP request entity-body as described in
+  Appendix B of RFC6749 <xref target="RFC6749"/>.
 </t>
 <t>
 <list style="hanging">
@@ -1690,6 +1691,9 @@ Adam Roach,
         -17
         <list style='symbols'>
           <t>Editorial improvements and example fixes resulting from IESG evaluation comments.</t>
+          <t>Added a pointer to RFC6749's Appendix B. on the
+            "Use of application/x-www-form-urlencoded Media Type" as a way of
+            providing a normative citation (by reference) for the media type.</t>
         </list>
       </t>
       <t>
