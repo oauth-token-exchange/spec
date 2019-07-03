@@ -943,11 +943,11 @@
       <t>
         Tokens employed in the context of the functionality described herein
         may contain privacy-sensitive information and, to prevent
-        disclosure of such information to unintended parties, should only be
+        disclosure of such information to unintended parties, MUST only be
         transmitted over encrypted channels, such as Transport Layer Security
         (TLS).  In cases where it is desirable to prevent disclosure of certain
-        information to the client, the token should be encrypted to its
-        intended recipient. Deployments should determine the minimally necessary
+        information to the client, the token MUST be encrypted to its
+        intended recipient. Deployments SHOULD determine the minimally necessary
         amount of data and only include such information in issued tokens.
         In some cases, data minimization may include representing only an
         anonymous or pseudonymous user.
@@ -1692,6 +1692,8 @@ Adam Roach,
           <t>Added a pointer to RFC6749's Appendix B. on the
             "Use of application/x-www-form-urlencoded Media Type" as a way of
             providing a normative citation (by reference) for the media type.</t>
+          <t>Strengthened some of the wording in the privacy considerations to bring it inline
+            with RFC 7519 Sec. 12 and RFC 6749 Sec. 10.8.</t>
         </list>
       </t>
       <t>
