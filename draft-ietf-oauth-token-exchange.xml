@@ -536,8 +536,8 @@
 <t>
   The following example demonstrates a hypothetical token exchange in which
   an OAuth resource server
-  assumes the role of the client during token exchange in order to
-  trade an access token that it received in a protected resource request for a
+  assumes the role of the client during the exchange. It
+  trades an access token, which it received in a protected resource request, for a new
   token that it will use to call to a backend service
   (extra line breaks and indentation in the examples are for display purposes only).
 </t>
