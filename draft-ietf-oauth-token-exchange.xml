@@ -717,6 +717,11 @@
   being requested or sent (perhaps in a cross-domain use-case where the JWT is used as an authorization grant to
   obtain an access token from a different authorization server as is facilitated by <xref target="RFC7523"/>).
 </t>
+<t>
+  Note that for tokens which are binary in nature, the URI used for conveying them
+  needs to be associated with the semantics of a base64 or other
+  encoding suitable for usage with HTTP and OAuth.
+</t>
    </section>
 
     <section title="JSON Web Token Claims and Introspection Response Parameters" anchor="JWTClaims">
