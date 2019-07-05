@@ -1379,7 +1379,8 @@
     <section anchor="ImpersonationRequest" title="Token Exchange Request">
       <t>
         In the following token exchange request, a client is requesting a token
-        with impersonation semantics.
+        with impersonation semantics (with only a <spanx style="verb">subject_token</spanx>
+        and no <spanx style="verb">actor_token</spanx>, delegation is impossible).
         The client tells the authorization server that it needs a token for use at
         the target service with the logical name
 	<spanx style="verb">urn:example:cooperation-context</spanx>.
