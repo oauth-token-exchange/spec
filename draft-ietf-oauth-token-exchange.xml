@@ -887,6 +887,12 @@
     <t>
       The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to
       become the actor and act on behalf of another party.
+      The claim might be used, for example, when a <spanx style="verb">subject_token</spanx> is
+      presented to the token endpoint in a token exchange request and
+      <spanx style="verb">may_act</spanx> claim in the subject token can be used by the authorization
+      server to determine whether the client (or party identified in the
+      <spanx style="verb">actor_token</spanx>) is authorized to engage in the requested delegation or
+      impersonation.
       The claim value is a JSON object and members in the JSON object are claims that identify the party that
       is asserted as being eligible to act for the party identified by
       the JWT containing the claim.
@@ -905,7 +911,10 @@
       <spanx style="verb">aud</spanx> are not meaningful when used within a <spanx style="verb">may_act</spanx>
       claim, and therefore should not be used.
     </t>
+<t>
 
+
+</t>
     <figure title="Authorized Actor Claim" anchor="may_act-ex">
       <preamble>
         The following example illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
