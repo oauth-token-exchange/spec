@@ -782,7 +782,12 @@
       A chain of delegation can be expressed by nesting one <spanx style="verb">act</spanx> claim within
       another. The outermost <spanx style="verb">act</spanx> claim represents the current actor while nested
       <spanx style="verb">act</spanx> claims represent prior actors. The least recent actor is the most deeply
-      nested.
+      nested. The nested <spanx style="verb">act</spanx> claims
+      serve as a history trail that connects the initial request and subject
+      through the various delegation steps undertaken before reaching the
+      current actor.  In this sense, the current actor is considered to
+      include the entire authorization/delegation history, leading naturally
+      to the nested structure described here.
     </t>
     <t>
       For the purpose of applying access control policy, the consumer of a token MUST only consider the token's
