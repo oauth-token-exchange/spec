@@ -250,7 +250,7 @@
 <t>
   Client authentication to the authorization server is done using the normal
   mechanisms provided by OAuth 2.0.
-  Section 2.3.1 of <xref target="RFC6749">The OAuth 2.0 Authorization Framework</xref>
+  Section 2.3.1 of <xref target="RFC6749"/>
   defines password-based authentication of the client,
   however, client authentication is extensible and other mechanisms are possible.
   For example, <xref target="RFC7523"/> defines client authentication using bearer
