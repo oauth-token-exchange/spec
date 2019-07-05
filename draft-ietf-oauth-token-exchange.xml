@@ -384,8 +384,13 @@
 <t>
   In the absence of one-time-use or other semantics specific to the token type, the act of performing
   a token exchange has no impact on the validity of the subject token or actor token.
-  Furthermore, the validity of the subject token or actor token have no impact on the
-  validity of the issued token after the exchange has occurred.
+  Furthermore, the exchange is a one-time event and does not create a tight linkage
+  between the input and output tokens, so that (for example) while the expiration
+  time of the output token may be influenced by that of the input token,
+  renewal or extension of the input token is not expected to be reflected in
+  the output token's properties.  It may still be appropriate or desirable to propagate
+  token revocation events, however, doing so is not a general property of the STS
+  protocol a would be specific to a particular token type or deployment/implementation.
 </t>
       <section title="Relationship Between Resource, Audience and Scope">
         <t>
