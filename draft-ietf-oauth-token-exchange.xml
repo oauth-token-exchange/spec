@@ -314,6 +314,9 @@
     an OpenID Connect Issuer Identifier <xref target="OpenID.Core"/>,
     are examples of things that
     might be used as <spanx style="verb">audience</spanx> parameter values.
+    However, <spanx style="verb">audience</spanx> values used with a given
+    authorization server must be unique within that server, to ensure that they
+    are properly interpreted as the intended type of value.
     Multiple <spanx style="verb">audience</spanx> parameters may be used to indicate
     that the issued token is intended to be used at the multiple audiences listed.
     The <spanx style="verb">audience</spanx> and <spanx style="verb">resource</spanx> parameters may
