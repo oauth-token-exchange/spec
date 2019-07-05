@@ -883,8 +883,7 @@
     </t>
   </section>
 
-
-      <section title='"may_act" (May Act For) Claim' anchor="may_act">
+      <section title='"may_act" (Authorized Actor) Claim' anchor="may_act">
     <t>
       The <spanx style="verb">may_act</spanx> claim makes a statement that one party is authorized to
       become the actor and act on behalf of another party.
@@ -907,7 +906,7 @@
       claim, and therefore should not be used.
     </t>
 
-    <figure title="May Act For Claim" anchor="may_act-ex">
+    <figure title="Authorized Actor Claim" anchor="may_act-ex">
       <preamble>
         The following example illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">may_act</spanx> claim indicates
@@ -1178,7 +1177,7 @@
     <t>
       <list style='symbols'>
         <t>Claim Name: <spanx style="verb">may_act</spanx></t>
-        <t>Claim Description: May Act For</t>
+        <t>Claim Description: Authorized Actor - the party that is authorized to become the actor</t>
         <t>Change Controller: IESG</t>
         <t>Specification Document(s): <xref target="may_act"/> of [[ this specification ]]</t>
       </list>
@@ -1211,7 +1210,7 @@
           <t>
             <list style='symbols'>
               <t>Claim Name: <spanx style="verb">may_act</spanx></t>
-              <t>Claim Description: May Act For</t>
+              <t>Claim Description: Authorized Actor - the party that is authorized to become the actor</t>
               <t>Change Controller: IESG</t>
               <t>Specification Document(s): <xref target="may_act"/> of [[ this specification ]]</t>
             </list>
