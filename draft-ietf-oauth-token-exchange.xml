@@ -92,8 +92,9 @@
 </t>
 
 <t>
-  A Security Token Service (STS) is a service capable of validating and issuing
-  security tokens, which enables clients to obtain appropriate
+  A Security Token Service (STS) is a service capable of validating
+  security tokens provided to it and issuing new security tokens in
+  response, which enables clients to obtain appropriate
   access credentials for resources in heterogeneous environments or across security
   domains.
   Web Service clients have used <xref target="WS-Trust">WS-Trust</xref>
@@ -457,7 +458,7 @@
   with information about how to utilize the access token to access protected resources.
   For example, a value of <spanx style="verb">Bearer</spanx>,
   as specified in <xref target="RFC6750"/>, indicates that
-  the security token is a bearer token and the client can simply present it as is without any
+  the issued security token is a bearer token and the client can simply present it as is without any
   additional proof of eligibility beyond the contents of the token itself.
   Note that the meaning of this parameter is different from the meaning of
   the <spanx style="verb">issued_token_type</spanx> parameter,
