@@ -245,7 +245,7 @@
 <t>
   A client requests a security token by making a token request to the authorization
   server's token endpoint using the extension grant type mechanism defined
-  in Section 4.5 of <xref target="RFC6749">OAuth 2.0</xref>.
+  in Section 4.5 of <xref target="RFC6749"/>.
 </t>
 <t>
   Client authentication to the authorization server is done using the normal
@@ -841,7 +841,7 @@
       The value of the <spanx style="verb">scope</spanx> claim is a
       JSON string containing a space-separated list of
       scopes associated with the token, in the format described in
-      Section 3.3 of <xref target="RFC6749">OAuth 2.0</xref>.
+      Section 3.3 of <xref target="RFC6749"/>.
     </t>
     <figure title="Scopes Claim" anchor="scope-ex">
       <preamble>
