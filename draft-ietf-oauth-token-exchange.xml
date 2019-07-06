@@ -267,9 +267,10 @@
 </t>
 <t>
   The client makes a token exchange request to the token endpoint with an extension
-  grant type using the HTTP <spanx style='verb'>POST</spanx> method and including the
-  following parameters using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
-  format with a character encoding of UTF-8 in the HTTP request entity-body as described in
+  grant type using the HTTP <spanx style='verb'>POST</spanx> method. The
+  following parameters are included in the HTTP request entity-body
+  using the <spanx style='verb'>application/x-www-form-urlencoded</spanx>
+  format with a character encoding of UTF-8 as described in
   Appendix B of RFC6749 <xref target="RFC6749"/>.
 </t>
 <t>
@@ -484,8 +485,8 @@
   <vspace/>
   RECOMMENDED.  The validity lifetime, in seconds, of the token issued by the
   authorization server. Oftentimes the client will not have the inclination or capability
-  to inspect the content of the token and this parameter provides a consistent and token type
-  agnostic indication of how long the token can be expected to be valid.
+  to inspect the content of the token and this parameter provides a consistent and token-type-agnostic
+  indication of how long the token can be expected to be valid.
   For example, the value 1800 denotes that the token will
   expire in thirty minutes from the time the response was generated.
 </t>
@@ -954,6 +955,16 @@
 
     <section anchor="Security" title="Security Considerations">
       <t>
+        Much of the guidance from Section 10 of <xref target="RFC6749"/>,
+        the Security Considerations in The OAuth 2.0 Authorization Framework,
+        is also applicable here.
+        Furthermore, <xref target="RFC6819"/>
+        provides additional security considerations for OAuth and
+        <xref target="I-D.ietf-oauth-security-topics"/>
+        has updated security guidance based on deployment experience and new threats that have
+        emerged since OAuth 2.0 was originally published.
+      </t>
+      <t>
         All of the normal security issues that are discussed in <xref target="JWT"/>,
         especially in relationship to comparing URIs and dealing with unrecognized values,
         also apply here.
@@ -1329,6 +1340,9 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml' ?>
       <?rfc include="http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6819.xml' ?>
+
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-oauth-security-topics-12.xml'?>
 
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
 
@@ -1677,7 +1691,7 @@
         includes dozens of active and dedicated participants.
         It was produced under the chairmanship of
         Hannes Tschofenig, Derek Atkins, and Rifaat Shekh-Yusef
-        with Kathleen Moriarty, Stephen Farrell, Eric Rescorla, and Benjamin Kaduk serving as
+        with Kathleen Moriarty, Stephen Farrell, Eric Rescorla, Roman Danyliw, and Benjamin Kaduk serving as
         Security Area Directors.
         The following individuals contributed ideas, feedback, and wording
 	to this specification:
