@@ -108,7 +108,7 @@
   applications' access to HTTP and RESTful resources.
   The conventional OAuth 2.0 interaction involves the exchange of some
   representation of resource owner authorization for an access token,
-  which has proven to be an extremely useful pattern in practice, however,
+  which has proven to be an extremely useful pattern in practice. However,
   its input and output are somewhat too constrained as is to fully
   accommodate a security token exchange framework.
 </t>
@@ -390,8 +390,8 @@
   time of the output token may be influenced by that of the input token,
   renewal or extension of the input token is not expected to be reflected in
   the output token's properties.  It may still be appropriate or desirable to propagate
-  token revocation events, however, doing so is not a general property of the STS
-  protocol a would be specific to a particular token type or deployment/implementation.
+  token revocation events. However, doing so is not a general property of the STS
+  protocol and would be specific to a particular implementation, token type or deployment.
 </t>
       <section title="Relationship Between Resource, Audience and Scope">
         <t>
@@ -1703,6 +1703,7 @@
   Thomas Broyer,
 	William Denniss,
   Vladimir Dzhuvinov,
+        Eric Fazendin,
 	Phil Hunt,
   Benjamin Kaduk,
 	Jason Keglovitz,
@@ -1731,13 +1732,13 @@ Adam Roach,
       <t>
         -19
         <list style='symbols'>
-          <t></t>
+          <t>Fix-up changes introduced in -18.</t>
         </list>
       </t>
       <t>
         -18
         <list style='symbols'>
-          <t></t>
+          <t>Editorial updates based on a few more IESG evaluation comments.</t>
         </list>
       </t>
       <t>
