@@ -826,7 +826,7 @@
      "sub":"https://service16.example.com",
      "act":
      {
-       "sub":"https://service77.example.com",
+       "sub":"https://service77.example.com"
      }
    }
  }
@@ -1701,6 +1701,7 @@
   Vittorio Bertocci,
         Mike Brown,
   Thomas Broyer,
+        Roman Danyliw,
 	William Denniss,
   Vladimir Dzhuvinov,
         Eric Fazendin,
@@ -1733,6 +1734,7 @@ Adam Roach,
         -19
         <list style='symbols'>
           <t>Fix-up changes introduced in -18.</t>
+          <t>Fix invalid JSON in the Nested Actor Claim example.</t>
         </list>
       </t>
       <t>
