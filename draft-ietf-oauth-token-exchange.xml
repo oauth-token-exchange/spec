@@ -552,8 +552,8 @@
   (extra line breaks and indentation in the examples are for display purposes only).
 </t>
 <t>
-  The resource server receives the following request containing
-  an OAuth access token in the Authorization request header, as specified in
+  <xref target="main-prr"/> shows the resource server receiving a protected resource request containing
+  an OAuth access token in the Authorization header, as specified in
   Section 2.1 of <xref target="RFC6750"/>.
 </t>
 
@@ -566,8 +566,8 @@
 </figure>
 
 <t>
-  The resource server assumes the role of the client for the token exchange
-  and the access token from the request above is sent
+  In  <xref target="main-tereq"/>, the resource server assumes the role of client for the token exchange
+  and the access token from the request in <xref target="main-prr"/> is sent
   to the authorization
   server using a request as specified in <xref target="Request"/>.
   The value of the <spanx style="verb">subject_token</spanx> parameter carries the
@@ -604,7 +604,7 @@
   appropriate policy to apply to the request and issues a token
   suitable for use at https://backend.example.com.
   The <spanx style="verb">access_token</spanx> parameter of the
-  response contains the new token, which is itself a bearer OAuth
+  response shown in <xref target="main-teresp"/> contains the new token, which is itself a bearer OAuth
   access token that is valid for one minute. The token happens to be
   a JWT; however, its structure and format are opaque to
   the client so the <spanx style="verb">issued_token_type</spanx>
@@ -634,7 +634,7 @@
 
 <t>
   The resource server can then use the newly acquired access token in making
-  a request to the backend server.
+  a request to the backend server as illustrated in <xref target="main-beprr"/>.
 </t>
 
       <figure title="Backend Protected Resource Request" anchor="main-beprr">
@@ -769,7 +769,7 @@
 
     <figure title="Actor Claim" anchor="act-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">act</spanx> (actor) claim within a JWT Claims Set.
+        <xref target="act-ex"/> illustrates the <spanx style="verb">act</spanx> (actor) claim within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
         that admin@example.com is the current actor.
       </preamble>
@@ -807,7 +807,7 @@
     </t>
     <figure title="Nested Actor Claim" anchor="acts-ex">
       <preamble>
-        The following example illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
+        The following example in <xref target="acts-ex"/> illustrates nested <spanx style="verb">act</spanx> (actor) claims within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">act</spanx> claim indicates
         that the system https://service16.example.com is the current actor and https://service77.example.com was a prior actor.
         Such a token might come about as the result of service16 receiving a token in a call from service77
@@ -846,7 +846,7 @@
     </t>
     <figure title="Scopes Claim" anchor="scope-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">scope</spanx> claim within a JWT Claims Set.
+        <xref target="scope-ex"/> illustrates the <spanx style="verb">scope</spanx> claim within a JWT Claims Set.
       </preamble>
       <artwork><![CDATA[
  {
@@ -874,7 +874,7 @@
 
     <figure title="Client Identifier Claim" anchor="client_id-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">client_id</spanx> claim within a JWT Claims Set
+        The following example in <xref target="client_id-ex"/> illustrates the <spanx style="verb">client_id</spanx> claim within a JWT Claims Set
         indicating an OAuth 2.0 client with "s6BhdRkqt3" as its identifier.
       </preamble>
       <artwork><![CDATA[
@@ -927,7 +927,7 @@
 </t>
     <figure title="Authorized Actor Claim" anchor="may_act-ex">
       <preamble>
-        The following example illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
+        <xref target="may_act-ex"/> illustrates the <spanx style="verb">may_act</spanx> claim within a JWT Claims Set.
         The claims of the token itself are about user@example.com while the <spanx style="verb">may_act</spanx> claim indicates
         that admin@example.com is authorized to act on behalf of user@example.com.
       </preamble>
@@ -1735,6 +1735,7 @@ Adam Roach,
         <list style='symbols'>
           <t>Fix-up changes introduced in -18.</t>
           <t>Fix invalid JSON in the Nested Actor Claim example.</t>
+          <t>Reference figure numbers in text when introducing the examples in Section 2 and 4.</t>
         </list>
       </t>
       <t>
