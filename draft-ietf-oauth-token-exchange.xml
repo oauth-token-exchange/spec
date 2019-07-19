@@ -141,7 +141,7 @@
 </t>
 <t>
   The scope of this specification is limited to the definition of a
-  basic request and response protocol for an STS-style token exchange utilizing OAuth 2.0.
+  basic request-and-response protocol for an STS-style token exchange utilizing OAuth 2.0.
   Although a few new JWT claims are defined that enable delegation semantics to be expressed,
   the specific syntax, semantics and security characteristics of the tokens themselves
   (both those presented to the authorization server and those obtained by the client)
