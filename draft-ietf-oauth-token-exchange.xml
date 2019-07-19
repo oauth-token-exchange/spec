@@ -132,10 +132,11 @@
 <t>
   The entity that makes the request to exchange tokens is considered the client in the
   context of the token exchange interaction. However, that does not restrict
-  usage of this profile to traditional OAuth clients. An OAuth resource server, for example,
-  might assume the role of the client during token exchange in order to trade an access token,
-  which it received in a protected resource request, for a new token that is appropriate to include in a
-  call to a backend service. The new token might be an access token that is more
+  usage of this profile to traditional OAuth clients. An OAuth resource server, for example, might assume
+  the role of the client during token exchange in order to trade an
+  access token that it received in a protected resource request for
+  a new token that is appropriate to include in a call to a backend
+  service. The new token might be an access token that is more
   narrowly scoped for the downstream service or it could be an entirely different kind
   of token.
 </t>
