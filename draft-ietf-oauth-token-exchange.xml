@@ -765,7 +765,7 @@
       and are not relevant to the validity of the containing JWT in the same manner as the top-level claims.
       Consequently, non-identity claims (e.g., <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>,
       and <spanx style="verb">aud</spanx>) are not meaningful when used within an
-      <spanx style="verb">act</spanx> claim, and therefore must not be used.
+      <spanx style="verb">act</spanx> claim, and therefore are not used.
     </t>
 
     <figure title="Actor Claim" anchor="act-ex">
@@ -920,7 +920,7 @@
       in the same manner as top-level claims.
       Consequently, claims such as <spanx style="verb">exp</spanx>, <spanx style="verb">nbf</spanx>, and
       <spanx style="verb">aud</spanx> are not meaningful when used within a <spanx style="verb">may_act</spanx>
-      claim, and therefore should not be used.
+      claim, and therefore are not used.
     </t>
 <t>
 
