@@ -179,8 +179,10 @@
     as any entity receiving such a token is concerned, they are
     actually dealing with B. It is true that some members of the
     identity system might have awareness that impersonation is
-    going on, but it is not a requirement. For all intents and
-    purposes, when A is impersonating B, A is B.
+    going on, but it is not a requirement.
+    For all intents and purposes, when A is impersonating B, A is B within the
+    context of the rights authorized by the token, which could be limited in
+    scope or time, or even by a one-time-use restriction.
   </t>
   <t>
     Delegation semantics are different than
