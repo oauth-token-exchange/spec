@@ -525,7 +525,7 @@
     parameter MUST be the <spanx style='verb'>invalid_request</spanx> error code.
   </t>
   <t>
-    If the authorization server is unwilling or unable to issue a token for all the target services
+    If the authorization server is unwilling or unable to issue a token for any target service
     indicated by the <spanx style="verb">resource</spanx> or <spanx style="verb">audience</spanx> parameters,
     the <spanx style="verb">invalid_target</spanx> error code SHOULD be used in the error response.
   </t>
@@ -1709,6 +1709,7 @@
   Benjamin Kaduk,
 	Jason Keglovitz,
   Torsten Lodderstedt,
+        Barry Leiba,
   Adam Lewis,
   James Manger,
   Nov Matake,
@@ -1736,6 +1737,7 @@ Adam Roach,
           <t>Fix-up changes introduced in -18.</t>
           <t>Fix invalid JSON in the Nested Actor Claim example.</t>
           <t>Reference figure numbers in text when introducing the examples in Section 2 and 4.</t>
+          <t>Editorial updates from additional IESG evaluation comments.</t>
         </list>
       </t>
       <t>
