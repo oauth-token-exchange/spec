@@ -981,7 +981,8 @@
         In addition, both delegation and impersonation introduce unique security
         issues.  Any time one principal is delegated the rights of
         another principal, the potential for abuse is a concern.
-        The use of the <spanx style="verb">scope</spanx> claim is suggested to mitigate
+        The use of the <spanx style="verb">scope</spanx> claim (in addition to other typical constraints such as a limited token lifetime)
+        is suggested to mitigate
         potential for such abuse, as it restricts the contexts in which
         the delegated rights can be exercised.
       </t>
