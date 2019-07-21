@@ -17,6 +17,8 @@
      ipr="trust200902">
   <front>
     <title abbrev="OAuth 2.0 Token Exchange">OAuth 2.0 Token Exchange</title>
+                                          <!-- An STS for the REST of Us -->
+
 
     <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
       <organization>Microsoft</organization>
