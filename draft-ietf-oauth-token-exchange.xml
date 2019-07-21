@@ -1351,8 +1351,8 @@
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml' ?>
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6819.xml' ?>
 
-      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-oauth-security-topics-13.xml'?>
-      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-oauth-resource-indicators-03.xml'?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-oauth-security-topics.xml'?>
+      <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-oauth-resource-indicators.xml'?>
 
       <?rfc include='http://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.OASIS.saml-core-2.0-os.xml' ?>
 
