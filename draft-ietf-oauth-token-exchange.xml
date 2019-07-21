@@ -183,8 +183,9 @@
     identity system might have awareness that impersonation is
     going on, but it is not a requirement.
     For all intents and purposes, when A is impersonating B, A is B within the
-    context of the rights authorized by the token, which could be limited in
-    scope or time, or even by a one-time-use restriction.
+    context of the rights authorized by the token. A's ability to impersonate B could
+    be limited in scope or time, or even with a one-time-use restriction,
+    whether via the contents of the token or an out-of-band mechanism.
   </t>
   <t>
     Delegation semantics are different than
