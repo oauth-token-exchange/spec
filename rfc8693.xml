@@ -40,7 +40,7 @@
     <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
       <organization abbrev="Salesforce">Salesforce</organization>
       <address>
-        <email>cmortimore@salesforce.com</email>
+        <email>chuck.mortimore@visa.com</email>
       </address>
     </author>
     <date year="2019" month="December"/>
@@ -51,28 +51,6 @@
     Service, Exchange, Token, OAuth
     </keyword>
 
-
-<!-- [rfced] When we converted this document to v3, xml2rfc converted 
-<spanx style="verb"> to <tt>. In the html and pdf output, the text 
-enclosed in <tt> is output in fixed-width font. In the txt output, 
-the text enclosed in <tt> is output in quotation marks as in the original. 
-
-Please review carefully and let us know if any updates are needed.  
--->
-
-<!-- [rfced]  Figures
-
-a) We tagged Figures 5-9, 11, 13, 15-16, and 18 as <soucecode> with 
-type=“json”. Please confirm this is correct. 
-
-b) We tagged Figures 1-4, 10, 12, 14, and 17 as <artwork>. Please review and
-let us know if these should be <sourcecode> instead.  If you indicate that
-<sourecode> is appropriate, please let us know which type value to use. The
-list of type values is available here:
-https://www.rfc-editor.org/materials/sourcecode-types.txt. If you think a new
-preferred value for the type attribute should be added to the list, please let
-us know.
--->
 
     <abstract>
       <t>
@@ -91,10 +69,10 @@ us know.
   identity and security information in heterogeneous environments or across
   security domains.  Examples of security tokens include JSON Web Tokens
   (JWTs) <xref target="RFC7519" format="default"/> and Security Assertion Markup Language (SAML)
-  2.0 Assertions <xref target="OASIS.saml-core-2.0-os" format="default"/>.  Security tokens are
+  2.0 assertions <xref target="OASIS.saml-core-2.0-os" format="default"/>.  Security tokens are
   typically signed to achieve integrity and sometimes also encrypted to
   achieve confidentiality.  Security tokens are also sometimes described as
-  Assertions, such as in <xref target="RFC7521" format="default"/>.
+  assertions, such as in <xref target="RFC7521" format="default"/>.
 </t>
       <t>
   A Security Token Service (STS) is a service capable of validating
@@ -458,21 +436,6 @@ us know.
   for the representation of the issued security token.
 </dd>
             
-<!-- [rfced] Will it be clear to readers what the "aforementioned meaning" is?
-Please review and let us know if any updates are needed for clarity.
-
-Original:
-   the term "token type" is more typically used with
-   the aforementioned meaning as the structural or syntactical
-   representation of the security token, as it is in all
-   "*_token_type" parameters in this specification.
-
-Perhaps:
-   the term "token type" is more typically used to mean
-   the structural or syntactical
-   representation of the security token, as it is in all
-   "*_token_type" parameters in this specification.
--->
             <dt>token_type</dt>
             <dd>
   <bcp14>REQUIRED</bcp14>.  A case-insensitive value specifying the method of using the
@@ -485,8 +448,7 @@ Perhaps:
   beyond the contents of the token itself.  Note that the meaning of this
   parameter is different from the meaning of the <tt>issued_token_type</tt> parameter, which declares the
   representation of the issued security token; the term "token type" is more
-  typically used with the aforementioned meaning as the structural or
-  syntactical representation of the security token, as it is in all <tt>*_token_type</tt> parameters in this specification.  If the
+  typically used to mean the structural or syntactical representation of the security token, as it is in all <tt>*_token_type</tt> parameters in this specification.  If the
   issued token is not an access token or usable as an access token, then the
   <tt>token_type</tt> value <tt>N_A</tt>
   is used to indicate that an OAuth 2.0 <tt>token_type</tt>
@@ -1085,13 +1047,8 @@ This document:
 	  subregistry was
 	  established by <xref target="RFC6749" format="default"/>.
         </t>
-        <ul spacing="compact">
-          <li>Parameter name: resource</li>
-          <li>Parameter usage location: token request</li>
-          <li>Change controller: IESG</li>
-          <li>Specification document(s): <xref target="Request" format="default"/> of RFC 8693</li>
-        </ul>
-        <ul spacing="compact">
+
+    <ul spacing="compact">
           <li>Parameter name: audience</li>
           <li>Parameter usage location: token request</li>
           <li>Change controller: IESG</li>
@@ -1210,23 +1167,8 @@ This document:
           <li>Specification Document(s): <xref target="may_act" format="default"/> of RFC 8693</li>
         </ul>
       </section>
-      <section anchor="ErrorReg" numbered="true" toc="default">
-        <name>OAuth Extensions Error Registration</name>
-        <t>
-          IANA has registered the following
-          in the "OAuth Extensions Error Registry" of the "OAuth Parameters" registry
-          <xref target="IANA.OAuth.Parameters" format="default"/>. The "OAuth Extensions Error
-	  Registry" was
-          established by <xref target="RFC6749" format="default"/>.
-        </t>
-        <ul spacing="compact">
-          <li>Error Name: invalid_target</li>
-          <li>Error Usage Location: token error response</li>
-          <li>Related Protocol Extension: OAuth 2.0 Token Exchange</li>
-          <li>Change Controller: IETF</li>
-          <li>Specification Document(s): <xref target="ErrorResponse" format="default"/> of RFC 8693</li>
-        </ul>
-      </section>
+
+
     </section>
   </middle>
   <back>
@@ -1716,34 +1658,5 @@ This document:
       </t>
     </section>
     
-<!-- [rfced]  Terminology
-
-a) Please confirm that "one-time-use" is correct here. Should this read
-"one-time use" instead?
-
-Original
-   In the absence of one-time-use or other semantics specific to the
-   token type, the act of performing a token exchange has no impact on
-   the validity of the subject token or actor token.
-
-
-b) Should "Assertions" in these sentences be lowercase (i.e., "assertions")?
-
-Original
-   Examples of security tokens include JSON
-   Web Tokens (JWTs) [JWT] and SAML 2.0 Assertions
-   [OASIS.saml-core-2.0-os]. 
-   ...
-   Security tokens are also sometimes described as
-   Assertions, such as in [RFC7521].
-
-Perhaps
-   Examples of security tokens include JSON
-   Web Tokens (JWTs) [JWT] and Security Assertion Markup Language (SAML)
-   2.0 assertions [OASIS.saml-core-2.0-os].  
-   ...
-   Security tokens are also sometimes
-   described as assertions, such as in [RFC7521].
--->
   </back>
 </rfc>
