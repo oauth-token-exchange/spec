@@ -1,6 +1,6 @@
 # OAuth 2.0 Token Exchange
 
-This is the working area for the IETF OAUTH WG's draft of Token Exchange
+This is the historic working area for the IETF OAUTH WG's draft of Token Exchange
 
 Be aware that all contributions to the specification fall under the "NOTE WELL"
 terms outlined below.
