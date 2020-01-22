@@ -3,8 +3,11 @@
 This is the historic working area for the IETF OAUTH WG's draft of Token Exchange, which is now RFC 8693
 
 https://www.rfc-editor.org/rfc/rfc8693.html
+
 https://tools.ietf.org/html/rfc8693
+
 https://datatracker.ietf.org/doc/rfc8693/
+
 
 Be aware that all contributions to the specification fall under the "NOTE WELL"
 terms outlined below.
